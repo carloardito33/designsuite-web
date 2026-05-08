@@ -97,22 +97,9 @@ export const properties: Property[] = [
     guests: 8,
     bedrooms: 4,
     bathrooms: 4,
-    heroImage:
-      "https://globaluserfiles.com/media/306267_3175d3ea75c4c407c9175b53de454ac5a9c01a46.jpeg/v1/w_1920,h_1080/3175d3ea75c4c407c9175b53de454ac5a9c01a46.jpg",
-    cardImage:
-      "https://globaluserfiles.com/media/306267_0e8222c45b0a50f2f9c94d56b923a63508000476.jpeg/v1/w_1200,h_800/img_9785.jpeg",
-    gallery: [
-      "https://globaluserfiles.com/media/306267_0e8222c45b0a50f2f9c94d56b923a63508000476.jpeg/v1/w_1200,h_800/img_9785.jpeg",
-      "https://globaluserfiles.com/media/306267_5fbc5f38db01f64ac5439215b57d81e70689a205.jpeg/v1/w_1200,h_800/img_9784.jpeg",
-      "https://globaluserfiles.com/media/306267_e5bb8d80591039b52b5701814cb45fb9e7d1ba03.jpeg/v1/w_1200,h_800/img_9787.jpeg",
-      "https://globaluserfiles.com/media/306267_294e1ca2e1e4a20e1bfe8805032d446378eb9c54.jpeg/v1/w_1200,h_800/img_4267.jpeg",
-      "https://globaluserfiles.com/media/306267_3e7c9cc418ab3a9fd3d5195e35fba51218a4b848.jpeg/v1/w_1200,h_800/img_4266.jpeg",
-      "https://globaluserfiles.com/media/306267_1603a1144e5ca1fd71b1d1396941aca8fb64a2e3.jpeg/v1/w_1200,h_800/img_4400.jpeg",
-      "https://globaluserfiles.com/media/306267_8823c9e2a87bf0c73213d0eeefd55728b016f89b.jpeg/v1/w_1200,h_800/img_9751.jpeg",
-      "https://globaluserfiles.com/media/306267_a1abd27dcdc82a976d00b6b9016e8c8c0626cddf.jpeg/v1/w_1200,h_800/img_9752.jpeg",
-      "https://globaluserfiles.com/media/306267_c4d16aad85f9bd4835c37cdc31b76f83a6f0612e.jpeg/v1/w_1200,h_800/img_9753.jpeg",
-      "https://globaluserfiles.com/media/306267_54387dd12b2fb5544d36eba0e77d43282b17b79a.jpeg/v1/w_1200,h_800/img_9757.jpeg",
-    ],
+    heroImage: "/images/villa-crea/01-IMG_3955.jpg",
+    cardImage: "/images/villa-crea/01-IMG_3955.jpg",
+    gallery: [],
     amenities: [
       "Piscina 15×3 m con vista mare",
       "4 camere da letto (2 matrimoniali, 2 doppie flessibili)",

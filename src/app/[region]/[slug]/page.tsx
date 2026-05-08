@@ -16,6 +16,7 @@ import {
   properties,
   WHATSAPP_URL,
 } from "@/lib/properties";
+import { getGallery } from "@/lib/galleries";
 import { PropertyGallery } from "@/components/property-gallery";
 
 type Props = {
@@ -45,6 +46,9 @@ export default async function PropertyPage({ params }: Props) {
   const { region, slug } = await params;
   const property = getProperty(slug);
   if (!property || property.region !== region) notFound();
+
+  const fsGallery = getGallery(slug);
+  const gallery = fsGallery.length > 0 ? fsGallery : property.gallery;
 
   const backLabel =
     property.region === "salento"
@@ -180,7 +184,7 @@ export default async function PropertyPage({ params }: Props) {
           <h3 className="font-serif text-3xl font-light text-[var(--charcoal)] mb-8">
             Galleria
           </h3>
-          <PropertyGallery images={property.gallery} name={property.name} />
+          <PropertyGallery images={gallery} name={property.name} />
         </div>
 
         {/* Back link */}
