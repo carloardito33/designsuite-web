@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -28,6 +29,14 @@ export function Header() {
   return (
     <nav id="navbar" className={showSolid ? "scrolled" : undefined}>
       <Link href="/" className="nav-brand">
+        <Image
+          src="/logo.png"
+          alt="Designsuite"
+          width={40}
+          height={40}
+          className="nav-logo-img"
+          priority
+        />
         <span className="nav-logo-text">Designsuite</span>
       </Link>
       <ul className="nav-links">

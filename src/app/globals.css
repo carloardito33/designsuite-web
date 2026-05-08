@@ -87,6 +87,12 @@ nav#navbar.scrolled {
   gap: 12px;
   text-decoration: none;
 }
+.nav-logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
 .nav-logo-text {
   font-size: 13px;
   font-weight: 300;
@@ -593,6 +599,12 @@ footer#contatti {
   align-items: center;
   gap: 14px;
   margin-bottom: 14px;
+}
+.footer-logo-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 .footer-logo-text {
   font-size: 14px;

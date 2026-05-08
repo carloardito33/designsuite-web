@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { EMAIL } from "@/lib/properties";
 
@@ -7,6 +8,13 @@ export function Footer() {
       <div className="footer-top">
         <div>
           <div className="footer-brand">
+            <Image
+              src="/logo.png"
+              alt="Designsuite"
+              width={48}
+              height={48}
+              className="footer-logo-img"
+            />
             <span className="footer-logo-text">Designsuite</span>
           </div>
           <p className="footer-tagline">Il lusso è nei dettagli.</p>
