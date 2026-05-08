@@ -1,26 +1,20 @@
 import type { Metadata } from "next";
-import { Inter, Cormorant_Garamond } from "next/font/google";
+import { Jost } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 
-const inter = Inter({
-  variable: "--font-inter",
+const jost = Jost({
+  variable: "--font-jost",
   subsets: ["latin"],
-  display: "swap",
-});
-
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["200", "300", "400", "500"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "DesignSuite — Affitti di Design a Milano e in Salento",
-    template: "%s | DesignSuite",
+    default: "Designsuite — Affitti di Design a Milano e in Salento",
+    template: "%s | Designsuite",
   },
   description:
     "Ville con piscina in Salento e appartamenti di design a Milano. Quattro proprietà selezionate per un soggiorno che non dimenticherai.",
@@ -32,10 +26,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="it" className={`${inter.variable} ${cormorant.variable}`}>
-      <body className="min-h-screen flex flex-col bg-[var(--cream)] text-[var(--charcoal)]">
+    <html lang="it" className={jost.variable}>
+      <body>
         <Header />
-        <main className="flex-1">{children}</main>
+        {children}
         <Footer />
       </body>
     </html>
