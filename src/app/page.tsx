@@ -97,10 +97,10 @@ export default function Home() {
       <section id="residenze">
         <div className="section-header">
           <p className="section-eyebrow">Le nostre residenze</p>
-          <h2>Due città, uno stile</h2>
+          <h2>Tra Milano e il Salento</h2>
         </div>
         <div className="residences">
-          <div className="city-block salento-block">
+          <div id="salento" className="city-block salento-block">
             <div className="city-header">
               <div className="city-header-line" />
               <div>
@@ -129,7 +129,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="city-block milano-block">
+          <div id="milano" className="city-block milano-block">
             <div className="city-header">
               <div className="city-header-line" />
               <div>

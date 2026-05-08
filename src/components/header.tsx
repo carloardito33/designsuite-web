@@ -5,9 +5,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const NAV_LINKS = [
-  { href: "/#residenze", label: "Le residenze" },
-  { href: "/#residenze", label: "Milano" },
-  { href: "/#residenze", label: "Salento" },
+  { href: "/#milano", label: "Milano" },
+  { href: "/#salento", label: "Salento" },
   { href: "/#contatti", label: "Contatti" },
 ];
 
