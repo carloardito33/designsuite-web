@@ -26,7 +26,7 @@ export default function Home() {
             Milano · Salento
           </p>
           <h1 className="font-serif text-5xl md:text-7xl font-light text-white leading-[1.1] max-w-2xl">
-            Soggiorni di design tra Milano e il Salento
+            Ville e suite di design tra Milano e il Salento
           </h1>
           <p className="mt-6 text-white/70 text-base md:text-lg max-w-xl leading-relaxed">
             Quattro proprietà selezionate. Architettura curata, posizioni
