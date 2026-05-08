@@ -97,7 +97,7 @@ export default function Home() {
       <section id="residenze">
         <div className="section-header">
           <p className="section-eyebrow">Le nostre residenze</p>
-          <h2>Tra Milano e il Salento</h2>
+          <h2>Dal centro di Milano al cuore del Salento</h2>
         </div>
         <div className="residences">
           <div id="salento" className="city-block salento-block">
