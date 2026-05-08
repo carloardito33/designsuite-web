@@ -246,7 +246,7 @@ export const HERO_IMAGE =
   "https://globaluserfiles.com/media/306267_3175d3ea75c4c407c9175b53de454ac5a9c01a46.jpeg/v1/w_1920,h_1080/3175d3ea75c4c407c9175b53de454ac5a9c01a46.jpg";
 
 export const WHATSAPP_URL = "https://wa.me/393356810310";
-export const EMAIL = "info@designsuite.it";
+export const EMAIL = "carlo@designsuite.it";
 
 export function getProperty(slug: string): Property | undefined {
   return properties.find((p) => p.slug === slug);

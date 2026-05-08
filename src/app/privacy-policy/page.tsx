@@ -12,7 +12,7 @@ export default function PrivacyPolicy() {
         Privacy Policy
       </h1>
       <div className="text-[var(--charcoal)]/75 space-y-4 leading-relaxed text-sm">
-        <p>Titolare del trattamento: DesignSuite — info@designsuite.it</p>
+        <p>Titolare del trattamento: DesignSuite — carlo@designsuite.it</p>
         <p>
           I dati personali raccolti tramite questo sito (nome, email, numero di
           telefono) vengono utilizzati esclusivamente per rispondere alle
