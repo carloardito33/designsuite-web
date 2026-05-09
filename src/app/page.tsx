@@ -16,9 +16,9 @@ export default function Home() {
             <span>Milano · Puglia · Salento</span>
           </div>
           <h1>
-            Vivi il design.
+            Quando il design
             <br />
-            Ovunque tu sia.
+            diventa casa.
           </h1>
           <p className="hero-sub">
             Appartamenti e ville di lusso curati in ogni dettaglio.
