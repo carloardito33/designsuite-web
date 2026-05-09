@@ -41,6 +41,14 @@ export function PropertyGallery({
     };
   }, [index, close, next, prev]);
 
+  // autoplay: avanza ogni 4.5s mentre il lightbox è aperto.
+  // Re-mounting effect on index change resets the timer dopo navigazione manuale.
+  useEffect(() => {
+    if (index === null) return;
+    const id = window.setInterval(next, 4500);
+    return () => window.clearInterval(id);
+  }, [index, next]);
+
   return (
     <>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3">
