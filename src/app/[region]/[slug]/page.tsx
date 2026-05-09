@@ -96,10 +96,15 @@ export default async function PropertyPage({ params }: Props) {
             <Bath size={14} />
             {property.bathrooms} bagni
           </span>
-          <span className="flex items-center gap-2">
+          <a
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(property.address)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 hover:text-[var(--charcoal)] transition-colors underline-offset-4 hover:underline"
+          >
             <MapPin size={14} />
             {property.address}
-          </span>
+          </a>
         </div>
 
         {/* Two-column body */}

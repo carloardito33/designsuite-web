@@ -1,8 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+
+const AUTOPLAY_MS = 3500;
+const FADE_MS = 700;
 
 export function PropertyGallery({
   images,
@@ -12,20 +15,58 @@ export function PropertyGallery({
   name: string;
 }) {
   const [index, setIndex] = useState<number | null>(null);
-
-  const close = useCallback(() => setIndex(null), []);
-  const next = useCallback(
-    () => setIndex((i) => (i === null ? null : (i + 1) % images.length)),
-    [images.length],
+  // previous frame held during crossfade so the outgoing image stays visible
+  const [outgoing, setOutgoing] = useState<{ src: string; key: number } | null>(
+    null,
   );
-  const prev = useCallback(
-    () =>
-      setIndex((i) =>
-        i === null ? null : (i - 1 + images.length) % images.length,
-      ),
-    [images.length],
+  const fadeTimer = useRef<number | null>(null);
+
+  const transitionTo = useCallback(
+    (next: number) => {
+      setOutgoing((prevOutgoing) => {
+        // capture the current src before swap; if there was already an outgoing, drop it
+        return null; // reset; effect below will set new outgoing on index change
+      });
+      setIndex((curr) => {
+        if (curr === null) return next;
+        // remember outgoing for crossfade
+        setOutgoing({ src: images[curr], key: Date.now() });
+        return next;
+      });
+    },
+    [images],
   );
 
+  const close = useCallback(() => {
+    setIndex(null);
+    setOutgoing(null);
+  }, []);
+  const next = useCallback(() => {
+    setIndex((i) => {
+      if (i === null) return null;
+      setOutgoing({ src: images[i], key: Date.now() });
+      return (i + 1) % images.length;
+    });
+  }, [images]);
+  const prev = useCallback(() => {
+    setIndex((i) => {
+      if (i === null) return null;
+      setOutgoing({ src: images[i], key: Date.now() });
+      return (i - 1 + images.length) % images.length;
+    });
+  }, [images]);
+
+  // remove outgoing once fade completes
+  useEffect(() => {
+    if (!outgoing) return;
+    if (fadeTimer.current) window.clearTimeout(fadeTimer.current);
+    fadeTimer.current = window.setTimeout(() => setOutgoing(null), FADE_MS);
+    return () => {
+      if (fadeTimer.current) window.clearTimeout(fadeTimer.current);
+    };
+  }, [outgoing]);
+
+  // keyboard + body scroll lock
   useEffect(() => {
     if (index === null) return;
     const onKey = (e: KeyboardEvent) => {
@@ -41,11 +82,10 @@ export function PropertyGallery({
     };
   }, [index, close, next, prev]);
 
-  // autoplay: avanza ogni 4.5s mentre il lightbox è aperto.
-  // Re-mounting effect on index change resets the timer dopo navigazione manuale.
+  // autoplay 3.5s, riarmato ad ogni cambio di index
   useEffect(() => {
     if (index === null) return;
-    const id = window.setInterval(next, 4500);
+    const id = window.setInterval(next, AUTOPLAY_MS);
     return () => window.clearInterval(id);
   }, [index, next]);
 
@@ -56,7 +96,7 @@ export function PropertyGallery({
           <button
             type="button"
             key={src}
-            onClick={() => setIndex(i)}
+            onClick={() => transitionTo(i)}
             className="relative aspect-[4/3] overflow-hidden bg-[var(--ivory)] cursor-pointer group block"
           >
             <Image
@@ -78,24 +118,26 @@ export function PropertyGallery({
           className="fixed inset-0 z-[200] bg-black/96"
           onClick={close}
         >
-          {/* image layer (pointer-events-none on wrapper, auto on image box) */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div
               className="relative w-[86vw] h-[78vh] pointer-events-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              <Image
+              {outgoing && (
+                <FadeOutImage
+                  key={outgoing.key}
+                  src={outgoing.src}
+                  alt={`${name} — foto precedente`}
+                />
+              )}
+              <FadeInImage
+                key={`in-${index}`}
                 src={images[index]}
                 alt={`${name} — foto ${index + 1}`}
-                fill
-                sizes="100vw"
-                priority
-                className="object-contain"
               />
             </div>
           </div>
 
-          {/* controls — DOM-last so they sit on top of the image layer */}
           <button
             type="button"
             aria-label="Chiudi galleria"
@@ -138,5 +180,50 @@ export function PropertyGallery({
         </div>
       )}
     </>
+  );
+}
+
+function FadeInImage({ src, alt }: { src: string; alt: string }) {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setVisible(true));
+    return () => cancelAnimationFrame(raf);
+  }, []);
+  return (
+    <div
+      className="absolute inset-0 transition-opacity ease-out"
+      style={{
+        opacity: visible ? 1 : 0,
+        transitionDuration: `${FADE_MS}ms`,
+      }}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="100vw"
+        priority
+        className="object-contain"
+      />
+    </div>
+  );
+}
+
+function FadeOutImage({ src, alt }: { src: string; alt: string }) {
+  const [visible, setVisible] = useState(true);
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setVisible(false));
+    return () => cancelAnimationFrame(raf);
+  }, []);
+  return (
+    <div
+      className="absolute inset-0 transition-opacity ease-out"
+      style={{
+        opacity: visible ? 1 : 0,
+        transitionDuration: `${FADE_MS}ms`,
+      }}
+    >
+      <Image src={src} alt={alt} fill sizes="100vw" className="object-contain" />
+    </div>
   );
 }
