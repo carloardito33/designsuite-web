@@ -11,6 +11,8 @@
   --olive-lt: #8a8a30;
   --night: #1e1e08;
   --night-2: #2c2c10;
+  --ocra: #9a7341;
+  --earth: #6e5d49;
 
   --text: #1e1c14;
   --text-mid: rgba(30, 28, 20, 0.78);
@@ -345,13 +347,13 @@ nav#navbar.scrolled .nav-cta:hover {
   margin: 0 auto;
 }
 .salento-block {
-  background: var(--night);
+  background: var(--ocra);
   padding: 48px 56px 56px;
 }
 .milano-block {
-  background: var(--pearl);
+  background: var(--earth);
   padding: 48px 56px 56px;
-  border-top: 0.5px solid var(--border);
+  border-top: 0.5px solid rgba(240, 238, 234, 0.14);
 }
 .city-header {
   display: flex;
@@ -378,7 +380,7 @@ nav#navbar.scrolled .nav-cta:hover {
   color: var(--gold-lt);
 }
 .milano-block .city-name {
-  color: var(--gold-dk);
+  color: var(--gold-lt);
 }
 .city-desc {
   font-size: 14px;
@@ -391,7 +393,7 @@ nav#navbar.scrolled .nav-cta:hover {
   color: rgba(240, 238, 234, 0.82);
 }
 .milano-block .city-desc {
-  color: var(--text-mid);
+  color: rgba(240, 238, 234, 0.82);
 }
 
 .cards-grid {

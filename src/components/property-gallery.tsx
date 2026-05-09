@@ -67,9 +67,27 @@ export function PropertyGallery({
           role="dialog"
           aria-modal="true"
           aria-label={`Galleria ${name}`}
-          className="fixed inset-0 z-[200] bg-black/96 flex items-center justify-center"
+          className="fixed inset-0 z-[200] bg-black/96"
           onClick={close}
         >
+          {/* image layer (pointer-events-none on wrapper, auto on image box) */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div
+              className="relative w-[86vw] h-[78vh] pointer-events-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={images[index]}
+                alt={`${name} — foto ${index + 1}`}
+                fill
+                sizes="100vw"
+                priority
+                className="object-contain"
+              />
+            </div>
+          </div>
+
+          {/* controls — DOM-last so they sit on top of the image layer */}
           <button
             type="button"
             aria-label="Chiudi galleria"
@@ -77,7 +95,7 @@ export function PropertyGallery({
               e.stopPropagation();
               close();
             }}
-            className="absolute top-5 right-5 md:top-7 md:right-7 text-white/80 hover:text-white p-2"
+            className="absolute top-5 right-5 md:top-7 md:right-7 z-10 text-white/85 hover:text-white p-2"
           >
             <X size={28} strokeWidth={1.5} />
           </button>
@@ -89,7 +107,7 @@ export function PropertyGallery({
               e.stopPropagation();
               prev();
             }}
-            className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-white p-3"
+            className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-10 text-white/75 hover:text-white p-3"
           >
             <ChevronLeft size={36} strokeWidth={1.4} />
           </button>
@@ -101,26 +119,12 @@ export function PropertyGallery({
               e.stopPropagation();
               next();
             }}
-            className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-white p-3"
+            className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-10 text-white/75 hover:text-white p-3"
           >
             <ChevronRight size={36} strokeWidth={1.4} />
           </button>
 
-          <div
-            className="relative w-[94vw] h-[86vh]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Image
-              src={images[index]}
-              alt={`${name} — foto ${index + 1}`}
-              fill
-              sizes="100vw"
-              priority
-              className="object-contain"
-            />
-          </div>
-
-          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 text-white/65 text-[11px] tracking-[0.24em] uppercase font-light">
+          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-10 text-white/65 text-[11px] tracking-[0.24em] uppercase font-light pointer-events-none">
             {index + 1} / {images.length}
           </div>
         </div>
