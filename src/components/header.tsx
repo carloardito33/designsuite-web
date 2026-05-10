@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { BookingButton } from "@/components/booking-button";
 
 const NAV_LINKS = [
   { href: "/#milano", label: "Milano" },
@@ -47,7 +46,9 @@ export function Header() {
           </li>
         ))}
         <li>
-          <BookingButton className="nav-cta">Prenota</BookingButton>
+          <a href="/#residenze" className="nav-cta">
+            Prenota
+          </a>
         </li>
       </ul>
     </nav>
