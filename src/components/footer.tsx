@@ -40,7 +40,15 @@ export function Footer() {
               rel="noopener noreferrer"
               className="footer-contact-value"
             >
-              @designsuite.it
+              Instagram · @designsuite.it
+            </a>
+            <a
+              href="https://www.facebook.com/designsuite.it"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-contact-value"
+            >
+              Facebook · @designsuite.it
             </a>
           </div>
         </div>
