@@ -215,10 +215,8 @@ export const properties: Property[] = [
     guests: 4,
     bedrooms: 2,
     bathrooms: 2,
-    heroImage:
-      "https://globaluserfiles.com/media/306267_d5f36eceb66f3349cb8ce760faade93c77523f68.jpeg/v1/w_1920,h_800/d5f36eceb66f3349cb8ce760faade93c77523f68.jpg",
-    cardImage:
-      "https://globaluserfiles.com/media/306267_3837a41cec59826f434447d7854001f1f5c843ac.jpeg/v1/w_1200,h_800/soggiorno%201.jpeg",
+    heroImage: "/images/suite-porta-romana-2/01-Esterno.jpg",
+    cardImage: "/images/suite-porta-romana-2/06-Soggiorno%201.jpg",
     gallery: [
       "https://globaluserfiles.com/media/306267_3837a41cec59826f434447d7854001f1f5c843ac.jpeg/v1/w_1200,h_800/soggiorno%201.jpeg",
       "https://globaluserfiles.com/media/306267_b188cd9c54a393c75f5b3caa077332d816092d82.jpeg/v1/w_1200,h_800/letto%201.jpeg",
