@@ -170,9 +170,19 @@ export default async function PropertyPage({ params }: Props) {
                 Prenota o richiedi disponibilità
               </p>
               <p className="text-sm text-[var(--charcoal)]/60 leading-relaxed">
-                Scrivici su WhatsApp per una risposta immediata, oppure
-                prenota direttamente tramite le piattaforme.
+                Prenota online senza commissioni con conferma immediata,
+                oppure scrivici su WhatsApp per una risposta personalizzata.
               </p>
+              <Link
+                href={
+                  property.smoobuApartmentId
+                    ? `/prenota?apt=${property.smoobuApartmentId}`
+                    : "/prenota"
+                }
+                className="flex items-center justify-center gap-2 w-full py-3.5 bg-[var(--warm-brown)] text-white text-sm tracking-widest uppercase hover:bg-[var(--charcoal)] transition-colors"
+              >
+                Prenota online
+              </Link>
               <a
                 href={WHATSAPP_URL}
                 className="flex items-center justify-center gap-2 w-full py-3.5 bg-[var(--charcoal)] text-white text-sm tracking-widest uppercase hover:bg-[var(--warm-brown)] transition-colors"

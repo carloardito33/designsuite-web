@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PropertyCard } from "@/components/property-card";
 import { getProperty } from "@/lib/properties";
 
@@ -29,9 +30,9 @@ export default function Home() {
             <a href="#residenze" className="btn-pearl">
               Scopri le residenze
             </a>
-            <a href="#contatti" className="btn-gold">
+            <Link href="/prenota" className="btn-gold">
               Prenota ora
-            </a>
+            </Link>
           </div>
         </div>
       </section>
