@@ -34,7 +34,14 @@ export function Footer() {
           </div>
           <div>
             <p className="footer-contact-label">Social</p>
-            <span className="footer-contact-value">@designsuite</span>
+            <a
+              href="https://www.instagram.com/designsuite.it/?hl=it"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-contact-value"
+            >
+              @designsuite.it
+            </a>
           </div>
         </div>
         <div className="footer-badges">
