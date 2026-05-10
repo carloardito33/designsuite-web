@@ -154,7 +154,7 @@ export const properties: Property[] = [
     shortDescription: "Appartamento di design con terrazzo in Porta Romana",
     subtitle: "Appartamento di design con terrazzo in Porta Romana",
     description: [
-      "Suite Porta Romana è un appartamento completamente ristrutturato da architetto, situato in Via Muratori 13, nel cuore del quartiere Porta Romana a Milano — uno degli indirizzi più ambiti per chi visita la città.",
+      "Suite Porta Romana è un appartamento completamente ristrutturato da architetto, situato in Via Muratori 13, nel cuore del quartiere Porta Romana a Milano, uno degli indirizzi più ambiti per chi visita la città.",
       "Al primo piano di un palazzo moderno con portineria, l'appartamento è un bilocale luminoso — camera, soggiorno e bagno — con finiture e materiali di qualità. Il terrazzo privato offre uno spazio esterno raro a questa distanza dal centro.",
       "La metropolitana M3 (Porta Romana) è a pochi minuti a piedi. Ristoranti, bar, mercati e supermercati a portata di mano. Tutto il necessario è incluso: WiFi ad alta velocità, lavatrice, lavastoviglie, aria condizionata, riscaldamento autonomo, TV.",
     ],
