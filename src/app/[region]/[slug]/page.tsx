@@ -18,6 +18,7 @@ import {
 } from "@/lib/properties";
 import { getGallery } from "@/lib/galleries";
 import { PropertyGallery } from "@/components/property-gallery";
+import { BookingButton } from "@/components/booking-button";
 
 type Props = {
   params: Promise<{ region: string; slug: string }>;
@@ -173,16 +174,12 @@ export default async function PropertyPage({ params }: Props) {
                 Prenota online senza commissioni con conferma immediata,
                 oppure scrivici su WhatsApp per una risposta personalizzata.
               </p>
-              <Link
-                href={
-                  property.smoobuApartmentId
-                    ? `/prenota?apt=${property.smoobuApartmentId}`
-                    : "/prenota"
-                }
+              <BookingButton
+                apartmentId={property.smoobuApartmentId}
                 className="flex items-center justify-center gap-2 w-full py-3.5 bg-[var(--warm-brown)] text-white text-sm tracking-widest uppercase hover:bg-[var(--charcoal)] transition-colors"
               >
                 Prenota online
-              </Link>
+              </BookingButton>
               <a
                 href={WHATSAPP_URL}
                 className="flex items-center justify-center gap-2 w-full py-3.5 bg-[var(--charcoal)] text-white text-sm tracking-widest uppercase hover:bg-[var(--warm-brown)] transition-colors"

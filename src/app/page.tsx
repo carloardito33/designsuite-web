@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { BookingButton } from "@/components/booking-button";
 import { PropertyCard } from "@/components/property-card";
 import { getProperty } from "@/lib/properties";
 
@@ -30,9 +30,7 @@ export default function Home() {
             <a href="#residenze" className="btn-pearl">
               Scopri le residenze
             </a>
-            <Link href="/prenota" className="btn-gold">
-              Prenota ora
-            </Link>
+            <BookingButton className="btn-gold">Prenota ora</BookingButton>
           </div>
         </div>
       </section>
