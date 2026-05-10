@@ -155,7 +155,7 @@ export const properties: Property[] = [
     subtitle: "Appartamento di design con terrazzo in Porta Romana",
     description: [
       "Suite Porta Romana è un appartamento completamente ristrutturato da architetto, situato in Via Muratori 13, nel cuore del quartiere Porta Romana a Milano, uno degli indirizzi più ambiti per chi visita la città.",
-      "Al primo piano di un palazzo moderno con portineria, l'appartamento è un bilocale luminoso — camera, soggiorno e bagno — con finiture e materiali di qualità. Il terrazzo privato offre uno spazio esterno raro a questa distanza dal centro.",
+      "Al primo piano di un palazzo moderno con portineria, l'appartamento è un bilocale luminoso composto da camera, soggiorno e bagno, con finiture e materiali di qualità. Il terrazzo privato offre uno spazio esterno raro a questa distanza dal centro.",
       "La metropolitana M3 (Porta Romana) è a pochi minuti a piedi. Ristoranti, bar, mercati e supermercati a portata di mano. Tutto il necessario è incluso: WiFi ad alta velocità, lavatrice, lavastoviglie, aria condizionata, riscaldamento autonomo, TV.",
     ],
     guests: 4,
@@ -210,7 +210,7 @@ export const properties: Property[] = [
     description: [
       "Suite Porta Romana 2 è il secondo appartamento del portfolio DesignSuite nel quartiere Porta Romana di Milano. Completamente ristrutturato da architetto con finiture contemporanee e materiali selezionati, si compone di 4 ambienti luminosi pensati per offrire il massimo comfort durante il soggiorno in città.",
       "L'appartamento è equipaggiato con tutto il necessario per sentirsi a casa: doppia TV, WiFi ad alta velocità, lavatrice, asciugatrice, lavastoviglie, aria condizionata e riscaldamento autonomo.",
-      "La metropolitana M3 (linea gialla) è a pochi minuti a piedi, garantendo un accesso rapido a qualsiasi punto di Milano — dal Duomo ai Navigli, da Brera alla Fiera. Il quartiere Porta Romana è uno dei più vivaci e ben serviti della città, con una ricca offerta di ristoranti, caffetterie, mercati e negozi.",
+      "La metropolitana M3 (linea gialla) è a pochi minuti a piedi, garantendo un accesso rapido a qualsiasi punto di Milano, dal Duomo ai Navigli, da Brera alla Fiera. Il quartiere Porta Romana è uno dei più vivaci e ben serviti della città, con una ricca offerta di ristoranti, caffetterie, mercati e negozi.",
     ],
     guests: 4,
     bedrooms: 2,
