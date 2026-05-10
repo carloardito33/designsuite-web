@@ -27,7 +27,7 @@ export const properties: Property[] = [
     name: "Bosco degli Ulivi",
     location: "Morciano di Leuca, Salento",
     address: "Via Murge snc, 73040 Morciano di Leuca (LE)",
-    mapsUrl: "https://www.google.com/maps?q=39.84467,18.29294",
+    mapsUrl: "https://maps.app.goo.gl/LTJLdXiiC21gnq8p7",
     shortDescription:
       "Rifugio tra ulivi secolari con piscina 12×4 a pochi minuti dalle spiagge del Sud Salento",
     subtitle:
@@ -97,7 +97,7 @@ export const properties: Property[] = [
     name: "Villa Crea",
     location: "Castrignano del Capo, Salento",
     address: "SC Mattara, Marina di Felloniche, 73040 Castrignano del Capo (LE)",
-    mapsUrl: "https://www.google.com/maps?q=39.81214,18.32617",
+    mapsUrl: "https://maps.app.goo.gl/RRobRbgUPwahZ6jp6",
     shortDescription:
       "Rifugio di charme con piscina 15×3 vista mare a pochi km da Santa Maria di Leuca",
     subtitle:
@@ -154,6 +154,7 @@ export const properties: Property[] = [
     name: "Suite Porta Romana",
     location: "Porta Romana, Milano",
     address: "Via Lodovico Muratori 13, 20135 Milano",
+    mapsUrl: "https://maps.app.goo.gl/HeYwR8qa8BU67beF8",
     shortDescription: "Appartamento di design con terrazzo in Porta Romana",
     subtitle: "Appartamento di design con terrazzo in Porta Romana",
     description: [
@@ -207,6 +208,7 @@ export const properties: Property[] = [
     name: "Suite Porta Romana 2",
     location: "Porta Romana, Milano",
     address: "Via Francesco Burlamacchi 11, 20135 Milano",
+    mapsUrl: "https://maps.app.goo.gl/kYRrsSW8tkU15jFk8",
     shortDescription:
       "Secondo appartamento di design nel cuore di Porta Romana",
     subtitle: "Secondo appartamento di design nel cuore di Porta Romana",
