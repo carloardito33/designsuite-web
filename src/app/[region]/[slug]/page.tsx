@@ -97,7 +97,10 @@ export default async function PropertyPage({ params }: Props) {
             {property.bathrooms} bagni
           </span>
           <a
-            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(property.address)}`}
+            href={
+              property.mapsUrl ??
+              `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(property.address)}`
+            }
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 hover:text-[var(--charcoal)] transition-colors underline-offset-4 hover:underline"
