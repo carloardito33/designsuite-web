@@ -29,9 +29,6 @@ export default function Home() {
             <a href="#residenze" className="btn-pearl">
               Scopri le residenze
             </a>
-            <a href="#residenze" className="btn-gold">
-              Prenota ora
-            </a>
           </div>
         </div>
       </section>
