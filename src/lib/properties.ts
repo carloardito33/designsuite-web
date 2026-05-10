@@ -203,7 +203,7 @@ export const properties: Property[] = [
     region: "milano",
     name: "Suite Porta Romana 2",
     location: "Porta Romana, Milano",
-    address: "Zona Porta Romana, 20135 Milano",
+    address: "Via Burlamacchi 11, 20135 Milano",
     shortDescription:
       "Secondo appartamento di design nel cuore di Porta Romana",
     subtitle: "Secondo appartamento di design nel cuore di Porta Romana",
