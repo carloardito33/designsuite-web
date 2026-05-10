@@ -161,7 +161,7 @@ export const properties: Property[] = [
     guests: 4,
     bedrooms: 2,
     bathrooms: 2,
-    heroImage: "/images/suite-porta-romana/01-a%20Esterno.jpg",
+    heroImage: "/images/suite-porta-romana/00-Esterno.jpg",
     cardImage: "/images/suite-porta-romana/02-Soggiorno%201.jpg",
     gallery: [
       "https://globaluserfiles.com/media/306267_cf2ec89f0a52955ee9f84712a7a5c857a87c8821.jpeg/v1/w_1200,h_800/soggiorno%201.jpeg",
