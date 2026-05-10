@@ -116,15 +116,15 @@ export default function Home() {
                 property={villaCrea}
                 bgClass="salento-1"
                 location="Salento · Puglia"
-                tags={["Fino a 8 ospiti", "Piscina", "Giardino"]}
-                priceFromEUR={350}
+                tags={["Fino a 8 ospiti"]}
+                priceFromEUR={400}
               />
               <PropertyCard
                 property={bosco}
                 bgClass="salento-2"
                 location="Salento · Puglia"
-                tags={["Fino a 6 ospiti", "Piscina", "BBQ"]}
-                priceFromEUR={400}
+                tags={["Fino a 6 ospiti"]}
+                priceFromEUR={300}
               />
             </div>
           </div>
@@ -146,14 +146,14 @@ export default function Home() {
                 property={suite1}
                 bgClass="milano-1"
                 location="Milano · Porta Romana"
-                tags={["Ideale per 2", "Fino a 4", "WiFi"]}
+                tags={["Ideale per 2", "Fino a 4"]}
                 priceFromEUR={120}
               />
               <PropertyCard
                 property={suite2}
                 bgClass="milano-2"
                 location="Milano · Porta Romana"
-                tags={["Ideale per 2", "Fino a 4", "WiFi"]}
+                tags={["Ideale per 2", "Fino a 4"]}
                 priceFromEUR={120}
               />
             </div>

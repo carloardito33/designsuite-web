@@ -33,7 +33,6 @@ export function PropertyCard({
       <div className="card-body">
         <p className="card-location">{location}</p>
         <h3 className="card-title">{property.name}</h3>
-        <p className="card-desc">{property.shortDescription}</p>
         <div className="card-meta">
           {tags.map((t) => (
             <span key={t} className="card-tag">

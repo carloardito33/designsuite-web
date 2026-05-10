@@ -470,21 +470,13 @@ nav#navbar.scrolled .nav-cta:hover {
   font-weight: 300;
 }
 .card-title {
-  font-size: 18px;
+  font-size: 28px;
   font-weight: 200;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--pearl);
-  margin-bottom: 6px;
-  line-height: 1.2;
-}
-.card-desc {
-  font-size: 12px;
-  color: rgba(240, 238, 234, 0.82);
-  letter-spacing: 0.04em;
-  line-height: 1.7;
-  margin-bottom: 12px;
-  font-weight: 300;
+  margin-bottom: 16px;
+  line-height: 1.15;
 }
 .card-meta {
   display: flex;
