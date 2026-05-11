@@ -309,6 +309,89 @@ export const guestInfoPages: GuestInfoPage[] = [
     footnote: "Al termine, ricorda di riportare la chiave nell'appartamento.",
     footnoteEn: "When you're done, remember to return the key to the apartment.",
   },
+  {
+    slug: "suite-porta-romana-2-spazzatura",
+    property: "Suite Porta Romana 2",
+    category: "Raccolta differenziata",
+    categoryEn: "Waste collection",
+    title: "Raccolta differenziata",
+    titleEn: "Separate waste collection",
+    subtitle: "Via Francesco Burlamacchi 11, 20135 Milano",
+    intro:
+      "Nell'appartamento trovi i sacchetti per la differenziata e la chiave «Spazzatura + Cortile bici». Il percorso è uguale per tutti i rifiuti fino alla porta a vetri; da lì cambia in base al tipo.",
+    introEn:
+      "In the apartment you'll find the recycling bags and the «Spazzatura + Cortile bici» key. The route is the same for all waste up to the glass door; from there it depends on the type.",
+    steps: [
+      {
+        image: "/images/info/suite-porta-romana-2-spazzatura/1-sacchetti.jpg",
+        caption: "I sacchetti per la raccolta differenziata, nell'appartamento",
+        captionEn: "The recycling bags, in the apartment",
+      },
+      {
+        image: "/images/info/suite-porta-romana-2-spazzatura/2-chiave.jpg",
+        caption:
+          "Prendi la chiave «Spazzatura + Cortile bici» (gancio sotto il rilevatore di fumo)",
+        captionEn:
+          "Take the «Spazzatura + Cortile bici» key (hook below the smoke detector)",
+      },
+      {
+        image: "/images/info/suite-porta-romana-2-spazzatura/3-uscita.jpg",
+        caption: "Esci dall'appartamento e segui la freccia",
+        captionEn: "Leave the apartment and follow the arrow",
+      },
+      {
+        image: "/images/info/suite-porta-romana-2-spazzatura/4-porta-vetri.jpg",
+        caption:
+          "Raggiungi la porta a vetri cerchiata (accanto alla porta «Segreteria»)",
+        captionEn:
+          "Reach the circled glass door (next to the «Segreteria» door)",
+      },
+    ],
+    extraSections: [
+      {
+        title: "Plastica e metallo",
+        titleEn: "Plastic and metal",
+        steps: [
+          {
+            image:
+              "/images/info/suite-porta-romana-2-spazzatura/5-porta-plastica.jpg",
+            caption: "Oltrepassa la porta a vetri e apri la porta cerchiata",
+            captionEn: "Go past the glass door and open the circled door",
+          },
+          {
+            image:
+              "/images/info/suite-porta-romana-2-spazzatura/6-contenitori-plastica.jpg",
+            caption:
+              "Deposita plastica e metallo nei contenitori gialli «plastica metallo»",
+            captionEn:
+              "Put plastic and metal in the yellow «plastica metallo» bins",
+          },
+        ],
+      },
+      {
+        title: "Indifferenziata",
+        titleEn: "Non-recyclable",
+        steps: [
+          {
+            image: "/images/info/suite-porta-romana-2-spazzatura/7-botola.jpg",
+            caption:
+              "L'indifferenziata si getta nella botola cerchiata in rosso",
+            captionEn:
+              "Non-recyclable waste goes into the hatch circled in red",
+          },
+        ],
+      },
+      {
+        title: "Carta, vetro e organico",
+        titleEn: "Paper, glass and organic",
+        notice:
+          "Stesso percorso dell'indifferenziata, ma non usare la botola: apri con la chiave «Spazzatura + Cortile bici» la porta a vetri che vedi accanto alla botola e utilizza i contenitori nel cortile.",
+        noticeEn:
+          "Same route as non-recyclable waste, but do not use the hatch: with the «Spazzatura + Cortile bici» key open the glass door next to the hatch and use the bins in the courtyard.",
+        steps: [],
+      },
+    ],
+  },
 ];
 
 export function getGuestInfoPage(slug: string): GuestInfoPage | undefined {

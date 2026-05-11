@@ -156,35 +156,38 @@ export default async function GuestInfoPage({ params }: Props) {
                 )}
               </div>
             )}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5">
-              {section.steps.map((step, i) => (
-                <figure key={i} className="space-y-1.5">
-                  <div className="relative aspect-square bg-[var(--beige)] overflow-hidden rounded-sm">
-                    <Image
-                      src={step.image}
-                      alt={
-                        step.caption ?? `${page.property} — ${section.title} ${i + 1}`
-                      }
-                      fill
-                      sizes="(max-width: 640px) 45vw, 30vw"
-                      className="object-cover"
-                    />
-                  </div>
-                  {step.caption && (
-                    <figcaption className="text-xs leading-snug">
-                      <span className="text-[var(--charcoal)]/80">
-                        {step.caption}
-                      </span>
-                      {step.captionEn && (
-                        <span className="block text-[var(--charcoal)]/40 italic">
-                          {step.captionEn}
+            {section.steps.length > 0 && (
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5">
+                {section.steps.map((step, i) => (
+                  <figure key={i} className="space-y-1.5">
+                    <div className="relative aspect-square bg-[var(--beige)] overflow-hidden rounded-sm">
+                      <Image
+                        src={step.image}
+                        alt={
+                          step.caption ??
+                          `${page.property} — ${section.title} ${i + 1}`
+                        }
+                        fill
+                        sizes="(max-width: 640px) 45vw, 30vw"
+                        className="object-cover"
+                      />
+                    </div>
+                    {step.caption && (
+                      <figcaption className="text-xs leading-snug">
+                        <span className="text-[var(--charcoal)]/80">
+                          {step.caption}
                         </span>
-                      )}
-                    </figcaption>
-                  )}
-                </figure>
-              ))}
-            </div>
+                        {step.captionEn && (
+                          <span className="block text-[var(--charcoal)]/40 italic">
+                            {step.captionEn}
+                          </span>
+                        )}
+                      </figcaption>
+                    )}
+                  </figure>
+                ))}
+              </div>
+            )}
           </section>
         ))}
 
