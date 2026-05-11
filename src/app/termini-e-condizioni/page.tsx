@@ -256,12 +256,11 @@ export default function TerminiCondizioni() {
           </p>
           <ul className="mt-2 list-disc list-inside space-y-1">
             <li>
-              <strong>Suite Porta Romana e Suite Porta Romana 2 (Milano)</strong>
-              : tassa di soggiorno comunale a carico dell&apos;ospite, secondo
-              la tariffa vigente del Comune di Milano. [DA CONFERMARE: importo
-              esatto per persona/notte e numero massimo di notti soggette —
-              l&apos;importo aggiornato sarà comunicato al momento della
-              prenotazione.]
+              <strong>
+                Suite Porta Romana e Suite Porta Romana 2 (Milano)
+              </strong>
+              : € 9,50 per persona per notte, secondo la tariffa e le
+              modalità previste dal regolamento del Comune di Milano;
             </li>
             <li>
               <strong>Bosco degli Ulivi (Morciano di Leuca)</strong>: € 1,30 per
