@@ -134,6 +134,60 @@ export default async function GuestInfoPage({ params }: Props) {
           </p>
         )}
 
+        {page.extraSections?.map((section, si) => (
+          <section key={si} className="mt-12 pt-8 border-t border-[var(--border)]">
+            <h2 className="font-serif text-xl md:text-2xl font-light text-[var(--charcoal)] mb-1">
+              {section.title}
+            </h2>
+            {section.titleEn && (
+              <p className="text-[var(--charcoal)]/40 italic text-sm mb-5">
+                {section.titleEn}
+              </p>
+            )}
+            {section.notice && (
+              <div className="mb-6 border-l-2 border-[var(--warm-brown)] bg-[var(--beige)] px-4 py-2.5 text-sm">
+                <span className="text-[var(--charcoal)] font-medium">
+                  {section.notice}
+                </span>
+                {section.noticeEn && (
+                  <span className="block text-[var(--charcoal)]/45 italic">
+                    {section.noticeEn}
+                  </span>
+                )}
+              </div>
+            )}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5">
+              {section.steps.map((step, i) => (
+                <figure key={i} className="space-y-1.5">
+                  <div className="relative aspect-square bg-[var(--beige)] overflow-hidden rounded-sm">
+                    <Image
+                      src={step.image}
+                      alt={
+                        step.caption ?? `${page.property} — ${section.title} ${i + 1}`
+                      }
+                      fill
+                      sizes="(max-width: 640px) 45vw, 30vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  {step.caption && (
+                    <figcaption className="text-xs leading-snug">
+                      <span className="text-[var(--charcoal)]/80">
+                        {step.caption}
+                      </span>
+                      {step.captionEn && (
+                        <span className="block text-[var(--charcoal)]/40 italic">
+                          {step.captionEn}
+                        </span>
+                      )}
+                    </figcaption>
+                  )}
+                </figure>
+              ))}
+            </div>
+          </section>
+        ))}
+
         <div className="mt-10 pt-6 border-t border-[var(--border)] text-xs text-[var(--charcoal)]/40">
           Pagina informativa per gli ospiti di {page.property}. Assistenza:{" "}
           <a

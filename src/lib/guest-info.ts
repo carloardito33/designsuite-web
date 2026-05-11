@@ -4,6 +4,14 @@ export type GuestInfoStep = {
   captionEn?: string;
 };
 
+export type GuestInfoSection = {
+  title: string;
+  titleEn?: string;
+  notice?: string;
+  noticeEn?: string;
+  steps: GuestInfoStep[];
+};
+
 export type GuestInfoPage = {
   slug: string;
   property: string;
@@ -20,6 +28,7 @@ export type GuestInfoPage = {
   steps: GuestInfoStep[];
   footnote?: string;
   footnoteEn?: string;
+  extraSections?: GuestInfoSection[];
 };
 
 export const guestInfoPages: GuestInfoPage[] = [
@@ -131,17 +140,18 @@ export const guestInfoPages: GuestInfoPage[] = [
     titleEn: "Separate waste collection",
     subtitle: "Via Lodovico Muratori 13, 20135 Milano",
     intro:
-      "Separa i rifiuti negli appositi sacchetti e portali nei contenitori condominiali.",
-    introEn: "Sort your waste and place it in the condominium bins.",
+      "Separa i rifiuti negli appositi sacchetti e portali nei contenitori condominiali al piano -1.",
+    introEn:
+      "Sort your waste in the proper bags and take it to the condominium bins on floor -1.",
     steps: [
       {
         image:
-          "/images/info/suite-porta-romana-spazzatura/1-indifferenziata.webp",
+          "/images/info/suite-porta-romana-spazzatura/1-indifferenziata.jpg",
         caption: "Indifferenziata",
         captionEn: "Non-recyclable",
       },
       {
-        image: "/images/info/suite-porta-romana-spazzatura/2-organico.webp",
+        image: "/images/info/suite-porta-romana-spazzatura/2-organico.jpg",
         caption: "Organico",
         captionEn: "Organic",
       },
@@ -152,8 +162,35 @@ export const guestInfoPages: GuestInfoPage[] = [
         captionEn: "Paper and Plastic / Metal",
       },
     ],
-    footnote: "I contenitori si trovano negli spazi condominiali.",
-    footnoteEn: "The bins are located in the condominium areas.",
+    extraSections: [
+      {
+        title: "Contenitori condominiali",
+        titleEn: "Condominium containers",
+        notice: "Scendere al piano -1",
+        noticeEn: "Go down to floor -1",
+        steps: [
+          {
+            image: "/images/info/suite-porta-romana-spazzatura/4-percorso-1.jpg",
+            caption:
+              "Prendi l'ascensore indicato dalla freccia, in fondo al corridoio",
+            captionEn:
+              "Take the lift indicated by the arrow, at the end of the corridor",
+          },
+          {
+            image: "/images/info/suite-porta-romana-spazzatura/5-percorso-2.jpg",
+            caption: "Entra nell'ascensore e premi il pulsante per il piano -1",
+            captionEn: "Enter the lift and press the button for floor -1",
+          },
+          {
+            image: "/images/info/suite-porta-romana-spazzatura/6-percorso-3.jpg",
+            caption:
+              "Al piano -1 trovi il locale con i contenitori condominiali (zona cerchiata)",
+            captionEn:
+              "On floor -1 you'll find the room with the condominium containers (circled area)",
+          },
+        ],
+      },
+    ],
   },
   {
     slug: "suite-porta-romana-2-accesso",
