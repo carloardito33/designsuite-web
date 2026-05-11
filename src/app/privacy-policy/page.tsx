@@ -20,42 +20,62 @@ export default function PrivacyPolicy() {
       <div className="text-[var(--charcoal)]/80 leading-relaxed text-sm space-y-8">
         <section>
           <h2 className="font-serif text-xl font-light text-[var(--charcoal)] mb-3">
-            1. Titolare del trattamento
+            1. Titolari del trattamento (contitolarità)
           </h2>
           <p>
-            Il titolare del trattamento dei dati personali raccolti tramite il
-            sito designsuite.it è:
+            &quot;DesignSuite&quot; è un nome commerciale sotto il quale sono
+            promosse e gestite quattro unità immobiliari di proprietà di due
+            distinti soggetti. I dati personali raccolti tramite il sito
+            designsuite.it sono trattati in regime di contitolarità ai sensi
+            dell&apos;art. 26 del Regolamento UE 2016/679 dai seguenti
+            titolari:
           </p>
-          <ul className="mt-2 space-y-1">
-            <li>
-              <strong>Denominazione:</strong> [DA COMPILARE: ragione sociale o
-              nome e cognome del titolare]
-            </li>
-            <li>
-              <strong>Sede legale:</strong> [DA COMPILARE: via, città, CAP]
-            </li>
-            <li>
-              <strong>P.IVA / C.F.:</strong> [DA COMPILARE]
-            </li>
-            <li>
-              <strong>Email:</strong>{" "}
-              <a
-                href="mailto:carlo@designsuite.it"
-                className="underline underline-offset-2"
-              >
-                carlo@designsuite.it
-              </a>
-            </li>
-            <li>
-              <strong>Telefono:</strong> +39 335 6810 310
-            </li>
-            <li>
-              <strong>PEC:</strong> [DA COMPILARE se disponibile]
-            </li>
-          </ul>
+          <div className="mt-3 space-y-4">
+            <div>
+              <p className="font-medium text-[var(--charcoal)]">
+                Rosanna Tarricone
+              </p>
+              <ul className="mt-1 space-y-0.5 text-xs">
+                <li>
+                  Strutture: <em>Bosco degli Ulivi</em> (Morciano di Leuca) e{" "}
+                  <em>Suite Porta Romana</em> (Milano)
+                </li>
+                <li>Codice Fiscale: TRRRNN67T70H501X</li>
+                <li>Residenza: Via Francesco Burlamacchi 11, 20135 Milano</li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-medium text-[var(--charcoal)]">Carlo Ardito</p>
+              <ul className="mt-1 space-y-0.5 text-xs">
+                <li>
+                  Strutture: <em>Villa Crea</em> (Castrignano del Capo) e{" "}
+                  <em>Suite Porta Romana 2</em> (Milano)
+                </li>
+                <li>Codice Fiscale: RDTCRL66L16A662J</li>
+                <li>Residenza: Via Francesco Burlamacchi 11, 20135 Milano</li>
+                <li>PEC: carloardito@pec.it</li>
+              </ul>
+            </div>
+          </div>
+          <p className="mt-4">
+            <strong>Punto di contatto unico</strong> per l&apos;esercizio dei
+            diritti e per ogni comunicazione relativa al trattamento dei dati:{" "}
+            <a
+              href="mailto:carlo@designsuite.it"
+              className="underline underline-offset-2"
+            >
+              carlo@designsuite.it
+            </a>{" "}
+            — Telefono: +39 335 6810 310. La gestione operativa del sito e
+            delle prenotazioni è curata da Carlo Ardito anche per conto
+            dell&apos;altra contitolare, in forza di accordo di contitolarità.
+          </p>
           <p className="mt-3 text-xs text-[var(--charcoal)]/60">
             Non è stato designato un Responsabile della Protezione dei Dati
-            (DPO), non ricorrendone gli obblighi di legge.
+            (DPO), non ricorrendone gli obblighi di legge. I titolari non sono
+            titolari di partita IVA per l&apos;attività di locazione, esercitata
+            in forma non imprenditoriale con applicazione del regime della
+            cedolare secca.
           </p>
         </section>
 
@@ -213,7 +233,8 @@ export default function PrivacyPolicy() {
           </ul>
           <p className="mt-3">
             L&apos;elenco aggiornato dei responsabili del trattamento è
-            disponibile su richiesta scrivendo al titolare.
+            disponibile su richiesta scrivendo al punto di contatto unico
+            indicato al punto 1.
           </p>
         </section>
 
@@ -307,10 +328,11 @@ export default function PrivacyPolicy() {
             terze parti.
           </p>
           <p className="mt-3 text-xs text-[var(--charcoal)]/60">
-            [DA VERIFICARE: se in futuro verranno integrati Google Analytics,
-            Meta Pixel o altri strumenti di tracciamento, sarà necessario
-            implementare un banner di consenso conforme alle Linee Guida del
-            Garante del 10/06/2021 e aggiornare la presente informativa.]
+            Qualora in futuro vengano integrati strumenti di analisi statistica
+            o di profilazione (es. Google Analytics, Meta Pixel), verrà
+            implementato un banner di acquisizione del consenso conforme alle
+            Linee Guida del Garante del 10 giugno 2021 e la presente
+            informativa sarà aggiornata di conseguenza.
           </p>
         </section>
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { properties } from "@/lib/properties";
 
 export const metadata: Metadata = {
   title: "Termini e Condizioni",
@@ -22,66 +23,95 @@ export default function TerminiCondizioni() {
       <div className="text-[var(--charcoal)]/80 leading-relaxed text-sm space-y-8">
         <section>
           <h2 className="font-serif text-xl font-light text-[var(--charcoal)] mb-3">
-            1. Locatore
+            1. Locatori
           </h2>
-          <ul className="space-y-1">
-            <li>
-              <strong>Denominazione:</strong> [DA COMPILARE: ragione sociale o
-              nome e cognome del locatore]
-            </li>
-            <li>
-              <strong>Sede:</strong> [DA COMPILARE]
-            </li>
-            <li>
-              <strong>P.IVA / C.F.:</strong> [DA COMPILARE]
-            </li>
-            <li>
-              <strong>Iscrizione REA:</strong> [DA COMPILARE se applicabile]
-            </li>
-            <li>
-              <strong>Email:</strong>{" "}
-              <a
-                href="mailto:carlo@designsuite.it"
-                className="underline underline-offset-2"
-              >
-                carlo@designsuite.it
-              </a>
-            </li>
-            <li>
-              <strong>Telefono:</strong> +39 335 6810 310
-            </li>
-            <li>
-              <strong>PEC:</strong> [DA COMPILARE se disponibile]
-            </li>
-          </ul>
+          <p>
+            &quot;DesignSuite&quot; è un nome commerciale sotto il quale sono
+            promosse quattro strutture appartenenti a due distinti proprietari.
+            Il contratto di locazione di ciascuna struttura è stipulato con il
+            rispettivo locatore di seguito indicato:
+          </p>
+          <div className="mt-3 space-y-3">
+            <div>
+              <p className="font-medium text-[var(--charcoal)]">
+                Rosanna Tarricone
+              </p>
+              <p className="text-xs">
+                Codice Fiscale TRRRNN67T70H501X — Via Francesco Burlamacchi 11,
+                20135 Milano. Locatore di: <em>Bosco degli Ulivi</em> e{" "}
+                <em>Suite Porta Romana</em>.
+              </p>
+            </div>
+            <div>
+              <p className="font-medium text-[var(--charcoal)]">Carlo Ardito</p>
+              <p className="text-xs">
+                Codice Fiscale RDTCRL66L16A662J — Via Francesco Burlamacchi 11,
+                20135 Milano — PEC carloardito@pec.it. Locatore di:{" "}
+                <em>Villa Crea</em> e <em>Suite Porta Romana 2</em>.
+              </p>
+            </div>
+          </div>
+          <p className="mt-3 text-xs text-[var(--charcoal)]/60">
+            Recapiti comuni: email{" "}
+            <a
+              href="mailto:carlo@designsuite.it"
+              className="underline underline-offset-2"
+            >
+              carlo@designsuite.it
+            </a>{" "}
+            — telefono +39 335 6810 310. La gestione delle prenotazioni e dei
+            rapporti con gli ospiti è curata da Carlo Ardito anche per conto
+            dell&apos;altra locatrice. I locatori esercitano l&apos;attività in
+            forma non imprenditoriale, con applicazione del regime della
+            cedolare secca al 21%.
+          </p>
         </section>
 
         <section>
           <h2 className="font-serif text-xl font-light text-[var(--charcoal)] mb-3">
-            2. Codice Identificativo Nazionale (CIN)
+            2. Strutture e Codici Identificativi Nazionali (CIN)
           </h2>
           <p>
             Ai sensi dell&apos;art. 13-ter del D.L. 145/2023 (convertito con
             modificazioni dalla L. 191/2023), ogni unità destinata a locazione
             per finalità turistiche è identificata dal seguente CIN:
           </p>
-          <ul className="mt-2 list-disc list-inside space-y-1">
-            <li>
-              <strong>Villa Crea</strong> — CIN: [DA COMPILARE: CIN Villa Crea]
-            </li>
-            <li>
-              <strong>Bosco degli Ulivi</strong> — CIN: [DA COMPILARE: CIN
-              Bosco]
-            </li>
-            <li>
-              <strong>Suite Porta Romana</strong> — CIN: [DA COMPILARE: CIN
-              Suite 1]
-            </li>
-            <li>
-              <strong>Suite Porta Romana 2</strong> — CIN: [DA COMPILARE: CIN
-              Suite 2]
-            </li>
-          </ul>
+          <table className="w-full text-xs mt-3 border border-[var(--border)]">
+            <thead>
+              <tr className="bg-[var(--beige)]">
+                <th className="text-left p-2 border-b border-[var(--border)]">
+                  Struttura
+                </th>
+                <th className="text-left p-2 border-b border-[var(--border)]">
+                  Indirizzo
+                </th>
+                <th className="text-left p-2 border-b border-[var(--border)]">
+                  CIN
+                </th>
+                <th className="text-left p-2 border-b border-[var(--border)]">
+                  Locatore
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {properties.map((p) => (
+                <tr key={p.slug}>
+                  <td className="p-2 border-b border-[var(--border)]">
+                    {p.name}
+                  </td>
+                  <td className="p-2 border-b border-[var(--border)]">
+                    {p.address}
+                  </td>
+                  <td className="p-2 border-b border-[var(--border)] whitespace-nowrap">
+                    {p.cin}
+                  </td>
+                  <td className="p-2 border-b border-[var(--border)]">
+                    {p.owner}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </section>
 
         <section>
@@ -94,14 +124,13 @@ export default function TerminiCondizioni() {
             massima di 30 giorni consecutivi. Trattandosi di locazione
             turistica breve, il contratto non è soggetto all&apos;obbligo di
             registrazione presso l&apos;Agenzia delle Entrate (art. 4 D.L.
-            50/2017). Il locatore applica il regime fiscale della cedolare
-            secca, ove applicabile.
+            50/2017).
           </p>
         </section>
 
         <section>
           <h2 className="font-serif text-xl font-light text-[var(--charcoal)] mb-3">
-            4. Procedura di prenotazione
+            4. Procedura di prenotazione e pagamento
           </h2>
           <ol className="list-decimal list-inside space-y-2">
             <li>
@@ -111,23 +140,24 @@ export default function TerminiCondizioni() {
             </li>
             <li>
               Il locatore conferma la disponibilità e comunica il prezzo
-              complessivo, comprensivo di eventuali servizi accessori.
+              complessivo del soggiorno, comprensivo di eventuali servizi
+              accessori.
             </li>
             <li>
-              La prenotazione è perfezionata con il versamento di un acconto
-              pari al [DA COMPILARE: % acconto, es. 30%] del prezzo totale,
-              entro [DA COMPILARE: es. 48 ore] dalla conferma.
+              La prenotazione si perfeziona con il versamento di un acconto pari
+              al <strong>30% del prezzo totale</strong> entro le tempistiche
+              indicate al momento della conferma.
             </li>
             <li>
-              Il saldo deve essere corrisposto entro [DA COMPILARE: es. 30
-              giorni] prima del check-in. In caso di prenotazione effettuata a
-              meno di [DA COMPILARE: es. 30] giorni dall&apos;arrivo è richiesto
-              il pagamento dell&apos;intero importo in unica soluzione.
+              Il <strong>saldo</strong> deve essere corrisposto entro{" "}
+              <strong>30 giorni prima del check-in</strong>. Per le prenotazioni
+              effettuate a meno di 30 giorni dall&apos;arrivo è richiesto il
+              pagamento dell&apos;intero importo in unica soluzione.
             </li>
             <li>
               Mezzi di pagamento accettati: bonifico bancario, carta di
-              credito/debito tramite Smoobu, ovvero secondo le modalità del
-              portale di prenotazione di provenienza.
+              credito/debito, contanti (entro i limiti di legge), ovvero secondo
+              le modalità del portale di prenotazione di provenienza.
             </li>
           </ol>
         </section>
@@ -137,21 +167,18 @@ export default function TerminiCondizioni() {
             5. Cancellazione e rimborsi
           </h2>
           <p>
-            Politica di cancellazione applicata per le prenotazioni dirette:
+            Politica di cancellazione applicata alle prenotazioni dirette:
           </p>
           <ul className="mt-2 list-disc list-inside space-y-1">
             <li>
-              Cancellazione almeno [DA COMPILARE: es. 30] giorni prima
-              dell&apos;arrivo: rimborso del [DA COMPILARE: es. 100%] della
-              somma versata;
+              Cancellazione comunicata <strong>almeno 30 giorni prima</strong>{" "}
+              della data di arrivo: rimborso del <strong>100%</strong> delle
+              somme versate;
             </li>
             <li>
-              Cancellazione tra [DA COMPILARE: es. 30 e 14] giorni prima:
-              rimborso del [DA COMPILARE: es. 50%];
-            </li>
-            <li>
-              Cancellazione a meno di [DA COMPILARE: es. 14] giorni
-              dall&apos;arrivo o no-show: nessun rimborso.
+              Cancellazione comunicata a <strong>meno di 30 giorni</strong>{" "}
+              dall&apos;arrivo, ovvero mancata presentazione (no-show):{" "}
+              <strong>nessun rimborso</strong>.
             </li>
           </ul>
           <p className="mt-3">
@@ -160,10 +187,10 @@ export default function TerminiCondizioni() {
             singolo portale.
           </p>
           <p className="mt-3 text-xs text-[var(--charcoal)]/60">
-            Si segnala che, ai sensi dell&apos;art. 59, comma 1, lett. n) del
-            D.Lgs. 206/2005 (Codice del Consumo), il contratto di locazione
-            turistica è escluso dal diritto di recesso di 14 giorni previsto
-            per i contratti conclusi a distanza.
+            Ai sensi dell&apos;art. 59, comma 1, lett. n) del D.Lgs. 206/2005
+            (Codice del Consumo), il contratto di locazione turistica è escluso
+            dal diritto di recesso di 14 giorni previsto per i contratti
+            conclusi a distanza.
           </p>
         </section>
 
@@ -173,21 +200,22 @@ export default function TerminiCondizioni() {
           </h2>
           <ul className="space-y-1">
             <li>
-              <strong>Check-in:</strong> dalle ore [DA COMPILARE: es. 16:00] alle
-              ore [DA COMPILARE: es. 20:00];
+              <strong>Check-in:</strong> dalle ore 16:00;
             </li>
             <li>
-              <strong>Check-out:</strong> entro le ore [DA COMPILARE: es. 10:00].
+              <strong>Check-out:</strong> entro le ore 10:00.
             </li>
           </ul>
           <p className="mt-3">
-            Eventuali check-in tardivi o check-out posticipati sono soggetti a
-            disponibilità e potranno comportare un sovrapprezzo. Ai sensi
-            dell&apos;art. 109 T.U.L.P.S. (R.D. 773/1931), al momento del
-            check-in è obbligatoria l&apos;esibizione di un documento
-            d&apos;identità valido per ciascun ospite (compresi i minori), i
-            cui dati saranno comunicati al servizio Alloggiati Web della
-            Questura.
+            È disponibile il self check-in (consegna chiavi tramite cassetta di
+            sicurezza o accoglienza in struttura, secondo quanto comunicato
+            prima dell&apos;arrivo). Eventuali check-in tardivi o check-out
+            posticipati sono soggetti a disponibilità e possono comportare un
+            sovrapprezzo. Ai sensi dell&apos;art. 109 T.U.L.P.S. (R.D.
+            773/1931), al momento del check-in è obbligatoria
+            l&apos;esibizione di un documento d&apos;identità valido per
+            ciascun ospite (compresi i minori), i cui dati saranno comunicati
+            al servizio Alloggiati Web della Questura.
           </p>
         </section>
 
@@ -196,12 +224,24 @@ export default function TerminiCondizioni() {
             7. Cauzione
           </h2>
           <p>
-            È richiesta una cauzione di [DA COMPILARE: es. €500 per le ville
-            in Salento e €300 per gli appartamenti a Milano], trattenuta
-            mediante pre-autorizzazione su carta di credito al momento del
-            check-in. La cauzione viene restituita entro 7 giorni dal
-            check-out, previa verifica dello stato della struttura e
-            dell&apos;assenza di danni.
+            È richiesta una cauzione a garanzia di eventuali danni, di importo
+            pari a:
+          </p>
+          <ul className="mt-2 list-disc list-inside space-y-1">
+            <li>
+              <strong>€ 1.000</strong> per le ville in Salento (Villa Crea,
+              Bosco degli Ulivi);
+            </li>
+            <li>
+              <strong>€ 100</strong> per gli appartamenti a Milano (Suite Porta
+              Romana, Suite Porta Romana 2).
+            </li>
+          </ul>
+          <p className="mt-3">
+            La cauzione è trattenuta mediante pre-autorizzazione su carta di
+            credito o versata secondo altra modalità concordata al momento del
+            check-in, e viene restituita entro 7 giorni dal check-out previa
+            verifica dello stato della struttura.
           </p>
         </section>
 
@@ -210,27 +250,32 @@ export default function TerminiCondizioni() {
             8. Tassa di soggiorno
           </h2>
           <p>
-            La tassa di soggiorno, ove applicabile, è dovuta in aggiunta al
-            prezzo del soggiorno e va corrisposta direttamente in struttura al
-            check-in (in contanti o secondo le modalità indicate). Importi
-            aggiornati:
+            Ove prevista dal Comune in cui si trova la struttura, la tassa di
+            soggiorno è dovuta in aggiunta al prezzo del soggiorno e va
+            corrisposta direttamente in struttura al check-in:
           </p>
           <ul className="mt-2 list-disc list-inside space-y-1">
             <li>
-              <strong>Milano</strong> (Suite Porta Romana e Suite Porta Romana
-              2): [DA VERIFICARE: importo tassa di soggiorno Milano 2026 in
-              base alla categoria della struttura — indicativamente €4,50 a
-              notte per persona, max 14 notti consecutive];
+              <strong>Suite Porta Romana e Suite Porta Romana 2 (Milano)</strong>
+              : tassa di soggiorno comunale a carico dell&apos;ospite, secondo
+              la tariffa vigente del Comune di Milano. [DA CONFERMARE: importo
+              esatto per persona/notte e numero massimo di notti soggette —
+              l&apos;importo aggiornato sarà comunicato al momento della
+              prenotazione.]
             </li>
             <li>
-              <strong>Castrignano del Capo</strong> (Villa Crea): [DA
-              VERIFICARE: se applicabile dal Comune];
+              <strong>Bosco degli Ulivi (Morciano di Leuca)</strong>: € 1,30 per
+              persona per notte, secondo la delibera comunale vigente;
             </li>
             <li>
-              <strong>Morciano di Leuca</strong> (Bosco degli Ulivi): [DA
-              VERIFICARE: se applicabile dal Comune].
+              <strong>Villa Crea (Castrignano del Capo)</strong>: € 1,00 per
+              persona per notte, secondo la delibera comunale vigente.
             </li>
           </ul>
+          <p className="mt-3 text-xs text-[var(--charcoal)]/60">
+            Sono di norma esenti i minori di 18 anni e i soggetti previsti dai
+            singoli regolamenti comunali.
+          </p>
         </section>
 
         <section>
@@ -240,32 +285,52 @@ export default function TerminiCondizioni() {
           <ul className="list-disc list-inside space-y-1">
             <li>È severamente vietato fumare all&apos;interno delle strutture;</li>
             <li>
+              <strong>Non sono ammessi animali domestici</strong> in nessuna
+              delle strutture;
+            </li>
+            <li>
               Il numero massimo di ospiti consentito è quello indicato nella
               scheda di ogni proprietà e non può essere superato in nessun
               caso;
             </li>
             <li>
-              Non sono ammessi feste, eventi o riunioni con persone non
-              registrate al soggiorno;
+              <strong>
+                Non sono ammessi feste, eventi, pranzi o cene con persone non
+                registrate al soggiorno
+              </strong>
+              ;
             </li>
             <li>
               È richiesto il rispetto delle ore di silenzio notturno (dalle
-              22:00 alle 08:00);
+              22:00 alle 08:00) e del regolamento di condominio per le strutture
+              di Milano;
             </li>
             <li>
-              <strong>Animali domestici:</strong> [DA COMPILARE: ammessi /
-              non ammessi / ammessi su richiesta con eventuale supplemento];
-            </li>
-            <li>
-              È richiesta cura della struttura e un comportamento rispettoso
-              degli arredi, dei vicini e dell&apos;ambiente circostante.
+              È richiesta cura della struttura, degli arredi e dei beni in essa
+              contenuti, nonché un comportamento rispettoso dei vicini e
+              dell&apos;ambiente circostante.
             </li>
           </ul>
         </section>
 
         <section>
           <h2 className="font-serif text-xl font-light text-[var(--charcoal)] mb-3">
-            10. Responsabilità per danni
+            10. Servizi
+          </h2>
+          <p>
+            Le pulizie finali sono incluse nel prezzo del soggiorno. Il cambio
+            biancheria intermedio è incluso secondo le modalità indicate per
+            ciascuna struttura. Eventuali servizi extra (cuoco privato,
+            baby-sitter, transfer, escursioni) sono disponibili su richiesta e a
+            pagamento, secondo le tariffe comunicate di volta in volta. A
+            Milano il parcheggio è disponibile nelle aree pubbliche a
+            pagamento della zona.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="font-serif text-xl font-light text-[var(--charcoal)] mb-3">
+            11. Responsabilità per danni
           </h2>
           <p>
             L&apos;ospite è responsabile per ogni danno cagionato alla struttura
@@ -280,7 +345,7 @@ export default function TerminiCondizioni() {
 
         <section>
           <h2 className="font-serif text-xl font-light text-[var(--charcoal)] mb-3">
-            11. Forza maggiore
+            12. Forza maggiore
           </h2>
           <p>
             In caso di impossibilità sopravvenuta non imputabile alle parti
@@ -294,20 +359,20 @@ export default function TerminiCondizioni() {
 
         <section>
           <h2 className="font-serif text-xl font-light text-[var(--charcoal)] mb-3">
-            12. Legge applicabile e foro competente
+            13. Legge applicabile e foro competente
           </h2>
           <p>
-            Il presente contratto è regolato dalla legge italiana. Per qualunque
-            controversia è competente in via esclusiva il Foro di [DA
-            COMPILARE: es. Milano / Lecce], salvo che la controversia rientri
-            nella competenza inderogabile del foro del consumatore ai sensi
-            dell&apos;art. 33 del Codice del Consumo.
+            Il presente contratto è regolato dalla legge italiana. Per
+            qualunque controversia è competente in via esclusiva il Foro di
+            Milano, salvo che la controversia rientri nella competenza
+            inderogabile del foro del consumatore ai sensi dell&apos;art. 33
+            del Codice del Consumo.
           </p>
         </section>
 
         <section>
           <h2 className="font-serif text-xl font-light text-[var(--charcoal)] mb-3">
-            13. Risoluzione alternativa delle controversie
+            14. Risoluzione alternativa delle controversie
           </h2>
           <p>
             Ai sensi dell&apos;art. 14 del Regolamento UE 524/2013, si
@@ -328,12 +393,19 @@ export default function TerminiCondizioni() {
 
         <section>
           <h2 className="font-serif text-xl font-light text-[var(--charcoal)] mb-3">
-            14. Contatti
+            15. Contatti
           </h2>
           <p>
             Per qualsiasi richiesta relativa alle presenti condizioni o alla
-            prenotazione, è possibile contattare il locatore ai recapiti
-            indicati al punto 1, oppure tramite il modulo presente sul sito.
+            prenotazione: email{" "}
+            <a
+              href="mailto:carlo@designsuite.it"
+              className="underline underline-offset-2"
+            >
+              carlo@designsuite.it
+            </a>{" "}
+            — telefono +39 335 6810 310 — oppure tramite il modulo presente sul
+            sito.
           </p>
         </section>
 

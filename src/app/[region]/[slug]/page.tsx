@@ -91,11 +91,12 @@ export default async function PropertyPage({ params }: Props) {
           </span>
           <span className="flex items-center gap-2">
             <Bed size={14} />
-            {property.bedrooms} camere da letto
+            {property.bedrooms}{" "}
+            {property.bedrooms === 1 ? "camera da letto" : "camere da letto"}
           </span>
           <span className="flex items-center gap-2">
             <Bath size={14} />
-            {property.bathrooms} bagni
+            {property.bathrooms} {property.bathrooms === 1 ? "bagno" : "bagni"}
           </span>
           <a
             href={
@@ -110,6 +111,10 @@ export default async function PropertyPage({ params }: Props) {
             {property.address}
           </a>
         </div>
+        <p className="text-xs text-[var(--charcoal)]/40 pt-3">
+          CIN (Codice Identificativo Nazionale): {property.cin} · Locatore:{" "}
+          {property.owner}
+        </p>
 
         {/* Two-column body */}
         <div className="grid lg:grid-cols-3 gap-16 py-16">

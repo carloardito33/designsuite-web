@@ -4,6 +4,8 @@ export type Property = {
   name: string;
   location: string;
   address: string;
+  owner: string;
+  cin: string;
   mapsUrl?: string;
   smoobuApartmentId?: string;
   shortDescription: string;
@@ -28,6 +30,8 @@ export const properties: Property[] = [
     name: "Bosco degli Ulivi",
     location: "Morciano di Leuca, Salento",
     address: "Via Murge snc, 73040 Morciano di Leuca (LE)",
+    owner: "Rosanna Tarricone",
+    cin: "IT075050C200037136",
     mapsUrl: "https://maps.app.goo.gl/LTJLdXiiC21gnq8p7",
     smoobuApartmentId: "1894201",
     shortDescription:
@@ -99,6 +103,8 @@ export const properties: Property[] = [
     name: "Villa Crea",
     location: "Castrignano del Capo, Salento",
     address: "SC Mattara, Marina di Felloniche, 73040 Castrignano del Capo (LE)",
+    owner: "Carlo Ardito",
+    cin: "IT075019C200065154",
     mapsUrl: "https://maps.app.goo.gl/RRobRbgUPwahZ6jp6",
     smoobuApartmentId: "1894199",
     shortDescription:
@@ -107,19 +113,19 @@ export const properties: Property[] = [
       "Rifugio di charme con piscina 15×3 vista mare a pochi km da Santa Maria di Leuca",
     description: [
       "Villa CREA è un rifugio di charme con una piscina mozzafiato affacciata sul mare cristallino del Salento, a pochi chilometri da Santa Maria di Leuca, là dove la Puglia tocca il suo punto più estremo. Progettata dall'architetto Zanaroli, la villa accoglie fino a 8 ospiti in un'atmosfera di raffinata semplicità.",
-      "Dispone di quattro camere da letto, quattro bagni (due ensuite, uno nella zona giorno e uno esterno), una lavanderia, un ampio soggiorno e una cucina a vista perfettamente integrata. Gli elettrodomestici di classe A+, insieme ad arredi e tessili selezionati con cura, offrono un'esperienza di comfort totale, in equilibrio tra eleganza e funzionalità. La villa è dotata di un impianto fotovoltaico, nel rispetto dell'ambiente e con un occhio alla sostenibilità.",
+      "Dispone di quattro camere da letto, tre bagni (due ensuite e uno esterno), una lavanderia, un ampio soggiorno e una cucina a vista perfettamente integrata. Gli elettrodomestici di classe A+, insieme ad arredi e tessili selezionati con cura, offrono un'esperienza di comfort totale, in equilibrio tra eleganza e funzionalità. La villa è dotata di un impianto fotovoltaico, nel rispetto dell'ambiente e con un occhio alla sostenibilità.",
       "All'esterno, la grande area living ospita una cucina attrezzata, un tavolo in pietra per pranzi e cene all'aperto, e un comodo divano su cui abbandonarsi al silenzio del paesaggio. Il tramonto sul mare, visto da Villa CREA. Un'emozione che non si dimentica.",
     ],
     guests: 8,
     bedrooms: 4,
-    bathrooms: 4,
+    bathrooms: 3,
     heroImage: "/images/villa-crea/01-IMG_3955.jpg",
     cardImage: "/images/villa-crea/01-IMG_3955.jpg",
     gallery: [],
     amenities: [
       "Piscina 15×3 m con vista mare",
       "4 camere da letto (2 matrimoniali, 2 doppie flessibili)",
-      "4 bagni con doccia (2 en-suite, 1 esterno)",
+      "3 bagni con doccia (2 en-suite, 1 esterno)",
       "Cucina esterna attrezzata",
       "Living esterno",
       "Tavolo in pietra per cene all'aperto",
@@ -157,6 +163,8 @@ export const properties: Property[] = [
     name: "Suite Porta Romana",
     location: "Porta Romana, Milano",
     address: "Via Lodovico Muratori 13, 20135 Milano",
+    owner: "Rosanna Tarricone",
+    cin: "IT015146C2QP4BXVAW",
     mapsUrl: "https://maps.app.goo.gl/HeYwR8qa8BU67beF8",
     smoobuApartmentId: "2502833",
     shortDescription: "Appartamento di design con terrazzo in Porta Romana",
@@ -212,19 +220,21 @@ export const properties: Property[] = [
     name: "Suite Porta Romana 2",
     location: "Porta Romana, Milano",
     address: "Via Francesco Burlamacchi 11, 20135 Milano",
+    owner: "Carlo Ardito",
+    cin: "IT015146C2Y9TJUBD6",
     mapsUrl: "https://maps.app.goo.gl/kYRrsSW8tkU15jFk8",
     smoobuApartmentId: "1894203",
     shortDescription:
       "Secondo appartamento di design nel cuore di Porta Romana",
     subtitle: "Secondo appartamento di design nel cuore di Porta Romana",
     description: [
-      "Suite Porta Romana 2 è il secondo appartamento del portfolio DesignSuite nel quartiere Porta Romana di Milano. Completamente ristrutturato da architetto con finiture contemporanee e materiali selezionati, si compone di 4 ambienti luminosi pensati per offrire il massimo comfort durante il soggiorno in città.",
+      "Suite Porta Romana 2 è il secondo appartamento del portfolio DesignSuite nel quartiere Porta Romana di Milano. Completamente ristrutturato da architetto con finiture contemporanee e materiali selezionati, è un bilocale luminoso composto da camera, soggiorno e bagno, pensato per offrire il massimo comfort durante il soggiorno in città.",
       "L'appartamento è equipaggiato con tutto il necessario per sentirsi a casa: doppia TV, WiFi ad alta velocità, lavatrice, asciugatrice, lavastoviglie, aria condizionata e riscaldamento autonomo.",
       "La metropolitana M3 (linea gialla) è a pochi minuti a piedi, garantendo un accesso rapido a qualsiasi punto di Milano, dal Duomo ai Navigli, da Brera alla Fiera. Il quartiere Porta Romana è uno dei più vivaci e ben serviti della città, con una ricca offerta di ristoranti, caffetterie, mercati e negozi.",
     ],
     guests: 4,
-    bedrooms: 2,
-    bathrooms: 2,
+    bedrooms: 1,
+    bathrooms: 1,
     heroImage: "/images/suite-porta-romana-2/00-Foto%20Apertura%20quadrata.jpg",
     cardImage: "/images/suite-porta-romana-2/06-Soggiorno%201.jpg",
     gallery: [
@@ -240,8 +250,8 @@ export const properties: Property[] = [
       "https://globaluserfiles.com/media/306267_00e65785616951251e5f8686cecc05d830b4d6df.jpeg/v1/w_1200,h_800/divano.jpeg",
     ],
     amenities: [
-      "2 camere da letto",
-      "2 bagni",
+      "1 camera da letto",
+      "1 bagno",
       "Metro M3 a pochi minuti",
       "Doppia TV",
       "WiFi ad alta velocità",
