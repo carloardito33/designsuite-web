@@ -167,19 +167,49 @@ export const guestInfoPages: GuestInfoPage[] = [
     heroImage: "/images/info/suite-porta-romana-2-accesso/1-palazzo.webp",
     steps: [
       {
-        image: "/images/info/suite-porta-romana-2-accesso/2-portone.webp",
-        caption: "Entra dal portone",
-        captionEn: "Enter through the main door",
+        image: "/images/info/suite-porta-romana-2-accesso/2-portone.jpg",
+        caption:
+          "Se la reception è chiusa, utilizza la chiave o chiama Carlo al +39 335 6810 310",
+        captionEn:
+          "If the reception is closed, use the key or call Carlo at +39 335 6810 310",
       },
       {
-        image: "/images/info/suite-porta-romana-2-accesso/3-scale.webp",
-        caption: "Sali per le scale (o prendi l'ascensore)",
-        captionEn: "Go up the stairs (or take the lift)",
+        image: "/images/info/suite-porta-romana-2-accesso/3-scale.jpg",
+        caption: "Sali le scale che trovi nell'atrio del palazzo",
+        captionEn: "Go up the stairs you find in the entrance hall",
       },
       {
-        image: "/images/info/suite-porta-romana-2-accesso/4-porta.webp",
-        caption: "La porta dell'appartamento",
-        captionEn: "The apartment door",
+        image: "/images/info/suite-porta-romana-2-accesso/4-porta.jpg",
+        caption:
+          "La porta di Suite Porta Romana 2 è la prima del corridoio (cerchiata)",
+        captionEn:
+          "The door of Suite Porta Romana 2 is the first in the corridor (circled)",
+      },
+      {
+        image: "/images/info/suite-porta-romana-2-accesso/5-tastierino.jpg",
+        caption: "Digita il codice ricevuto per aprire la serratura",
+        captionEn: "Enter the code you received to open the lock",
+      },
+      {
+        image: "/images/info/suite-porta-romana-2-accesso/6-serratura.jpg",
+        caption:
+          "Per aprire o chiudere la serratura, ruota il pomello o premi il pulsante centrale",
+        captionEn:
+          "To open or close the lock, turn the knob or press the central button",
+      },
+      {
+        image: "/images/info/suite-porta-romana-2-accesso/7-chiave.jpg",
+        caption:
+          "All'interno dell'appartamento troverai la chiave per aprire il portone del palazzo",
+        captionEn:
+          "Inside the apartment you'll find the key to open the building's main door",
+      },
+      {
+        image: "/images/info/suite-porta-romana-2-accesso/8-lucchetto.jpg",
+        caption:
+          "Quando esci dall'appartamento puoi chiuderlo premendo il pulsante “lucchetto” (cerchiato); in alternativa la serratura si chiude da sola dopo 2 minuti",
+        captionEn:
+          "When you leave the apartment you can lock it by pressing the “padlock” button (circled); otherwise the lock closes automatically after 2 minutes",
       },
     ],
   },
