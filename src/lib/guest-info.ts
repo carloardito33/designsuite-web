@@ -299,6 +299,12 @@ export const guestInfoPages: GuestInfoPage[] = [
         caption: "Questa è la porta del «Locale contatori»",
         captionEn: "This is the «meter room» door",
       },
+      {
+        image: "/images/info/suite-porta-romana-2-contatore/6-contatore.jpg",
+        caption:
+          "Il tuo contatore è quello con la targhetta «ARDITO - TARRICONE»",
+        captionEn: "Your meter is the one labelled «ARDITO - TARRICONE»",
+      },
     ],
     footnote: "Al termine, ricorda di riportare la chiave nell'appartamento.",
     footnoteEn: "When you're done, remember to return the key to the apartment.",
