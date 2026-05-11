@@ -33,30 +33,26 @@ export const guestInfoPages: GuestInfoPage[] = [
     subtitle: "Via Lodovico Muratori 13, 20135 Milano — 1° piano",
     intro: "Segui le foto per arrivare all'appartamento.",
     introEn: "Follow the photos to reach the apartment.",
+    heroImage: "/images/info/suite-porta-romana-accesso/1-ingresso.jpg",
     steps: [
       {
-        image: "/images/info/suite-porta-romana-accesso/1-ingresso.jpg",
+        image: "/images/info/suite-porta-romana-accesso/2-corridoio.jpg",
         caption:
           "Se la reception è chiusa, utilizza la chiave o chiama Carlo al +39 335 6810 310",
         captionEn:
           "If the reception is closed, use the key or call Carlo at +39 335 6810 310",
       },
       {
-        image: "/images/info/suite-porta-romana-accesso/2-corridoio.jpg",
+        image: "/images/info/suite-porta-romana-accesso/3-ascensore.jpg",
         caption:
           "Percorri il corridoio di fronte fino in fondo, poi prendi l'ascensore a destra (1° piano)",
         captionEn:
           "Walk down the corridor in front to the end, then take the lift on the right (1st floor)",
       },
       {
-        image: "/images/info/suite-porta-romana-accesso/3-ascensore.jpg",
+        image: "/images/info/suite-porta-romana-accesso/4-corridoio.jpg",
         caption: "Usciti dall'ascensore, gira a sinistra",
         captionEn: "Once out of the lift, turn left",
-      },
-      {
-        image: "/images/info/suite-porta-romana-accesso/4-corridoio.jpg",
-        caption: "Prosegui lungo il corridoio",
-        captionEn: "Continue along the corridor",
       },
       {
         image: "/images/info/suite-porta-romana-accesso/5-porta.jpg",
@@ -85,9 +81,9 @@ export const guestInfoPages: GuestInfoPage[] = [
       {
         image: "/images/info/suite-porta-romana-accesso/9-lucchetto.jpg",
         caption:
-          "Quando esci dall'appartamento puoi chiuderlo con il pulsante “lucchetto”; in alternativa la serratura si chiude da sola dopo 2 minuti",
+          "Quando esci dall'appartamento puoi chiuderlo premendo il pulsante “lucchetto” (cerchiato); in alternativa la serratura si chiude da sola dopo 2 minuti",
         captionEn:
-          "When you leave the apartment you can lock it with the “padlock” button; otherwise the lock closes automatically after 2 minutes",
+          "When you leave the apartment you can lock it by pressing the “padlock” button (circled); otherwise the lock closes automatically after 2 minutes",
       },
     ],
   },
