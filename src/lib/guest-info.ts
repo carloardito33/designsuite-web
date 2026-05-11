@@ -99,23 +99,24 @@ export const guestInfoPages: GuestInfoPage[] = [
     noticeEn: "Go down to floor -1",
     steps: [
       {
-        image: "/images/info/suite-porta-romana-contatore/1-ascensore.webp",
-        caption: "Prendi l'ascensore",
-        captionEn: "Take the lift",
+        image: "/images/info/suite-porta-romana-contatore/1-ascensore.jpg",
+        caption: "Prendi l'ascensore indicato dalla freccia, in fondo al corridoio",
+        captionEn: "Take the lift indicated by the arrow, at the end of the corridor",
       },
       {
-        image: "/images/info/suite-porta-romana-contatore/2-ascensore.webp",
-        caption: "Premi il pulsante per il piano -1",
-        captionEn: "Press the button for floor -1",
+        image: "/images/info/suite-porta-romana-contatore/2-ascensore.jpg",
+        caption: "Entra nell'ascensore e premi il pulsante per il piano -1",
+        captionEn: "Enter the lift and press the button for floor -1",
       },
       {
         image:
-          "/images/info/suite-porta-romana-contatore/3-locale-contatori.webp",
-        caption: "Uscito dall'ascensore: il locale contatori",
-        captionEn: "Exit the lift: the meter room",
+          "/images/info/suite-porta-romana-contatore/3-locale-contatori.jpg",
+        caption:
+          "Al piano -1 raggiungi la porta del “Locale contatori” (cerchiata)",
+        captionEn: "On floor -1, reach the “meter room” door (circled)",
       },
       {
-        image: "/images/info/suite-porta-romana-contatore/4-contatore.webp",
+        image: "/images/info/suite-porta-romana-contatore/4-contatore.jpg",
         caption: "Il tuo contatore è quello cerchiato in rosso",
         captionEn: "Your meter is the one circled in red",
       },
