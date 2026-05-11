@@ -28,7 +28,7 @@ export default async function GuestInfoPage({ params }: Props) {
   return (
     <div className="pt-16">
       {page.heroImage && (
-        <section className="relative h-[45vh] min-h-[320px] bg-[var(--charcoal)]">
+        <section className="relative h-[40vh] min-h-[280px] bg-[var(--charcoal)]">
           <Image
             src={page.heroImage}
             alt={page.property}
@@ -38,31 +38,33 @@ export default async function GuestInfoPage({ params }: Props) {
             className="object-cover opacity-85"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 max-w-4xl mx-auto px-6 pb-10">
-            <p className="text-xs tracking-[0.3em] uppercase text-white/60 mb-2">
-              {page.category}
+          <div className="absolute bottom-0 left-0 right-0 max-w-4xl mx-auto px-6 pb-8">
+            <p className="text-xs tracking-[0.3em] uppercase text-white/60 mb-1">
+              {page.property} · {page.category}
+              {page.categoryEn ? ` / ${page.categoryEn}` : ""}
             </p>
-            <h1 className="font-serif text-4xl md:text-5xl font-light text-white">
+            <h1 className="font-serif text-3xl md:text-4xl font-light text-white">
               {page.title}
             </h1>
             {page.subtitle && (
-              <p className="text-white/70 text-sm mt-2">{page.subtitle}</p>
+              <p className="text-white/70 text-sm mt-1">{page.subtitle}</p>
             )}
           </div>
         </section>
       )}
 
-      <div className="max-w-4xl mx-auto px-6 py-12">
+      <div className="max-w-4xl mx-auto px-6 py-10">
         {!page.heroImage && (
           <div className="mb-8">
-            <p className="text-xs tracking-[0.3em] uppercase text-[var(--charcoal)]/50 mb-2">
+            <p className="text-xs tracking-[0.3em] uppercase text-[var(--charcoal)]/50 mb-1">
               {page.property} · {page.category}
+              {page.categoryEn ? ` / ${page.categoryEn}` : ""}
             </p>
-            <h1 className="font-serif text-3xl md:text-4xl font-light text-[var(--charcoal)]">
+            <h1 className="font-serif text-2xl md:text-3xl font-light text-[var(--charcoal)]">
               {page.title}
             </h1>
             {page.subtitle && (
-              <p className="text-[var(--charcoal)]/60 text-sm mt-2">
+              <p className="text-[var(--charcoal)]/60 text-sm mt-1">
                 {page.subtitle}
               </p>
             )}
@@ -70,32 +72,51 @@ export default async function GuestInfoPage({ params }: Props) {
         )}
 
         {page.intro && (
-          <p className="text-[var(--charcoal)]/75 leading-relaxed mb-8">
-            {page.intro}
+          <p className="mb-6 leading-relaxed text-sm">
+            <span className="text-[var(--charcoal)]/80">{page.intro}</span>
+            {page.introEn && (
+              <span className="block text-[var(--charcoal)]/40 italic">
+                {page.introEn}
+              </span>
+            )}
           </p>
         )}
 
         {page.notice && (
-          <div className="mb-8 border-l-2 border-[var(--warm-brown)] bg-[var(--beige)] px-5 py-3 text-sm text-[var(--charcoal)]">
-            {page.notice}
+          <div className="mb-8 border-l-2 border-[var(--warm-brown)] bg-[var(--beige)] px-4 py-2.5 text-sm">
+            <span className="text-[var(--charcoal)] font-medium">
+              {page.notice}
+            </span>
+            {page.noticeEn && (
+              <span className="block text-[var(--charcoal)]/45 italic">
+                {page.noticeEn}
+              </span>
+            )}
           </div>
         )}
 
-        <div className="grid sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5">
           {page.steps.map((step, i) => (
-            <figure key={i} className="space-y-2">
-              <div className="relative aspect-square bg-[var(--beige)] overflow-hidden">
+            <figure key={i} className="space-y-1.5">
+              <div className="relative aspect-square bg-[var(--beige)] overflow-hidden rounded-sm">
                 <Image
                   src={step.image}
                   alt={step.caption ?? `${page.property} — passo ${i + 1}`}
                   fill
-                  sizes="(max-width: 640px) 100vw, 50vw"
+                  sizes="(max-width: 640px) 45vw, 30vw"
                   className="object-cover"
                 />
               </div>
               {step.caption && (
-                <figcaption className="text-sm text-[var(--charcoal)]/70 leading-relaxed">
-                  {step.caption}
+                <figcaption className="text-xs leading-snug">
+                  <span className="text-[var(--charcoal)]/80">
+                    {step.caption}
+                  </span>
+                  {step.captionEn && (
+                    <span className="block text-[var(--charcoal)]/40 italic">
+                      {step.captionEn}
+                    </span>
+                  )}
                 </figcaption>
               )}
             </figure>
@@ -103,13 +124,18 @@ export default async function GuestInfoPage({ params }: Props) {
         </div>
 
         {page.footnote && (
-          <p className="mt-8 text-xs text-[var(--charcoal)]/50 leading-relaxed">
-            {page.footnote}
+          <p className="mt-6 text-xs leading-relaxed">
+            <span className="text-[var(--charcoal)]/55">{page.footnote}</span>
+            {page.footnoteEn && (
+              <span className="block text-[var(--charcoal)]/35 italic">
+                {page.footnoteEn}
+              </span>
+            )}
           </p>
         )}
 
-        <div className="mt-12 pt-8 border-t border-[var(--border)] text-xs text-[var(--charcoal)]/40">
-          Pagina informativa per gli ospiti di {page.property}. Per assistenza:{" "}
+        <div className="mt-10 pt-6 border-t border-[var(--border)] text-xs text-[var(--charcoal)]/40">
+          Pagina informativa per gli ospiti di {page.property}. Assistenza:{" "}
           <a
             href="https://wa.me/393356810310"
             className="underline underline-offset-2"
