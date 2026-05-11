@@ -252,6 +252,57 @@ export const guestInfoPages: GuestInfoPage[] = [
       },
     ],
   },
+  {
+    slug: "suite-porta-romana-2-contatore",
+    property: "Suite Porta Romana 2",
+    category: "Contatore elettrico",
+    categoryEn: "Electricity meter",
+    title: "Dove si trova il contatore elettrico",
+    titleEn: "Where the electricity meter is",
+    subtitle: "Via Francesco Burlamacchi 11, 20135 Milano",
+    intro:
+      "Il contatore si trova nel locale contatori, ai piani interrati del palazzo. Segui le foto.",
+    introEn:
+      "The meter is in the meter room, in the building's basement levels. Follow the photos.",
+    steps: [
+      {
+        image: "/images/info/suite-porta-romana-2-contatore/0-chiave.jpg",
+        caption:
+          "Nell'appartamento, prendi la chiave del «Locale contatori» (gancio sotto il rilevatore di fumo)",
+        captionEn:
+          "In the apartment, take the «meter room» key (hook below the smoke detector)",
+      },
+      {
+        image: "/images/info/suite-porta-romana-2-contatore/1-atrio.jpg",
+        caption:
+          "Dall'atrio del palazzo scendi verso la porta cerchiata, a mezza scala",
+        captionEn:
+          "From the building's entrance hall, go down toward the circled door, halfway down the stairs",
+      },
+      {
+        image: "/images/info/suite-porta-romana-2-contatore/2-scale.jpg",
+        caption: "Oltrepassata la porta, scendi le scale seguendo la freccia",
+        captionEn: "Past the door, go down the stairs following the arrow",
+      },
+      {
+        image: "/images/info/suite-porta-romana-2-contatore/3-porta-grigia.jpg",
+        caption: "Apri la porta grigia (maniglia cerchiata)",
+        captionEn: "Open the grey door (circled handle)",
+      },
+      {
+        image: "/images/info/suite-porta-romana-2-contatore/4-corridoio.jpg",
+        caption: "Scendi ancora e gira a destra verso la porta aperta",
+        captionEn: "Go down further and turn right toward the open door",
+      },
+      {
+        image: "/images/info/suite-porta-romana-2-contatore/5-porta-contatori.jpg",
+        caption: "Questa è la porta del «Locale contatori»",
+        captionEn: "This is the «meter room» door",
+      },
+    ],
+    footnote: "Al termine, ricorda di riportare la chiave nell'appartamento.",
+    footnoteEn: "When you're done, remember to return the key to the apartment.",
+  },
 ];
 
 export function getGuestInfoPage(slug: string): GuestInfoPage | undefined {
