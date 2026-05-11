@@ -182,11 +182,12 @@ export const guestInfoPages: GuestInfoPage[] = [
             captionEn: "Enter the lift and press the button for floor -1",
           },
           {
-            image: "/images/info/suite-porta-romana-spazzatura/6-percorso-3.jpg",
+            image:
+              "/images/info/suite-porta-romana-spazzatura/6-locale-contenitori.jpg",
             caption:
-              "Al piano -1 trovi il locale con i contenitori condominiali (zona cerchiata)",
+              "Al piano -1, i contenitori condominiali si trovano oltre la porta cerchiata in rosso",
             captionEn:
-              "On floor -1 you'll find the room with the condominium containers (circled area)",
+              "On floor -1, the condominium containers are beyond the door circled in red",
           },
         ],
       },
