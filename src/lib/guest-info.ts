@@ -351,12 +351,16 @@ export const guestInfoPages: GuestInfoPage[] = [
       {
         title: "Plastica e metallo",
         titleEn: "Plastic and metal",
+        notice: "Scendere al piano -1",
+        noticeEn: "Go down to floor -1",
         steps: [
           {
             image:
               "/images/info/suite-porta-romana-2-spazzatura/5-porta-plastica.jpg",
-            caption: "Oltrepassa la porta a vetri e apri la porta cerchiata",
-            captionEn: "Go past the glass door and open the circled door",
+            caption:
+              "Oltrepassa la porta a vetri, scendi al piano -1 e apri la porta cerchiata",
+            captionEn:
+              "Go past the glass door, down to floor -1, and open the circled door",
           },
           {
             image:
