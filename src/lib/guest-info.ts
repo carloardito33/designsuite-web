@@ -30,25 +30,64 @@ export const guestInfoPages: GuestInfoPage[] = [
     categoryEn: "Access",
     title: "Come raggiungere Suite Porta Romana",
     titleEn: "How to reach Suite Porta Romana",
-    subtitle: "Via Lodovico Muratori 13, 20135 Milano",
+    subtitle: "Via Lodovico Muratori 13, 20135 Milano — 1° piano",
     intro: "Segui le foto per arrivare all'appartamento.",
     introEn: "Follow the photos to reach the apartment.",
-    heroImage: "/images/info/suite-porta-romana-accesso/1-ingresso.webp",
     steps: [
       {
-        image: "/images/info/suite-porta-romana-accesso/2-corridoio.webp",
-        caption: "Entra dal portone e prosegui lungo il corridoio",
-        captionEn: "Enter and walk along the corridor",
+        image: "/images/info/suite-porta-romana-accesso/1-ingresso.jpg",
+        caption:
+          "Se la reception è chiusa, utilizza la chiave o chiama Carlo al +39 335 6810 310",
+        captionEn:
+          "If the reception is closed, use the key or call Carlo at +39 335 6810 310",
       },
       {
-        image: "/images/info/suite-porta-romana-accesso/3-ascensore.webp",
-        caption: "Prendi l'ascensore",
-        captionEn: "Take the lift",
+        image: "/images/info/suite-porta-romana-accesso/2-corridoio.jpg",
+        caption:
+          "Percorri il corridoio di fronte fino in fondo, poi prendi l'ascensore a destra (1° piano)",
+        captionEn:
+          "Walk down the corridor in front to the end, then take the lift on the right (1st floor)",
       },
       {
-        image: "/images/info/suite-porta-romana-accesso/4-porta.webp",
-        caption: "L'appartamento è al primo piano",
-        captionEn: "The apartment is on the first floor",
+        image: "/images/info/suite-porta-romana-accesso/3-ascensore.jpg",
+        caption: "Usciti dall'ascensore, gira a sinistra",
+        captionEn: "Once out of the lift, turn left",
+      },
+      {
+        image: "/images/info/suite-porta-romana-accesso/4-corridoio.jpg",
+        caption: "Prosegui lungo il corridoio",
+        captionEn: "Continue along the corridor",
+      },
+      {
+        image: "/images/info/suite-porta-romana-accesso/5-porta.jpg",
+        caption: "La porta di Suite Porta Romana è in fondo",
+        captionEn: "The door of Suite Porta Romana is at the end of the corridor",
+      },
+      {
+        image: "/images/info/suite-porta-romana-accesso/6-tastierino.jpg",
+        caption: "Digita il codice ricevuto per aprire la serratura",
+        captionEn: "Enter the code you received to open the lock",
+      },
+      {
+        image: "/images/info/suite-porta-romana-accesso/7-maniglia.jpg",
+        caption:
+          "Per aprire o chiudere la serratura, ruota il pomello o premi il pulsante centrale",
+        captionEn:
+          "To open or close the lock, turn the knob or press the central button",
+      },
+      {
+        image: "/images/info/suite-porta-romana-accesso/8-chiave.jpg",
+        caption:
+          "All'interno dell'appartamento troverai la chiave per aprire il portone del palazzo",
+        captionEn:
+          "Inside the apartment you'll find the key to open the building's main door",
+      },
+      {
+        image: "/images/info/suite-porta-romana-accesso/9-lucchetto.jpg",
+        caption:
+          "Quando esci dall'appartamento puoi chiuderlo con il pulsante “lucchetto”; in alternativa la serratura si chiude da sola dopo 2 minuti",
+        captionEn:
+          "When you leave the apartment you can lock it with the “padlock” button; otherwise the lock closes automatically after 2 minutes",
       },
     ],
   },
