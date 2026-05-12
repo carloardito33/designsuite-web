@@ -1,8 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { EMAIL } from "@/lib/properties";
+import { localizedPath, t, type Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/dictionaries";
 
-export function Footer() {
+export function Footer({
+  lang,
+  dict,
+}: {
+  lang: Locale;
+  dict: Dictionary["footer"];
+}) {
   return (
     <footer id="contatti">
       <div className="footer-top">
@@ -17,23 +25,23 @@ export function Footer() {
             />
             <span className="footer-logo-text">Designsuite</span>
           </div>
-          <p className="footer-tagline">Il lusso è nei dettagli.</p>
+          <p className="footer-tagline">{dict.tagline}</p>
         </div>
         <div className="footer-contacts">
           <div>
-            <p className="footer-contact-label">Telefono</p>
+            <p className="footer-contact-label">{dict.phone}</p>
             <a href="tel:+393356810310" className="footer-contact-value">
               +39 335 6810 310
             </a>
           </div>
           <div>
-            <p className="footer-contact-label">Email</p>
+            <p className="footer-contact-label">{dict.email}</p>
             <a href={`mailto:${EMAIL}`} className="footer-contact-value">
               {EMAIL}
             </a>
           </div>
           <div>
-            <p className="footer-contact-label">Social</p>
+            <p className="footer-contact-label">{dict.social}</p>
             <a
               href="https://www.instagram.com/designsuite.it/?hl=it"
               target="_blank"
@@ -53,17 +61,19 @@ export function Footer() {
           </div>
         </div>
         <div className="footer-badges">
-          <div className="footer-badge">✦ Airbnb Superhost</div>
-          <div className="footer-badge">✦ Booking.com Award</div>
+          <div className="footer-badge">{dict.badgeSuperhost}</div>
+          <div className="footer-badge">{dict.badgeBooking}</div>
         </div>
       </div>
       <div className="footer-bottom">
-        <p>
-          © {new Date().getFullYear()} Designsuite. Tutti i diritti riservati.
-        </p>
+        <p>{t(dict.rights, { year: new Date().getFullYear() })}</p>
         <div className="footer-links">
-          <Link href="/privacy-policy">Privacy Policy</Link>
-          <Link href="/termini-e-condizioni">Termini e Condizioni</Link>
+          <Link href={localizedPath(lang, "/privacy-policy")}>
+            {dict.privacy}
+          </Link>
+          <Link href={localizedPath(lang, "/termini-e-condizioni")}>
+            {dict.terms}
+          </Link>
         </div>
       </div>
     </footer>

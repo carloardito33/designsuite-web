@@ -13,25 +13,31 @@ import {
 } from "lucide-react";
 import {
   getProperty,
+  localizeProperty,
   properties,
   WHATSAPP_URL,
 } from "@/lib/properties";
 import { getGallery } from "@/lib/galleries";
 import { PropertyGallery } from "@/components/property-gallery";
 import { BookingButton } from "@/components/booking-button";
+import { isLocale, localizedPath, locales, t, type Locale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionaries";
 
-type Props = {
-  params: Promise<{ region: string; slug: string }>;
-};
+type Params = { lang: string; region: string; slug: string };
+type Props = { params: Promise<Params> };
 
-export async function generateStaticParams() {
-  return properties.map((p) => ({ region: p.region, slug: p.slug }));
+export function generateStaticParams() {
+  return locales.flatMap((lang) =>
+    properties.map((p) => ({ lang, region: p.region, slug: p.slug })),
+  );
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { region, slug } = await params;
-  const property = getProperty(slug);
-  if (!property || property.region !== region) return {};
+  const { lang, region, slug } = await params;
+  if (!isLocale(lang)) return {};
+  const base = getProperty(slug);
+  if (!base || base.region !== region) return {};
+  const property = localizeProperty(base, lang);
   return {
     title: property.metaTitle,
     description: property.metaDescription,
@@ -44,19 +50,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function PropertyPage({ params }: Props) {
-  const { region, slug } = await params;
-  const property = getProperty(slug);
-  if (!property || property.region !== region) notFound();
+  const { lang, region, slug } = await params;
+  if (!isLocale(lang)) notFound();
+  const locale: Locale = lang;
+  const base = getProperty(slug);
+  if (!base || base.region !== region) notFound();
+  const property = localizeProperty(base, locale);
+  const d = getDictionary(locale);
 
   const fsGallery = getGallery(slug);
   const gallery = fsGallery.length > 0 ? fsGallery : property.gallery;
 
   const backLabel =
-    property.region === "salento"
-      ? "Tutte le proprietà in Salento"
-      : "Tutti gli appartamenti a Milano";
+    property.region === "salento" ? d.property.backSalento : d.property.backMilano;
   const backHref =
-    property.region === "salento" ? "/#salento" : "/#milano";
+    localizedPath(locale, "/") +
+    (property.region === "salento" ? "#salento" : "#milano");
 
   return (
     <div className="pt-16">
@@ -87,16 +96,21 @@ export default async function PropertyPage({ params }: Props) {
         <div className="flex flex-wrap gap-6 py-8 border-b border-[var(--border)] text-sm text-[var(--charcoal)]/60">
           <span className="flex items-center gap-2">
             <Users size={14} />
-            {property.guests} ospiti
+            {t(d.property.guests, { n: property.guests })}
           </span>
           <span className="flex items-center gap-2">
             <Bed size={14} />
             {property.bedrooms}{" "}
-            {property.bedrooms === 1 ? "camera da letto" : "camere da letto"}
+            {property.bedrooms === 1
+              ? d.property.bedroomOne
+              : d.property.bedroomMany}
           </span>
           <span className="flex items-center gap-2">
             <Bath size={14} />
-            {property.bathrooms} {property.bathrooms === 1 ? "bagno" : "bagni"}
+            {property.bathrooms}{" "}
+            {property.bathrooms === 1
+              ? d.property.bathroomOne
+              : d.property.bathroomMany}
           </span>
           <a
             href={
@@ -112,8 +126,7 @@ export default async function PropertyPage({ params }: Props) {
           </a>
         </div>
         <p className="text-xs text-[var(--charcoal)]/40 pt-3">
-          CIN (Codice Identificativo Nazionale): {property.cin} · Locatore:{" "}
-          {property.owner}
+          {t(d.property.cinLine, { cin: property.cin, owner: property.owner })}
         </p>
 
         {/* Two-column body */}
@@ -130,7 +143,7 @@ export default async function PropertyPage({ params }: Props) {
 
             <div className="mt-12">
               <h3 className="font-serif text-2xl font-light text-[var(--charcoal)] mb-6">
-                Dotazioni
+                {d.property.amenities}
               </h3>
               <ul className="grid sm:grid-cols-2 gap-2">
                 {property.amenities.map((a) => (
@@ -150,7 +163,7 @@ export default async function PropertyPage({ params }: Props) {
 
             <div className="mt-10">
               <h3 className="font-serif text-2xl font-light text-[var(--charcoal)] mb-6">
-                Servizi
+                {d.property.services}
               </h3>
               <ul className="space-y-2">
                 {property.services.map((s) => (
@@ -173,27 +186,28 @@ export default async function PropertyPage({ params }: Props) {
           <aside className="lg:col-span-1">
             <div className="sticky top-24 bg-[var(--beige)] p-8 space-y-4">
               <p className="font-serif text-xl font-light text-[var(--charcoal)]">
-                Prenota o richiedi disponibilità
+                {d.property.bookTitle}
               </p>
               <p className="text-sm text-[var(--charcoal)]/60 leading-relaxed">
-                Prenota online senza commissioni con conferma immediata,
-                oppure scrivici su WhatsApp per una risposta personalizzata.
+                {d.property.bookBody}
               </p>
               <BookingButton
                 apartmentId={property.smoobuApartmentId}
+                lang={locale}
+                labels={d.booking}
                 className="flex items-center justify-center gap-2 w-full py-3.5 bg-[var(--warm-brown)] text-white text-sm tracking-widest uppercase hover:bg-[var(--charcoal)] transition-colors"
               >
-                Prenota online
+                {d.property.bookOnline}
               </BookingButton>
               <a
                 href={WHATSAPP_URL}
                 className="flex items-center justify-center gap-2 w-full py-3.5 bg-[var(--charcoal)] text-white text-sm tracking-widest uppercase hover:bg-[var(--warm-brown)] transition-colors"
               >
                 <MessageCircle size={15} />
-                WhatsApp
+                {d.property.whatsapp}
               </a>
               <p className="text-xs text-[var(--charcoal)]/40 pt-2">
-                Prenotazione diretta disponibile senza commissioni.
+                {d.property.bookNote}
               </p>
             </div>
           </aside>
@@ -202,9 +216,13 @@ export default async function PropertyPage({ params }: Props) {
         {/* Gallery */}
         <div className="pb-16">
           <h3 className="font-serif text-3xl font-light text-[var(--charcoal)] mb-8">
-            Galleria
+            {d.property.gallery}
           </h3>
-          <PropertyGallery images={gallery} name={property.name} />
+          <PropertyGallery
+            images={gallery}
+            name={property.name}
+            labels={d.galleryUi}
+          />
         </div>
 
         {/* Back link */}

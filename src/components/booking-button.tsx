@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { X } from "lucide-react";
 import Script from "next/script";
+import type { Locale } from "@/i18n/config";
 
 declare global {
   interface Window {
@@ -19,27 +20,39 @@ declare global {
 const SMOOBU_ACCOUNT = "694911";
 const SMOOBU_BASE = "https://login.smoobu.com";
 
+export type BookingLabels = {
+  eyebrow: string;
+  title: string;
+  close: string;
+};
+
 interface Props {
   apartmentId?: string;
+  lang: Locale;
+  labels: BookingLabels;
   className?: string;
   children: React.ReactNode;
 }
 
-export function BookingButton({ apartmentId, className, children }: Props) {
+export function BookingButton({
+  apartmentId,
+  lang,
+  labels,
+  className,
+  children,
+}: Props) {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className={className}
-      >
+      <button type="button" onClick={() => setOpen(true)} className={className}>
         {children}
       </button>
       {open && (
         <BookingModal
           apartmentId={apartmentId}
+          lang={lang}
+          labels={labels}
           onClose={() => setOpen(false)}
         />
       )}
@@ -49,9 +62,13 @@ export function BookingButton({ apartmentId, className, children }: Props) {
 
 function BookingModal({
   apartmentId,
+  lang,
+  labels,
   onClose,
 }: {
   apartmentId?: string;
+  lang: Locale;
+  labels: BookingLabels;
   onClose: () => void;
 }) {
   const initialized = useRef(false);
@@ -60,9 +77,8 @@ function BookingModal({
     if (initialized.current) return;
     if (typeof window === "undefined") return;
     if (!window.BookingToolIframe) return;
-    const url = apartmentId
-      ? `${SMOOBU_BASE}/it/booking-tool/iframe/${SMOOBU_ACCOUNT}/${apartmentId}`
-      : `${SMOOBU_BASE}/it/booking-tool/iframe/${SMOOBU_ACCOUNT}`;
+    const base = `${SMOOBU_BASE}/${lang}/booking-tool/iframe/${SMOOBU_ACCOUNT}`;
+    const url = apartmentId ? `${base}/${apartmentId}` : base;
     window.BookingToolIframe.initialize({
       url,
       baseUrl: SMOOBU_BASE,
@@ -82,6 +98,7 @@ function BookingModal({
       document.body.style.overflow = "";
       document.removeEventListener("keydown", onKey);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -96,7 +113,7 @@ function BookingModal({
         <button
           type="button"
           onClick={onClose}
-          aria-label="Chiudi"
+          aria-label={labels.close}
           className="absolute top-3 right-3 z-10 p-2 bg-white/95 hover:bg-white rounded-full text-[var(--charcoal)] transition-colors shadow-md"
         >
           <X size={18} />
@@ -104,10 +121,10 @@ function BookingModal({
         <div className="p-6 sm:p-10">
           <div className="mb-6 pr-10">
             <p className="text-xs tracking-[0.3em] uppercase text-[var(--charcoal)]/50 mb-2">
-              Prenotazione diretta
+              {labels.eyebrow}
             </p>
             <h2 className="font-serif text-2xl sm:text-3xl font-light text-[var(--charcoal)]">
-              Verifica disponibilità
+              {labels.title}
             </h2>
           </div>
           <div id="smoobu-modal-target" />

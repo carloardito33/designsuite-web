@@ -1,13 +1,6 @@
-import type { Metadata } from "next";
 import { properties } from "@/lib/properties";
 
-export const metadata: Metadata = {
-  title: "Termini e Condizioni",
-  description:
-    "Termini e condizioni di utilizzo del sito e di locazione turistica breve delle strutture DesignSuite.",
-};
-
-export default function TerminiCondizioni() {
+export function TerminiIt() {
   return (
     <div className="pt-16 max-w-3xl mx-auto px-6 py-20">
       <h1 className="font-serif text-4xl font-light text-[var(--charcoal)] mb-3">
@@ -62,8 +55,8 @@ export default function TerminiCondizioni() {
             — telefono +39 335 6810 310. La gestione delle prenotazioni e dei
             rapporti con gli ospiti è curata da Carlo Ardito anche per conto
             dell&apos;altra locatrice. I locatori esercitano l&apos;attività in
-            forma non imprenditoriale, con applicazione del regime della
-            cedolare secca al 21%.
+            forma non imprenditoriale, con applicazione del regime della cedolare
+            secca al 21%.
           </p>
         </section>
 
@@ -121,10 +114,9 @@ export default function TerminiCondizioni() {
           <p>
             Le presenti condizioni disciplinano il contratto di locazione ad uso
             turistico delle quattro strutture sopra identificate, della durata
-            massima di 30 giorni consecutivi. Trattandosi di locazione
-            turistica breve, il contratto non è soggetto all&apos;obbligo di
-            registrazione presso l&apos;Agenzia delle Entrate (art. 4 D.L.
-            50/2017).
+            massima di 30 giorni consecutivi. Trattandosi di locazione turistica
+            breve, il contratto non è soggetto all&apos;obbligo di registrazione
+            presso l&apos;Agenzia delle Entrate (art. 4 D.L. 50/2017).
           </p>
         </section>
 
@@ -135,8 +127,8 @@ export default function TerminiCondizioni() {
           <ol className="list-decimal list-inside space-y-2">
             <li>
               L&apos;ospite invia richiesta di prenotazione tramite il sito
-              (modulo Smoobu), WhatsApp, email o tramite portali partner
-              (Airbnb, Booking.com, ecc.).
+              (modulo Smoobu), WhatsApp, email o tramite portali partner (Airbnb,
+              Booking.com, ecc.).
             </li>
             <li>
               Il locatore conferma la disponibilità e comunica il prezzo
@@ -166,9 +158,7 @@ export default function TerminiCondizioni() {
           <h2 className="font-serif text-xl font-light text-[var(--charcoal)] mb-3">
             5. Cancellazione e rimborsi
           </h2>
-          <p>
-            Politica di cancellazione applicata alle prenotazioni dirette:
-          </p>
+          <p>Politica di cancellazione applicata alle prenotazioni dirette:</p>
           <ul className="mt-2 list-disc list-inside space-y-1">
             <li>
               Cancellazione comunicata <strong>almeno 30 giorni prima</strong>{" "}
@@ -182,9 +172,9 @@ export default function TerminiCondizioni() {
             </li>
           </ul>
           <p className="mt-3">
-            Per le prenotazioni effettuate tramite portali (Airbnb,
-            Booking.com, ecc.) si applicano le condizioni di cancellazione del
-            singolo portale.
+            Per le prenotazioni effettuate tramite portali (Airbnb, Booking.com,
+            ecc.) si applicano le condizioni di cancellazione del singolo
+            portale.
           </p>
           <p className="mt-3 text-xs text-[var(--charcoal)]/60">
             Ai sensi dell&apos;art. 59, comma 1, lett. n) del D.Lgs. 206/2005
@@ -208,14 +198,13 @@ export default function TerminiCondizioni() {
           </ul>
           <p className="mt-3">
             È disponibile il self check-in (consegna chiavi tramite cassetta di
-            sicurezza o accoglienza in struttura, secondo quanto comunicato
-            prima dell&apos;arrivo). Eventuali check-in tardivi o check-out
-            posticipati sono soggetti a disponibilità e possono comportare un
-            sovrapprezzo. Ai sensi dell&apos;art. 109 T.U.L.P.S. (R.D.
-            773/1931), al momento del check-in è obbligatoria
-            l&apos;esibizione di un documento d&apos;identità valido per
-            ciascun ospite (compresi i minori), i cui dati saranno comunicati
-            al servizio Alloggiati Web della Questura.
+            sicurezza o accoglienza in struttura, secondo quanto comunicato prima
+            dell&apos;arrivo). Eventuali check-in tardivi o check-out posticipati
+            sono soggetti a disponibilità e possono comportare un sovrapprezzo.
+            Ai sensi dell&apos;art. 109 T.U.L.P.S. (R.D. 773/1931), al momento
+            del check-in è obbligatoria l&apos;esibizione di un documento
+            d&apos;identità valido per ciascun ospite (compresi i minori), i cui
+            dati saranno comunicati al servizio Alloggiati Web della Questura.
           </p>
         </section>
 
@@ -229,8 +218,8 @@ export default function TerminiCondizioni() {
           </p>
           <ul className="mt-2 list-disc list-inside space-y-1">
             <li>
-              <strong>€ 1.000</strong> per le ville in Salento (Villa Crea,
-              Bosco degli Ulivi);
+              <strong>€ 1.000</strong> per le ville in Salento (Villa Crea, Bosco
+              degli Ulivi);
             </li>
             <li>
               <strong>€ 100</strong> per gli appartamenti a Milano (Suite Porta
@@ -259,8 +248,8 @@ export default function TerminiCondizioni() {
               <strong>
                 Suite Porta Romana e Suite Porta Romana 2 (Milano)
               </strong>
-              : € 9,50 per persona per notte, secondo la tariffa e le
-              modalità previste dal regolamento del Comune di Milano;
+              : € 9,50 per persona per notte, secondo la tariffa e le modalità
+              previste dal regolamento del Comune di Milano;
             </li>
             <li>
               <strong>Bosco degli Ulivi (Morciano di Leuca)</strong>: € 1,30 per
@@ -289,8 +278,7 @@ export default function TerminiCondizioni() {
             </li>
             <li>
               Il numero massimo di ospiti consentito è quello indicato nella
-              scheda di ogni proprietà e non può essere superato in nessun
-              caso;
+              scheda di ogni proprietà e non può essere superato in nessun caso;
             </li>
             <li>
               <strong>
@@ -300,9 +288,9 @@ export default function TerminiCondizioni() {
               ;
             </li>
             <li>
-              È richiesto il rispetto delle ore di silenzio notturno (dalle
-              22:00 alle 08:00) e del regolamento di condominio per le strutture
-              di Milano;
+              È richiesto il rispetto delle ore di silenzio notturno (dalle 22:00
+              alle 08:00) e del regolamento di condominio per le strutture di
+              Milano;
             </li>
             <li>
               È richiesta cura della struttura, degli arredi e dei beni in essa
@@ -321,9 +309,9 @@ export default function TerminiCondizioni() {
             biancheria intermedio è incluso secondo le modalità indicate per
             ciascuna struttura. Eventuali servizi extra (cuoco privato,
             baby-sitter, transfer, escursioni) sono disponibili su richiesta e a
-            pagamento, secondo le tariffe comunicate di volta in volta. A
-            Milano il parcheggio è disponibile nelle aree pubbliche a
-            pagamento della zona.
+            pagamento, secondo le tariffe comunicate di volta in volta. A Milano
+            il parcheggio è disponibile nelle aree pubbliche a pagamento della
+            zona.
           </p>
         </section>
 
@@ -333,12 +321,12 @@ export default function TerminiCondizioni() {
           </h2>
           <p>
             L&apos;ospite è responsabile per ogni danno cagionato alla struttura
-            e ai beni in essa contenuti durante il periodo di soggiorno, da
-            parte propria, di accompagnatori o ospiti. Eventuali danni dovranno
-            essere comunicati tempestivamente al locatore e saranno
-            quantificati entro 7 giorni dal check-out. Il locatore potrà
-            trattenere dalla cauzione gli importi corrispondenti, fatto salvo
-            il risarcimento di danni eccedenti.
+            e ai beni in essa contenuti durante il periodo di soggiorno, da parte
+            propria, di accompagnatori o ospiti. Eventuali danni dovranno essere
+            comunicati tempestivamente al locatore e saranno quantificati entro 7
+            giorni dal check-out. Il locatore potrà trattenere dalla cauzione gli
+            importi corrispondenti, fatto salvo il risarcimento di danni
+            eccedenti.
           </p>
         </section>
 
@@ -348,10 +336,10 @@ export default function TerminiCondizioni() {
           </h2>
           <p>
             In caso di impossibilità sopravvenuta non imputabile alle parti
-            (calamità naturali, provvedimenti delle autorità, eventi pandemici
-            e simili) che impedisca lo svolgimento del soggiorno, le parti si
-            impegnano a concordare in buona fede il rinvio della prenotazione
-            ad altre date, ovvero il rimborso delle somme versate al netto di
+            (calamità naturali, provvedimenti delle autorità, eventi pandemici e
+            simili) che impedisca lo svolgimento del soggiorno, le parti si
+            impegnano a concordare in buona fede il rinvio della prenotazione ad
+            altre date, ovvero il rimborso delle somme versate al netto di
             eventuali costi non recuperabili.
           </p>
         </section>
@@ -361,11 +349,10 @@ export default function TerminiCondizioni() {
             13. Legge applicabile e foro competente
           </h2>
           <p>
-            Il presente contratto è regolato dalla legge italiana. Per
-            qualunque controversia è competente in via esclusiva il Foro di
-            Milano, salvo che la controversia rientri nella competenza
-            inderogabile del foro del consumatore ai sensi dell&apos;art. 33
-            del Codice del Consumo.
+            Il presente contratto è regolato dalla legge italiana. Per qualunque
+            controversia è competente in via esclusiva il Foro di Milano, salvo
+            che la controversia rientri nella competenza inderogabile del foro
+            del consumatore ai sensi dell&apos;art. 33 del Codice del Consumo.
           </p>
         </section>
 
@@ -374,10 +361,10 @@ export default function TerminiCondizioni() {
             14. Risoluzione alternativa delle controversie
           </h2>
           <p>
-            Ai sensi dell&apos;art. 14 del Regolamento UE 524/2013, si
-            informano i consumatori della possibilità di accedere alla
-            piattaforma europea ODR (Online Dispute Resolution) per la
-            risoluzione extragiudiziale delle controversie all&apos;indirizzo:{" "}
+            Ai sensi dell&apos;art. 14 del Regolamento UE 524/2013, si informano
+            i consumatori della possibilità di accedere alla piattaforma europea
+            ODR (Online Dispute Resolution) per la risoluzione extragiudiziale
+            delle controversie all&apos;indirizzo:{" "}
             <a
               href="https://ec.europa.eu/consumers/odr"
               target="_blank"

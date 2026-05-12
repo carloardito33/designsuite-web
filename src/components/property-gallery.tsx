@@ -3,16 +3,28 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { t } from "@/i18n/config";
 
 const AUTOPLAY_MS = 3500;
 const FADE_MS = 700;
 
+export type GalleryLabels = {
+  photoAlt: string;
+  prevPhotoAlt: string;
+  dialogLabel: string;
+  closeGallery: string;
+  prevPhoto: string;
+  nextPhoto: string;
+};
+
 export function PropertyGallery({
   images,
   name,
+  labels,
 }: {
   images: string[];
   name: string;
+  labels: GalleryLabels;
 }) {
   const [index, setIndex] = useState<number | null>(null);
   // previous frame held during crossfade so the outgoing image stays visible
@@ -23,13 +35,8 @@ export function PropertyGallery({
 
   const transitionTo = useCallback(
     (next: number) => {
-      setOutgoing((prevOutgoing) => {
-        // capture the current src before swap; if there was already an outgoing, drop it
-        return null; // reset; effect below will set new outgoing on index change
-      });
       setIndex((curr) => {
         if (curr === null) return next;
-        // remember outgoing for crossfade
         setOutgoing({ src: images[curr], key: Date.now() });
         return next;
       });
@@ -82,7 +89,7 @@ export function PropertyGallery({
     };
   }, [index, close, next, prev]);
 
-  // autoplay 3.5s, riarmato ad ogni cambio di index
+  // autoplay, restarted on each index change
   useEffect(() => {
     if (index === null) return;
     const id = window.setInterval(next, AUTOPLAY_MS);
@@ -101,7 +108,7 @@ export function PropertyGallery({
           >
             <Image
               src={src}
-              alt={`${name} — foto ${i + 1}`}
+              alt={t(labels.photoAlt, { name, n: i + 1 })}
               fill
               sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -114,7 +121,7 @@ export function PropertyGallery({
         <div
           role="dialog"
           aria-modal="true"
-          aria-label={`Galleria ${name}`}
+          aria-label={t(labels.dialogLabel, { name })}
           className="fixed inset-0 z-[200] bg-black/96"
           onClick={close}
         >
@@ -127,20 +134,20 @@ export function PropertyGallery({
                 <FadeOutImage
                   key={outgoing.key}
                   src={outgoing.src}
-                  alt={`${name} — foto precedente`}
+                  alt={t(labels.prevPhotoAlt, { name })}
                 />
               )}
               <FadeInImage
                 key={`in-${index}`}
                 src={images[index]}
-                alt={`${name} — foto ${index + 1}`}
+                alt={t(labels.photoAlt, { name, n: index + 1 })}
               />
             </div>
           </div>
 
           <button
             type="button"
-            aria-label="Chiudi galleria"
+            aria-label={labels.closeGallery}
             onClick={(e) => {
               e.stopPropagation();
               close();
@@ -152,7 +159,7 @@ export function PropertyGallery({
 
           <button
             type="button"
-            aria-label="Foto precedente"
+            aria-label={labels.prevPhoto}
             onClick={(e) => {
               e.stopPropagation();
               prev();
@@ -164,7 +171,7 @@ export function PropertyGallery({
 
           <button
             type="button"
-            aria-label="Foto successiva"
+            aria-label={labels.nextPhoto}
             onClick={(e) => {
               e.stopPropagation();
               next();

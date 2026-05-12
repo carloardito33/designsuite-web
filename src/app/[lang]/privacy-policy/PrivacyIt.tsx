@@ -1,12 +1,4 @@
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description:
-    "Informativa sul trattamento dei dati personali ai sensi del Regolamento UE 2016/679 (GDPR).",
-};
-
-export default function PrivacyPolicy() {
+export function PrivacyIt() {
   return (
     <div className="pt-16 max-w-3xl mx-auto px-6 py-20">
       <h1 className="font-serif text-4xl font-light text-[var(--charcoal)] mb-3">
@@ -27,8 +19,7 @@ export default function PrivacyPolicy() {
             promosse e gestite quattro unità immobiliari di proprietà di due
             distinti soggetti. I dati personali raccolti tramite il sito
             designsuite.it sono trattati in regime di contitolarità ai sensi
-            dell&apos;art. 26 del Regolamento UE 2016/679 dai seguenti
-            titolari:
+            dell&apos;art. 26 del Regolamento UE 2016/679 dai seguenti titolari:
           </p>
           <div className="mt-3 space-y-4">
             <div>
@@ -66,9 +57,9 @@ export default function PrivacyPolicy() {
             >
               carlo@designsuite.it
             </a>{" "}
-            — Telefono: +39 335 6810 310. La gestione operativa del sito e
-            delle prenotazioni è curata da Carlo Ardito anche per conto
-            dell&apos;altra contitolare, in forza di accordo di contitolarità.
+            — Telefono: +39 335 6810 310. La gestione operativa del sito e delle
+            prenotazioni è curata da Carlo Ardito anche per conto dell&apos;altra
+            contitolare, in forza di accordo di contitolarità.
           </p>
           <p className="mt-3 text-xs text-[var(--charcoal)]/60">
             Non è stato designato un Responsabile della Protezione dei Dati
@@ -101,8 +92,8 @@ export default function PrivacyPolicy() {
             </li>
             <li>
               <strong>Dati di pagamento:</strong> trattati direttamente dal
-              fornitore di servizi di pagamento (Smoobu / circuiti bancari).
-              Non vengono memorizzati sul nostro sito né dai nostri sistemi.
+              fornitore di servizi di pagamento (Smoobu / circuiti bancari). Non
+              vengono memorizzati sul nostro sito né dai nostri sistemi.
             </li>
             <li>
               <strong>Dati di navigazione:</strong> indirizzo IP, log del
@@ -187,12 +178,10 @@ export default function PrivacyPolicy() {
               Dati di prenotazione e relativi documenti contabili: 10 anni dalla
               conclusione del contratto (art. 2220 c.c. e obblighi fiscali);
             </li>
+            <li>Dati identificativi degli ospiti (Alloggiati Web): 5 anni;</li>
             <li>
-              Dati identificativi degli ospiti (Alloggiati Web): 5 anni;
-            </li>
-            <li>
-              Dati raccolti per finalità di marketing: fino a revoca del
-              consenso o per un massimo di 24 mesi;
+              Dati raccolti per finalità di marketing: fino a revoca del consenso
+              o per un massimo di 24 mesi;
             </li>
             <li>Log di navigazione del server: massimo 12 mesi.</li>
           </ul>
@@ -254,8 +243,7 @@ export default function PrivacyPolicy() {
               adeguatezza della Commissione UE del 10 luglio 2023);
             </li>
             <li>
-              Clausole Contrattuali Standard (SCC) adottate dalla Commissione
-              UE.
+              Clausole Contrattuali Standard (SCC) adottate dalla Commissione UE.
             </li>
           </ul>
         </section>
@@ -275,8 +263,8 @@ export default function PrivacyPolicy() {
             <li>diritto di limitazione del trattamento;</li>
             <li>diritto alla portabilità dei dati;</li>
             <li>
-              diritto di opposizione al trattamento, in particolare quello a
-              fini di marketing diretto;
+              diritto di opposizione al trattamento, in particolare quello a fini
+              di marketing diretto;
             </li>
             <li>
               diritto di revocare il consenso prestato, senza pregiudicare la
@@ -311,8 +299,8 @@ export default function PrivacyPolicy() {
             >
               www.garanteprivacy.it
             </a>
-            ) qualora ritenga che il trattamento dei tuoi dati personali
-            avvenga in violazione del GDPR.
+            ) qualora ritenga che il trattamento dei tuoi dati personali avvenga
+            in violazione del GDPR.
           </p>
         </section>
 
@@ -324,15 +312,15 @@ export default function PrivacyPolicy() {
             Il sito utilizza esclusivamente cookie tecnici necessari al suo
             funzionamento e cookie di sessione gestiti dai servizi integrati
             (Smoobu per la prenotazione, Google Maps per le mappe). Non vengono
-            utilizzati cookie di profilazione né strumenti di analytics di
-            terze parti.
+            utilizzati cookie di profilazione né strumenti di analytics di terze
+            parti.
           </p>
           <p className="mt-3 text-xs text-[var(--charcoal)]/60">
-            Qualora in futuro vengano integrati strumenti di analisi statistica
-            o di profilazione (es. Google Analytics, Meta Pixel), verrà
+            Qualora in futuro vengano integrati strumenti di analisi statistica o
+            di profilazione (es. Google Analytics, Meta Pixel), verrà
             implementato un banner di acquisizione del consenso conforme alle
-            Linee Guida del Garante del 10 giugno 2021 e la presente
-            informativa sarà aggiornata di conseguenza.
+            Linee Guida del Garante del 10 giugno 2021 e la presente informativa
+            sarà aggiornata di conseguenza.
           </p>
         </section>
 
@@ -341,10 +329,10 @@ export default function PrivacyPolicy() {
             10. Conferimento dei dati
           </h2>
           <p>
-            Il conferimento dei dati per le finalità di prenotazione,
-            adempimenti contrattuali e di legge è obbligatorio: senza tali
-            dati non sarà possibile dare seguito alla prenotazione. Il
-            conferimento per finalità di marketing è facoltativo.
+            Il conferimento dei dati per le finalità di prenotazione, adempimenti
+            contrattuali e di legge è obbligatorio: senza tali dati non sarà
+            possibile dare seguito alla prenotazione. Il conferimento per
+            finalità di marketing è facoltativo.
           </p>
         </section>
 
@@ -355,8 +343,8 @@ export default function PrivacyPolicy() {
           <p>
             Il sito non si rivolge a minori di 16 anni. I dati di ospiti
             minorenni sono trattati esclusivamente nell&apos;ambito della
-            prenotazione effettuata dai genitori o dai legali rappresentanti,
-            che ne autorizzano implicitamente il trattamento per finalità di
+            prenotazione effettuata dai genitori o dai legali rappresentanti, che
+            ne autorizzano implicitamente il trattamento per finalità di
             soggiorno e adempimenti di legge.
           </p>
         </section>

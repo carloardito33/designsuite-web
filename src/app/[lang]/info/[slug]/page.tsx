@@ -2,28 +2,37 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { getGuestInfoPage, guestInfoPages } from "@/lib/guest-info";
+import { isLocale, locales, t } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionaries";
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ lang: string; slug: string }>;
 };
 
 export function generateStaticParams() {
-  return guestInfoPages.map((p) => ({ slug: p.slug }));
+  return locales.flatMap((lang) =>
+    guestInfoPages.map((p) => ({ lang, slug: p.slug })),
+  );
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { lang, slug } = await params;
   const page = getGuestInfoPage(slug);
+  const fallback = isLocale(lang)
+    ? getDictionary(lang).meta.guestInfoTitle
+    : "Guest information";
   return {
-    title: page ? `${page.property} — ${page.category}` : "Informazioni ospiti",
+    title: page ? `${page.property} — ${page.category}` : fallback,
     robots: { index: false, follow: false },
   };
 }
 
 export default async function GuestInfoPage({ params }: Props) {
-  const { slug } = await params;
+  const { lang, slug } = await params;
+  if (!isLocale(lang)) notFound();
   const page = getGuestInfoPage(slug);
   if (!page) notFound();
+  const d = getDictionary(lang).guestInfo;
 
   return (
     <div className="pt-16">
@@ -101,7 +110,10 @@ export default async function GuestInfoPage({ params }: Props) {
               <div className="relative aspect-square bg-[var(--beige)] overflow-hidden rounded-sm">
                 <Image
                   src={step.image}
-                  alt={step.caption ?? `${page.property} — passo ${i + 1}`}
+                  alt={
+                    step.caption ??
+                    t(d.stepAlt, { property: page.property, n: i + 1 })
+                  }
                   fill
                   sizes="(max-width: 640px) 45vw, 30vw"
                   className="object-cover"
@@ -165,7 +177,11 @@ export default async function GuestInfoPage({ params }: Props) {
                         src={step.image}
                         alt={
                           step.caption ??
-                          `${page.property} — ${section.title} ${i + 1}`
+                          t(d.sectionStepAlt, {
+                            property: page.property,
+                            section: section.title,
+                            n: i + 1,
+                          })
                         }
                         fill
                         sizes="(max-width: 640px) 45vw, 30vw"
@@ -192,12 +208,12 @@ export default async function GuestInfoPage({ params }: Props) {
         ))}
 
         <div className="mt-10 pt-6 border-t border-[var(--border)] text-xs text-[var(--charcoal)]/40">
-          Pagina informativa per gli ospiti di {page.property}. Assistenza:{" "}
+          {t(d.footer, { property: page.property })}{" "}
           <a
             href="https://wa.me/393356810310"
             className="underline underline-offset-2"
           >
-            WhatsApp +39 335 6810 310
+            {d.support}
           </a>
         </div>
       </div>

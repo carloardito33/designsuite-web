@@ -4,16 +4,28 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { localizedPath, type Locale } from "@/i18n/config";
+import { LocaleSwitch } from "./locale-switch";
 
-const NAV_LINKS = [
-  { href: "/#milano", label: "Milano" },
-  { href: "/#salento", label: "Salento" },
-  { href: "/#contatti", label: "Contatti" },
-];
+type NavLabels = {
+  milano: string;
+  salento: string;
+  contatti: string;
+  book: string;
+};
 
-export function Header() {
+export function Header({
+  lang,
+  nav,
+  switchLabel,
+}: {
+  lang: Locale;
+  nav: NavLabels;
+  switchLabel: string;
+}) {
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  const home = localizedPath(lang, "/");
+  const isHome = pathname === home || pathname === `${home}/`;
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -26,9 +38,15 @@ export function Header() {
 
   const showSolid = !isHome || scrolled;
 
+  const links = [
+    { href: `${home}#milano`, label: nav.milano },
+    { href: `${home}#salento`, label: nav.salento },
+    { href: `${home}#contatti`, label: nav.contatti },
+  ];
+
   return (
     <nav id="navbar" className={showSolid ? "scrolled" : undefined}>
-      <Link href="/" className="nav-brand">
+      <Link href={home} className="nav-brand">
         <Image
           src="/logo.png"
           alt="Designsuite"
@@ -40,15 +58,18 @@ export function Header() {
         <span className="nav-logo-text">Designsuite</span>
       </Link>
       <ul className="nav-links">
-        {NAV_LINKS.map((item) => (
+        {links.map((item) => (
           <li key={item.label}>
             <a href={item.href}>{item.label}</a>
           </li>
         ))}
         <li>
-          <a href="/#residenze" className="nav-cta">
-            Prenota
+          <a href={`${home}#residenze`} className="nav-cta">
+            {nav.book}
           </a>
+        </li>
+        <li>
+          <LocaleSwitch current={lang} label={switchLabel} />
         </li>
       </ul>
     </nav>
