@@ -59,7 +59,7 @@ export function Header({
       </Link>
       <ul className="nav-links">
         {links.map((item) => (
-          <li key={item.label}>
+          <li key={item.label} className="nav-link-section">
             <a href={item.href}>{item.label}</a>
           </li>
         ))}
@@ -68,7 +68,7 @@ export function Header({
             {nav.book}
           </a>
         </li>
-        <li>
+        <li className="nav-locale">
           <LocaleSwitch current={lang} label={switchLabel} />
         </li>
       </ul>
