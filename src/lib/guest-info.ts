@@ -397,7 +397,7 @@ export const guestInfoPages: GuestInfoPage[] = [
     ],
   },
   {
-    slug: "box-auto-accesso",
+    slug: "suite-porta-romana-2-box",
     property: "Box Auto",
     category: "Accesso",
     categoryEn: "Access",
