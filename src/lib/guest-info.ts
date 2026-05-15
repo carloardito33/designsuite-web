@@ -397,6 +397,83 @@ export const guestInfoPages: GuestInfoPage[] = [
     ],
   },
   {
+    slug: "suite-porta-romana-box",
+    property: "Suite Porta Romana",
+    category: "Box auto",
+    categoryEn: "Parking box",
+    title: "Come raggiungere il box auto",
+    titleEn: "Directions to the parking box",
+    subtitle: "Via Lodovico Muratori 13/a, 20135 Milano",
+    heroImage: "/images/info/suite-porta-romana-box/0-foto di apertura.jpg",
+    intro: "Segui le foto per raggiungere il box auto.",
+    introEn: "Follow the photos to reach the parking box.",
+    steps: [
+      {
+        image: "/images/info/suite-porta-romana-box/1-mappa.jpg",
+        caption: "L'indirizzo è Via Muratori 13/a",
+        captionEn: "The address is Via Muratori 13/a",
+      },
+      {
+        image: "/images/info/suite-porta-romana-box/2-ingresso.jpg",
+        caption: "L'ingresso carraio si trova in Via Muratori 13/a",
+        captionEn: "The vehicle entrance is at Via Muratori 13/a",
+      },
+      {
+        image: "/images/info/suite-porta-romana-box/3-discesa.jpg",
+        caption: "Percorri la discesa e gira a destra",
+        captionEn: "Go down the ramp and turn right",
+      },
+      {
+        image: "/images/info/suite-porta-romana-box/4-interno.jpg",
+        caption: "Il box è il penultimo aperto sulla sinistra (cerchiato)",
+        captionEn: "The box is the second to last open on the left (circled)",
+      },
+      {
+        image: "/images/info/suite-porta-romana-box/5-numero.jpg",
+        caption: "Il tuo box è il N° 13",
+        captionEn: "Your parking box is N° 13",
+      },
+    ],
+    extraSections: [
+      {
+        title: "Ritorno all'appartamento",
+        titleEn: "Back to the apartment",
+        steps: [
+          {
+            image: "/images/info/suite-porta-romana-box/6-corridoio Box.jpg",
+            caption: "Dal box, percorri il corridoio in avanti",
+            captionEn: "From the box, walk straight down the corridor",
+          },
+          {
+            image: "/images/info/suite-porta-romana-box/7-corridoio Box 2.jpg",
+            caption: "Continua verso l'uscita pedonale",
+            captionEn: "Continue toward the pedestrian exit",
+          },
+          {
+            image: "/images/info/suite-porta-romana-box/8-corridoio Box 3.jpg",
+            caption: "Raggiungi la porta cerchiata in rosso",
+            captionEn: "Reach the door circled in red",
+          },
+          {
+            image: "/images/info/suite-porta-romana-box/9-Porta box 2.jpg",
+            caption: "Spingi la porta di emergenza",
+            captionEn: "Push the emergency exit door",
+          },
+          {
+            image: "/images/info/suite-porta-romana-box/10-Porta box 3.jpg",
+            caption: "Oltrepassa la porta e prosegui",
+            captionEn: "Go through the door and continue",
+          },
+          {
+            image: "/images/info/suite-porta-romana-box/11-Porta ascensore.jpg",
+            caption: "Prendi l'ascensore cerchiato per tornare all'appartamento",
+            captionEn: "Take the circled elevator to return to the apartment",
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: "suite-porta-romana-2-box",
     property: "Box Auto",
     category: "Accesso",
