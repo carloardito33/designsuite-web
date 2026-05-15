@@ -396,6 +396,18 @@ export const guestInfoPages: GuestInfoPage[] = [
       },
     ],
   },
+  {
+    slug: "box-auto-accesso",
+    property: "Box Auto",
+    category: "Accesso",
+    categoryEn: "Access",
+    title: "Come raggiungere il box auto",
+    titleEn: "How to reach the parking box",
+    subtitle: "Indirizzo placeholder, Milano",
+    intro: "Segui le istruzioni per raggiungere il box auto. Pagina di test — le foto e il contenuto definitivo verranno aggiunti in seguito.",
+    introEn: "Follow the instructions to reach the parking box. Test page — photos and final content will be added later.",
+    steps: [],
+  },
 ];
 
 export function getGuestInfoPage(slug: string): GuestInfoPage | undefined {
