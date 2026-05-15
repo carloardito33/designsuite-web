@@ -461,13 +461,13 @@ export const guestInfoPages: GuestInfoPage[] = [
           },
           {
             image: "/images/info/suite-porta-romana-box/10-Porta box 3.jpg",
-            caption: "Oltrepassa la porta e prosegui",
-            captionEn: "Go through the door and continue",
+            caption: "Oltrepassa la seconda porta",
+            captionEn: "Go through the second door",
           },
           {
             image: "/images/info/suite-porta-romana-box/11-Porta ascensore.jpg",
-            caption: "Prendi l'ascensore cerchiato per tornare all'appartamento",
-            captionEn: "Take the circled elevator to return to the apartment",
+            caption: "Prendi l'ascensore cerchiato e sali al 1° piano",
+            captionEn: "Take the circled elevator to the 1st floor",
           },
         ],
       },
