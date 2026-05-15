@@ -404,7 +404,7 @@ export const guestInfoPages: GuestInfoPage[] = [
     title: "Come raggiungere il box auto",
     titleEn: "Directions to the parking",
     subtitle: "Via Lodovico Muratori 13/a, 20135 Milano",
-    heroImage: "/images/info/suite-porta-romana-2-box/0-ingresso.jpg",
+    heroImage: "/images/info/suite-porta-romana-2-box/0-foto di apertura.jpg",
     intro: "Segui le foto per raggiungere il box auto.",
     introEn: "Follow the photos to reach the parking box.",
     steps: [
@@ -412,6 +412,11 @@ export const guestInfoPages: GuestInfoPage[] = [
         image: "/images/info/suite-porta-romana-2-box/1-mappa.jpg",
         caption: "L'indirizzo è Via Muratori 13/a",
         captionEn: "The address is Via Muratori 13/a",
+      },
+      {
+        image: "/images/info/suite-porta-romana-2-box/2-ingresso.jpg",
+        caption: "L'ingresso carraio si trova in Via Muratori 13/a",
+        captionEn: "The vehicle entrance is at Via Muratori 13/a",
       },
       {
         image: "/images/info/suite-porta-romana-2-box/3-discesa.jpg",
