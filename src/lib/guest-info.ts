@@ -402,11 +402,38 @@ export const guestInfoPages: GuestInfoPage[] = [
     category: "Accesso",
     categoryEn: "Access",
     title: "Come raggiungere il box auto",
-    titleEn: "How to reach the parking box",
-    subtitle: "Indirizzo placeholder, Milano",
-    intro: "Segui le istruzioni per raggiungere il box auto. Pagina di test — le foto e il contenuto definitivo verranno aggiunti in seguito.",
-    introEn: "Follow the instructions to reach the parking box. Test page — photos and final content will be added later.",
-    steps: [],
+    titleEn: "Directions to the parking",
+    subtitle: "Via Lodovico Muratori 13/a, 20135 Milano",
+    heroImage: "/images/info/box-auto-accesso/1-ingresso.jpg",
+    intro: "Segui le foto per raggiungere il box auto.",
+    introEn: "Follow the photos to reach the parking box.",
+    steps: [
+      {
+        image: "/images/info/box-auto-accesso/2-mappa.jpg",
+        caption: "L'indirizzo è Via Muratori 13/a",
+        captionEn: "The address is Via Muratori 13/a",
+      },
+      {
+        image: "/images/info/box-auto-accesso/3-atrio.jpg",
+        caption: "Entra nell'atrio del palazzo e dirigiti verso il fondo",
+        captionEn: "Enter the building's entrance hall and head toward the back",
+      },
+      {
+        image: "/images/info/box-auto-accesso/4-discesa.jpg",
+        caption: "Percorri la discesa e gira a destra",
+        captionEn: "Go down the ramp and turn right",
+      },
+      {
+        image: "/images/info/box-auto-accesso/5-interno.jpg",
+        caption: "Il box è il penultimo aperto sulla sinistra (cerchiato)",
+        captionEn: "The box is the second to last open on the left (circled)",
+      },
+      {
+        image: "/images/info/box-auto-accesso/6-numero.jpg",
+        caption: "Il tuo box è il N° 13",
+        captionEn: "Your parking box is N° 13",
+      },
+    ],
   },
 ];
 
