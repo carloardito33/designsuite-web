@@ -1,0 +1,2094 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+<title>Villa Crea — Guida per gli Ospiti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     VILLA CREA — Guida per gli Ospiti
+     Identità Designsuite (font Jost · palette cream/ink/oro)
+     ============================================================ */
+  :root {
+    --cream:       #F0EEEA;
+    --cream-warm:  #E4E2DC;
+    --sand:        #D4C9B3;
+    --ink:         #1E1C14;
+    --ink-soft:    rgba(30,28,20,0.78);
+    --ink-muted:   rgba(30,28,20,0.58);
+    --olive-dark:  #1E1E08;
+    --gold:        #B8860B;
+    --gold-light:  #D4A020;
+    --gold-deep:   #8A6408;
+    --hair:        rgba(30,28,20,0.14);
+    --hair-light:  rgba(30,28,20,0.08);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: #C9C5BD;
+    font-family: 'Jost', 'Futura', 'Century Gothic', sans-serif;
+    color: var(--ink);
+    padding: 40px 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .stack { display: flex; flex-direction: column; align-items: center; gap: 32px; }
+
+  .page {
+    width: 794px; height: 1123px; background: var(--cream);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+    position: relative; overflow: hidden; page-break-after: always;
+  }
+
+  .interior { padding: 60px 64px 90px 64px; display: flex; flex-direction: column; }
+  .header-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--hair); padding-bottom: 16px; margin-bottom: 40px;
+  }
+  .header-bar .brand {
+    font-weight: 300; font-size: 10.5px; letter-spacing: 0.32em;
+    text-transform: uppercase; color: var(--ink);
+  }
+  .header-bar .brand .gold { color: var(--gold); font-weight: 400; }
+  .header-bar .section-label {
+    font-size: 9.5px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--ink-soft); font-weight: 300;
+  }
+  .footer-bar {
+    position: absolute; bottom: 36px; left: 64px; right: 64px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--hair); padding-top: 14px; font-weight: 300;
+  }
+  .footer-bar .credit {
+    font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .footer-bar .pagenum {
+    font-weight: 200; font-size: 13px; letter-spacing: 0.2em; color: var(--gold);
+  }
+
+  .eyebrow {
+    font-weight: 400; font-size: 10px; letter-spacing: 0.4em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+  }
+  h2.title-xl {
+    font-weight: 200; font-size: 40px; line-height: 1.08; margin: 0 0 28px 0;
+    color: var(--ink); letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  h3.section-title {
+    font-weight: 200; color: var(--ink); font-size: 24px; margin: 0 0 4px 0;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .section-rule { width: 38px; height: 1px; background: var(--gold); margin-bottom: 20px; }
+  h4 {
+    font-size: 10.5px; font-weight: 500; margin: 18px 0 6px 0;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--olive-dark);
+  }
+  p {
+    font-size: 12px; line-height: 1.65; color: var(--ink); margin: 0 0 12px 0; font-weight: 300;
+  }
+  p b, p strong { font-weight: 500; color: var(--olive-dark); }
+  .lead {
+    font-size: 13.5px; font-weight: 300; line-height: 1.6; color: var(--ink); margin: 0 0 22px 0;
+  }
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .threecol { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
+  a { color: var(--gold-deep); text-decoration: none; border-bottom: 1px solid rgba(184,134,11,0.4); }
+  a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+  .callout {
+    background: var(--cream-warm); border-left: 3px solid var(--gold);
+    padding: 14px 18px; font-size: 11.5px; line-height: 1.55; color: var(--ink);
+    margin: 14px 0; font-weight: 300;
+  }
+  .callout .callout-label {
+    font-size: 9.5px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--gold-deep); font-weight: 500; margin-bottom: 5px;
+  }
+  .pullquote {
+    font-weight: 200; color: var(--olive-dark); font-size: 17px; line-height: 1.45;
+    border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair);
+    padding: 18px 0; margin: 22px 0; letter-spacing: 0.04em;
+  }
+  .pullquote::before { content: "—"; color: var(--gold); margin-right: 10px; }
+
+  .info-row {
+    display: grid; grid-template-columns: 110px 1fr; gap: 14px;
+    padding: 9px 0; border-bottom: 1px solid var(--hair-light);
+    font-size: 11.5px; font-weight: 300;
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info-row .k {
+    font-weight: 500; color: var(--olive-dark); letter-spacing: 0.22em;
+    text-transform: uppercase; font-size: 9.5px; padding-top: 2px;
+  }
+  .info-row .v { line-height: 1.55; }
+
+  /* COVER */
+  .cover { background: var(--olive-dark); color: var(--cream); padding: 0; }
+  .cover-photo {
+    height: 100%;
+    background-image:
+      linear-gradient(180deg, rgba(30,30,8,0.25) 0%, rgba(30,30,8,0.25) 45%, rgba(30,30,8,0.85) 100%),
+      url('images-crea/cover.jpg');
+    background-size: cover; background-position: center;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 56px 60px;
+  }
+  .cover-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    font-weight: 300; font-size: 10.5px; letter-spacing: 0.32em;
+    text-transform: uppercase; color: var(--cream);
+  }
+  .ds-monogram { font-weight: 200; letter-spacing: 0.5em; font-size: 13px; color: var(--gold-light); }
+  .cover-eyebrow {
+    font-weight: 300; font-size: 10.5px; letter-spacing: 0.4em;
+    text-transform: uppercase; color: var(--gold-light); margin-bottom: 22px;
+  }
+  .cover h1 {
+    font-weight: 200; font-size: 72px; line-height: 1.1; margin: 0;
+    color: var(--cream); letter-spacing: 0.09em; text-transform: uppercase;
+  }
+  .cover-divider { width: 56px; height: 1px; background: var(--gold); margin: 24px 0; }
+  .cover-sub {
+    font-weight: 300; font-size: 13px; letter-spacing: 0.28em;
+    text-transform: uppercase; color: rgba(240,238,234,0.85);
+  }
+  .cover-meta-strip {
+    border-top: 1px solid rgba(240,238,234,0.25); padding-top: 24px;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px;
+  }
+  .cover-meta-strip .label {
+    font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 6px; font-weight: 400;
+  }
+  .cover-meta-strip .val {
+    font-weight: 200; font-size: 14px; letter-spacing: 0.08em;
+    color: var(--cream); text-transform: uppercase; line-height: 1.3;
+  }
+
+  /* OPENER */
+  .opener {
+    background:
+      linear-gradient(180deg, rgba(30,30,8,0.28) 0%, rgba(30,30,8,0.72) 100%),
+      url('images-crea/cover.jpg');
+    background-size: cover; background-position: center;
+    color: var(--cream); padding: 60px 64px;
+    display: flex; flex-direction: column; justify-content: flex-end; position: relative;
+  }
+  .opener .eyebrow { color: var(--gold-light); opacity: 0.95; }
+  .opener h2 {
+    font-weight: 200; color: var(--cream); font-size: 52px; line-height: 1.05;
+    letter-spacing: 0.08em; text-transform: uppercase; margin: 0;
+  }
+  .opener .opener-intro {
+    margin-top: 22px; max-width: 480px; font-size: 13px; font-weight: 300;
+    line-height: 1.65; color: rgba(240,238,234,0.92); letter-spacing: 0.02em;
+  }
+  .opener-num {
+    position: absolute; top: 56px; right: 64px; font-weight: 200;
+    font-size: 86px; line-height: 1; color: var(--cream); opacity: 0.4; letter-spacing: 0.05em;
+  }
+  .opener .footer-bar { border-color: rgba(240,238,234,0.3); }
+  .opener .footer-bar .credit { color: rgba(240,238,234,0.7); }
+  .opener .footer-bar .pagenum { color: var(--gold-light); }
+
+  /* TOC */
+  .toc-list { margin-top: 30px; list-style: none; padding: 0; }
+  .toc-list li a {
+    display: grid; grid-template-columns: 56px 1fr auto;
+    align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--hair);
+    gap: 16px; text-decoration: none; border-left: 0;
+    transition: background 0.2s; color: inherit;
+  }
+  .toc-list li a:hover { background: var(--cream-warm); border-bottom-color: var(--gold); }
+  .toc-list .num { font-weight: 200; color: var(--gold); font-size: 22px; letter-spacing: 0.1em; }
+  .toc-list .title {
+    font-size: 15px; color: var(--ink); font-weight: 300;
+    letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .toc-list .sub { display: block; font-weight: 300; font-size: 10.5px; color: var(--ink-soft); margin-top: 5px; }
+  .toc-list .pg { font-weight: 300; font-size: 11.5px; color: var(--ink-soft); letter-spacing: 0.2em; }
+
+  /* ESSENZIALI */
+  .essentials-hero {
+    background: var(--olive-dark); color: var(--cream);
+    padding: 32px 36px; margin-bottom: 24px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 26px 36px;
+  }
+  .essentials-hero .field { border-left: 1px solid rgba(240,238,234,0.25); padding-left: 16px; }
+  .essentials-hero .label {
+    font-size: 8.5px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 7px; font-weight: 400;
+  }
+  .essentials-hero .value {
+    font-size: 16px; font-weight: 200; line-height: 1.25;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--cream);
+  }
+  .essentials-hero .value small {
+    display: block; font-size: 9.5px; color: rgba(240,238,234,0.7);
+    margin-top: 5px; letter-spacing: 0.06em; font-weight: 300; text-transform: none;
+  }
+
+  /* WhatsApp link block */
+  .whatsapp-link {
+    background: var(--cream-warm); border: 1px solid var(--hair); border-left: 3px solid var(--gold);
+    padding: 22px 28px; margin-bottom: 24px;
+    display: grid; grid-template-columns: 56px 1fr; gap: 22px; align-items: center;
+  }
+  .whatsapp-link .wa-icon { font-size: 38px; color: var(--gold); line-height: 1; font-weight: 200; text-align: center; }
+  .whatsapp-link .wa-label {
+    font-size: 9.5px; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold-deep); font-weight: 500; margin-bottom: 6px;
+  }
+  .whatsapp-link .wa-num {
+    font-weight: 200; font-size: 26px; letter-spacing: 0.06em;
+    color: var(--olive-dark); line-height: 1;
+  }
+  .whatsapp-link .wa-num a { color: var(--olive-dark); border-bottom: none; }
+  .whatsapp-link .wa-num a:hover { color: var(--gold-deep); }
+  .whatsapp-link .wa-sub {
+    font-size: 10.5px; color: var(--ink-soft); margin-top: 6px;
+    font-weight: 300; letter-spacing: 0.04em;
+  }
+
+  /* Regole */
+  .rules h3 {
+    font-weight: 200; color: var(--ink); font-size: 20px; margin: 6px 0 14px 0;
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .rules .rule {
+    display: grid; grid-template-columns: 28px 1fr; gap: 12px;
+    align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--hair-light);
+    font-size: 11.5px; line-height: 1.55; font-weight: 300;
+  }
+  .rules .rule:last-child { border-bottom: none; }
+  .rules .icon { font-weight: 200; color: var(--gold); font-size: 14px; line-height: 1.4; letter-spacing: 0.1em; }
+  .rules .rule b { color: var(--olive-dark); font-weight: 500; }
+
+  /* Welcome */
+  .welcome { padding: 100px 80px; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+  .welcome .signature {
+    margin-top: 26px; font-size: 11px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--gold-deep); font-weight: 400;
+  }
+  .welcome .signature small {
+    display: block; font-size: 9.5px; color: var(--ink-soft);
+    letter-spacing: 0.18em; font-weight: 300; margin-top: 4px;
+  }
+  .welcome h2 {
+    font-weight: 200; font-size: 34px; line-height: 1.15; margin: 0 0 24px 0;
+    color: var(--ink); letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .welcome p { font-size: 13.5px; line-height: 1.75; margin-bottom: 14px; }
+
+  /* Inventario */
+  .inv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 36px; }
+  .inv-col h4 { margin-top: 0; }
+  .inv-list { list-style: none; padding: 0; margin: 0; }
+  .inv-list li {
+    padding: 5px 0 5px 18px; font-size: 11.5px; font-weight: 300;
+    position: relative; border-bottom: 1px dotted var(--hair-light); color: var(--ink);
+  }
+  .inv-list li::before {
+    content: "·"; position: absolute; left: 4px; color: var(--gold);
+    font-weight: 600; font-size: 14px;
+  }
+  .inv-list li:last-child { border-bottom: none; }
+
+  /* Maps hero */
+  .maps-hero {
+    background: var(--olive-dark); color: var(--cream);
+    padding: 28px 32px;
+    display: grid; grid-template-columns: 1fr auto; gap: 26px;
+    align-items: center; margin-bottom: 20px;
+  }
+  .maps-hero .maps-text { padding-right: 20px; border-right: 1px solid rgba(240,238,234,0.25); }
+  .maps-hero .maps-text h4 {
+    margin: 0 0 6px 0; color: var(--gold-light); font-size: 9.5px; letter-spacing: 0.35em;
+  }
+  .maps-hero .maps-text .big {
+    font-weight: 200; font-size: 22px; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--cream); line-height: 1.15;
+  }
+  .maps-hero .maps-text p {
+    color: rgba(240,238,234,0.85); font-size: 11px; line-height: 1.55; margin: 10px 0 0 0;
+  }
+  .maps-hero .maps-text p b, .maps-hero .maps-text p strong {
+    color: var(--gold-light); font-weight: 500;
+  }
+  .maps-hero .maps-text a {
+    color: var(--gold-light) !important; border-bottom: 1px solid var(--gold-light);
+  }
+  .maps-hero .maps-text a.maps-cta {
+    display: inline-block; margin-top: 14px; padding: 10px 18px;
+    background: var(--gold); color: var(--olive-dark) !important;
+    border: none; border-bottom: none !important;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.22em;
+    text-transform: uppercase; text-decoration: none; transition: background 0.2s;
+  }
+  .maps-hero .maps-text a.maps-cta:hover { background: var(--gold-light); }
+  .maps-hero .gps { text-align: right; font-weight: 200; }
+  .maps-hero .gps .gps-label {
+    font-size: 8.5px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 6px; font-weight: 400;
+  }
+  .maps-hero .gps .gps-coords {
+    font-size: 16px; color: var(--cream); letter-spacing: 0.08em; line-height: 1.3;
+  }
+
+  /* Photo gallery */
+  .gallery-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0 12px 0; }
+  .gallery-3 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin: 10px 0 12px 0; }
+  .photo-card { background: var(--cream-warm); padding: 6px; }
+  .photo-card img { width: 100%; height: 130px; object-fit: cover; display: block; }
+  .photo-card .caption {
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-deep); padding: 6px 4px 4px 4px; font-weight: 500;
+  }
+  .photo-card .caption small {
+    display: block; font-size: 8.5px; color: var(--ink-soft);
+    letter-spacing: 0.02em; text-transform: none; font-weight: 300; margin-top: 2px;
+  }
+
+  /* Impianti grid */
+  .impianti-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
+  .impianto-card {
+    display: grid; grid-template-columns: 110px 1fr; gap: 12px;
+    align-items: start; padding: 10px; background: var(--cream-warm);
+  }
+  .impianto-card img { width: 110px; height: 85px; object-fit: cover; display: block; }
+  .impianto-card .it { font-size: 10.5px; line-height: 1.5; font-weight: 300; }
+  .impianto-card .it h5 {
+    margin: 0 0 4px 0; font-size: 9.5px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--olive-dark); font-weight: 500;
+  }
+  .impianto-card .it b { color: var(--olive-dark); font-weight: 500; }
+
+  /* Place card */
+  .places { display: grid; gap: 12px; }
+  .place {
+    padding: 12px 14px; border-left: 2px solid var(--hair); background: transparent;
+  }
+  .place.top { background: var(--cream-warm); border-left: 2px solid var(--gold); }
+  .place-head { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: baseline; }
+  .place .name {
+    font-size: 12.5px; font-weight: 500; color: var(--olive-dark); letter-spacing: 0.04em;
+  }
+  .place.top .name::before { content: "★ "; color: var(--gold); margin-right: 4px; }
+  .place .meta {
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold-deep); font-weight: 500; text-align: right;
+  }
+  .place .desc {
+    font-size: 10.5px; color: var(--ink-soft); margin-top: 5px; line-height: 1.5; font-weight: 300;
+  }
+  .place .addr {
+    font-size: 9.5px; color: var(--ink-muted); margin-top: 4px; font-weight: 300; letter-spacing: 0.02em;
+  }
+  .place .addr a { color: var(--gold-deep); border-bottom: none; }
+
+  /* Itinerary */
+  .itin { background: var(--cream-warm); padding: 20px 22px; margin-bottom: 16px; }
+  .itin h4 { margin: 0 0 4px 0; color: var(--gold-deep); letter-spacing: 0.28em; font-size: 10px; }
+  .itin h3 {
+    font-weight: 200; font-size: 20px; margin: 0 0 12px 0;
+    letter-spacing: 0.07em; color: var(--olive-dark); text-transform: uppercase;
+  }
+  .itin .stops { list-style: none; padding: 0; margin: 0; }
+  .itin .stops li {
+    display: grid; grid-template-columns: 60px 1fr; gap: 10px;
+    padding: 5px 0; font-size: 11px; line-height: 1.5; font-weight: 300;
+  }
+  .itin .stops li .t {
+    font-weight: 500; color: var(--gold-deep); font-size: 9.5px;
+    letter-spacing: 0.18em; text-transform: uppercase; padding-top: 2px;
+  }
+  .itin .stops li b { color: var(--olive-dark); font-weight: 500; }
+
+  /* Tear-away */
+  .tearaway {
+    background: var(--olive-dark); color: var(--cream);
+    padding: 50px 56px; height: 100%;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .tearaway .eyebrow { color: var(--gold-light); }
+  .tearaway h2 {
+    font-weight: 200; color: var(--cream); font-size: 34px;
+    line-height: 1.1; letter-spacing: 0.07em; text-transform: uppercase; margin: 0 0 30px 0;
+  }
+  .tearaway .e-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 30px; }
+  .tearaway .e-card { border-left: 1px solid rgba(240,238,234,0.3); padding-left: 14px; }
+  .tearaway .e-card .e-label {
+    font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 5px; font-weight: 400;
+  }
+  .tearaway .e-card .e-val {
+    font-weight: 200; font-size: 22px; letter-spacing: 0.08em; color: var(--cream); line-height: 1.2;
+  }
+  .tearaway .e-card .e-val small {
+    display: block; font-size: 10px; color: rgba(240,238,234,0.7);
+    margin-top: 4px; font-weight: 300; letter-spacing: 0.06em; text-transform: none;
+  }
+  .tearaway .e-foot {
+    border-top: 1px solid rgba(240,238,234,0.3); padding-top: 18px;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(240,238,234,0.75); font-weight: 300;
+  }
+
+  /* Legend */
+  .legend {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 14px; padding: 10px 14px; background: var(--cream-warm);
+    font-size: 10px; font-weight: 300; letter-spacing: 0.06em;
+  }
+  .legend .star { color: var(--gold); font-size: 12px; }
+
+  @page { size: A4; margin: 0; }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .stack { gap: 0; }
+    .page {
+      box-shadow: none; width: 210mm; height: 297mm;
+      page-break-after: always; page-break-inside: avoid;
+      break-after: page; break-inside: avoid;
+    }
+    .page:last-child { page-break-after: auto; break-after: auto; }
+    a { color: inherit; }
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+</style>
+</head>
+<body>
+
+<div class="stack">
+
+  <!-- ============ P1 · COVER ============ -->
+  <div class="page cover">
+    <div class="cover-photo">
+      <div class="cover-top">
+        <span>Salento · Puglia · Italia</span>
+        <span class="ds-monogram">D · S</span>
+      </div>
+      <div>
+        <div class="cover-eyebrow">Guida per gli Ospiti · Edizione 2026</div>
+        <h1>Villa<br>Crea</h1>
+        <div class="cover-divider"></div>
+        <div class="cover-sub">Castrignano del Capo · Sud Salento</div>
+      </div>
+      <div class="cover-meta-strip">
+        <div>
+          <div class="label">Indirizzo</div>
+          <div class="val">SC Mattara, snc<br>Marina di Felloniche</div>
+        </div>
+        <div>
+          <div class="label">Coordinate</div>
+          <div class="val">39°48'44" N<br>18°19'34" E</div>
+        </div>
+        <div>
+          <div class="label">Designsuite</div>
+          <div class="val">Il lusso è<br>nei dettagli</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ P2 · LETTERA DI BENVENUTO ============ -->
+  <div class="page interior" id="benvenuto">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">Benvenuti</div>
+    </div>
+    <div class="welcome">
+      <div class="eyebrow">Una nota da parte nostra</div>
+      <h2>Benvenuti<br>a Villa Crea</h2>
+      <p>Grazie per aver scelto Villa Crea per la vostra vacanza nel Salento. La villa, progettata dall'architetto Zanaroli, è un rifugio di charme affacciato sul mare cristallino della punta estrema della Puglia, a pochi chilometri da Santa Maria di Leuca.</p>
+      <p>Abbiamo preparato questa guida per accompagnarvi nel soggiorno — dalle istruzioni pratiche per la casa ai nostri ristoranti preferiti, dalle spiagge che amiamo agli itinerari di un giorno per scoprire il Sud Salento più autentico.</p>
+      <p>Per qualunque cosa siamo a un messaggio di distanza. Vi auguriamo un soggiorno indimenticabile — e un tramonto in piscina che ricorderete a lungo.</p>
+      <div class="signature">
+        Carlo · Designsuite
+        <small>+39 335 6810 310 &nbsp;·&nbsp; carlo@designsuite.it</small>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">02</span>
+    </div>
+  </div>
+
+  <!-- ============ P3 · SOMMARIO ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">Sommario</div>
+    </div>
+    <div class="eyebrow">In questa guida</div>
+    <h2 class="title-xl">Tutto ciò che vi serve,<br>in un colpo d'occhio</h2>
+
+    <ul class="toc-list">
+      <li><a href="#sez-01">
+        <span class="num">01</span>
+        <span><span class="title">Benvenuti</span><span class="sub">Essenziali · Wi-Fi · Contatti · Regole della casa · Inventario</span></span>
+        <span class="pg">p. 04</span>
+      </a></li>
+      <li><a href="#sez-02">
+        <span class="num">02</span>
+        <span><span class="title">Come Arrivare</span><span class="sub">Google Maps · Le ultime tappe · Guidare in Puglia</span></span>
+        <span class="pg">p. 08</span>
+      </a></li>
+      <li><a href="#sez-03">
+        <span class="num">03</span>
+        <span><span class="title">La Casa</span><span class="sub">Camere · Elettrodomestici · Piscina · Impianti</span></span>
+        <span class="pg">p. 13</span>
+      </a></li>
+      <li><a href="#sez-04">
+        <span class="num">04</span>
+        <span><span class="title">Servizi</span><span class="sub">Pulizie · Biancheria · Lavanderia · Danni</span></span>
+        <span class="pg">p. 19</span>
+      </a></li>
+      <li><a href="#sez-05">
+        <span class="num">05</span>
+        <span><span class="title">Esplorare il Salento</span><span class="sub">Borghi · Spiagge · Mercati · Itinerari · Attività</span></span>
+        <span class="pg">p. 23</span>
+      </a></li>
+      <li><a href="#sez-06">
+        <span class="num">06</span>
+        <span><span class="title">I Sapori di Puglia</span><span class="sub">Ristoranti consigliati · Cantine · Botteghe</span></span>
+        <span class="pg">p. 30</span>
+      </a></li>
+      <li><a href="#sez-07">
+        <span class="num">07</span>
+        <span><span class="title">Sicurezza ed Emergenze</span><span class="sub">Numeri utili · Farmacie · Ospedale · Strappa-via</span></span>
+        <span class="pg">p. 35</span>
+      </a></li>
+    </ul>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">03</span>
+    </div>
+  </div>
+
+  <!-- ============ P4 · ESSENZIALI ============ -->
+  <div class="page interior" id="sez-01">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">01 · Benvenuti</div>
+    </div>
+    <div class="eyebrow">A colpo d'occhio</div>
+    <h2 class="title-xl">Gli essenziali,<br>in una pagina</h2>
+
+    <div class="essentials-hero">
+      <div class="field">
+        <div class="label">Wi-Fi</div>
+        <div class="value">villacre@<small>password della rete · attenzione alla chiocciola finale</small></div>
+      </div>
+      <div class="field">
+        <div class="label">Check-in / Check-out</div>
+        <div class="value">16:00–19:00 · entro le 10:00<small>orari da confermare con il proprietario</small></div>
+      </div>
+      <div class="field">
+        <div class="label">Indirizzo</div>
+        <div class="value">SC Mattara, snc<small>Marina di Felloniche · 73040 Castrignano del Capo (LE)</small></div>
+      </div>
+      <div class="field">
+        <div class="label">Host · 24 ore su 24</div>
+        <div class="value">+39 335 6810 310<small>WhatsApp preferito · italiano e inglese</small></div>
+      </div>
+    </div>
+
+    <div class="whatsapp-link">
+      <div class="wa-icon">✆</div>
+      <div class="wa-text">
+        <div class="wa-label">Scriveteci su WhatsApp</div>
+        <div class="wa-num"><a href="https://wa.me/393356810310" target="_blank">+39 335 6810 310</a></div>
+        <div class="wa-sub">Rispondiamo entro pochi minuti, italiano e inglese</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Check-in</div>
+      Normalmente vi accoglierà una persona di fiducia per consegnarvi le chiavi e il telecomando del cancello, e mostrarvi la villa. In casi particolari è possibile un self check-in: troverete chiavi e telecomando in una cassetta a combinazione vicino all'ingresso. Per il check-out, se dovete partire molto presto, possiamo organizzare la consegna delle chiavi la sera prima.
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">04</span>
+    </div>
+  </div>
+
+  <!-- ============ P5 · REGOLE ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">01 · Benvenuti</div>
+    </div>
+    <h3 class="section-title">Cinque regole semplici</h3>
+    <div class="section-rule"></div>
+    <p class="lead">Villa Crea è un luogo di quiete affacciato sul mare. Bastano cinque attenzioni per rispettarne i ritmi — e starci davvero bene.</p>
+
+    <div class="rules">
+      <div class="rule"><span class="icon">I</span><span><b>Non si fuma in casa.</b> All'esterno siete liberi di fumare, vi chiediamo solo di spegnere bene mozziconi e sigari e di non lasciare candele o fuochi accesi quando uscite o andate a dormire.</span></div>
+      <div class="rule"><span class="icon">II</span><span><b>L'acqua è preziosa.</b> Villa Crea non è servita dall'acquedotto: l'acqua arriva con autobotte. Chiudete bene i rubinetti, usate la doccia esterna in piscina brevemente, segnalateci subito qualunque perdita.</span></div>
+      <div class="rule"><span class="icon">III</span><span><b>Raccolta differenziata in cinque flussi:</b> vetro, carta, plastica e metallo, organico, indifferenziato. I bidoni sono accanto al cancello pedonale. Una raccolta differenziata fatta male non viene ritirata e il Comune applica una multa di 50 € al locatario.</span></div>
+      <div class="rule"><span class="icon">IV</span><span><b>Piscina con un occhio in più.</b> I bambini in piscina sono sempre accompagnati da un adulto. Non si tuffa, non si corre lungo i bordi, niente bicchieri di vetro a bordo vasca. Prima di entrare in acqua, una passata veloce alla doccia esterna.</span></div>
+      <div class="rule"><span class="icon">V</span><span><b>Trattate la casa come fosse vostra.</b> Se qualcosa si rompe, ditecelo subito: ci occupiamo di tutto insieme, senza drammi. Per i danni più importanti useremo, se necessario, la cauzione lasciata all'arrivo.</span></div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Animali</div>
+      Villa Crea è una villa pensata per il riposo: la quiete del luogo è uno dei suoi tratti. Non si accettano animali, salvo accordi specifici concordati prima della prenotazione.
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">05</span>
+    </div>
+  </div>
+
+  <!-- ============ P6 · INVENTARIO ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">01 · Benvenuti</div>
+    </div>
+    <h3 class="section-title">Cosa trovate in villa</h3>
+    <div class="section-rule"></div>
+    <p class="lead">Una rassegna veloce dei comfort della casa, così potete preparare la valigia senza pensieri. Tutto è già pronto al vostro arrivo.</p>
+
+    <div class="inv-grid">
+      <div class="inv-col">
+        <h4>Camere e bagni</h4>
+        <ul class="inv-list">
+          <li>4 camere da letto (2 matrimoniali, 2 doppie flessibili)</li>
+          <li>Fino a 8 ospiti</li>
+          <li>3 bagni con doccia (2 en-suite, 1 esterno)</li>
+          <li>Lenzuola e asciugamani bagno e piscina inclusi</li>
+          <li>Asciugacapelli e set di cortesia in bagno</li>
+        </ul>
+
+        <h4>Cucina</h4>
+        <ul class="inv-list">
+          <li>Cucina a vista perfettamente attrezzata</li>
+          <li>Lavastoviglie e forno combinato (tradizionale + microonde)</li>
+          <li>Macchina caffè Nespresso</li>
+          <li>Bollitore e tostapane</li>
+          <li>Stoviglie, posate e pentole per 8 persone</li>
+        </ul>
+
+        <h4>TV e connettività</h4>
+        <ul class="inv-list">
+          <li>Wi-Fi ad alta velocità</li>
+          <li>Smart TV con app di streaming integrate</li>
+        </ul>
+      </div>
+      <div class="inv-col">
+        <h4>Outdoor</h4>
+        <ul class="inv-list">
+          <li>Piscina 15 × 3 m con vista mare</li>
+          <li>Cucina esterna completamente attrezzata</li>
+          <li>Frigorifero esterno</li>
+          <li>Tavolo in pietra per cene all'aperto</li>
+          <li>Living esterno con divani</li>
+          <li>Barbecue</li>
+          <li>Doccia esterna</li>
+        </ul>
+
+        <h4>Servizi e impianti</h4>
+        <ul class="inv-list">
+          <li>Aria condizionata e riscaldamento</li>
+          <li>Impianto fotovoltaico</li>
+          <li>Lavanderia con lavatrice</li>
+          <li>Ferro da stiro e asse</li>
+          <li>Parcheggio privato con cancello automatico</li>
+        </ul>
+
+        <h4>Sicurezza</h4>
+        <ul class="inv-list">
+          <li>Torcia in lavanderia</li>
+          <li>Cassetta del primo soccorso in lavanderia, dietro la porta</li>
+          <li>Estintore vicino alla caldaia</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">06</span>
+    </div>
+  </div>
+
+  <!-- ============ P7 · APERTURA SEZIONE 02 ============ -->
+  <div class="page opener" id="sez-02">
+    <div class="opener-num">02</div>
+    <div>
+      <div class="eyebrow">Sezione Due</div>
+      <h2>Come Arrivare</h2>
+      <div class="opener-intro">La soluzione più semplice è Google Maps: la villa è registrata, basta cercare "Villa Crea Designsuite" e seguire le indicazioni. Per le ultime tappe, le foto qui di seguito vi aiutano a riconoscere il percorso.</div>
+    </div>
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">07</span>
+    </div>
+  </div>
+
+  <!-- ============ P8 · GOOGLE MAPS ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">02 · Come Arrivare</div>
+    </div>
+    <h3 class="section-title">In auto, dagli aeroporti</h3>
+    <div class="section-rule"></div>
+
+    <div class="maps-hero">
+      <div class="maps-text">
+        <h4>La via più semplice</h4>
+        <div class="big">Aprite Google Maps<br>e cercate <em>Villa Crea Designsuite</em></div>
+        <p>La villa è registrata. Da Brindisi il viaggio dura circa <b>1,5 ore</b>, da Bari circa <b>2,5 ore</b>.</p>
+        <a class="maps-cta" href="https://www.google.com/maps/search/?api=1&query=Villa+Crea+Designsuite+Castrignano+del+Capo" target="_blank">→ &nbsp;Apri il percorso in Google Maps</a>
+      </div>
+      <div class="gps">
+        <div class="gps-label">Coordinate</div>
+        <div class="gps-coords">39°48'44" N<br>18°19'34" E</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Importante</div>
+      In autostrada è obbligatorio viaggiare con i <b>fari accesi</b>, anche di giorno. Sulla SS274 in alta stagione il traffico aumenta nel tardo pomeriggio: se atterrate dopo le 17:00, mettete in conto qualche minuto in più.
+    </div>
+
+    <div class="twocol" style="margin-top: 8px;">
+      <div>
+        <h4>Da Brindisi (≈ 1h 30')</h4>
+        <p>SS16 verso Lecce, poi <b>Tangenziale Ovest SS694</b> uscita Gallipoli, quindi <b>SS101 → SS274</b> in direzione Santa Maria di Leuca, uscita <b>Castrignano del Capo</b>.</p>
+      </div>
+      <div>
+        <h4>Da Bari (≈ 2h 30')</h4>
+        <p>SS16 (E55) verso Brindisi e Lecce, poi <b>Tangenziale Ovest SS694</b> e da lì stesso percorso da Brindisi. Stessa uscita finale: Castrignano del Capo.</p>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">08</span>
+    </div>
+  </div>
+
+  <!-- ============ P9 · LE ULTIME TAPPE ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">02 · Come Arrivare</div>
+    </div>
+    <h3 class="section-title">Le ultime tappe</h3>
+    <div class="section-rule"></div>
+    <p class="lead">Da quando uscite dalla SS274, queste sono le immagini di riferimento per riconoscere il percorso. Google Maps vi guida per filo e per segno, ma se la connessione fa i capricci, queste foto bastano da sole.</p>
+
+    <div class="gallery-3">
+      <div class="photo-card"><img src="images-crea/route01_uscita.jpg" alt=""></div>
+      <div class="photo-card"><img src="images-crea/route02_castrignano.jpg" alt=""></div>
+      <div class="photo-card"><img src="images-crea/route03.jpg" alt=""></div>
+      <div class="photo-card"><img src="images-crea/route04_sottopasso.jpg" alt=""></div>
+      <div class="photo-card"><img src="images-crea/route05_trulli.jpg" alt=""></div>
+      <div class="photo-card"><img src="images-crea/route06_bivio.jpg" alt=""></div>
+      <div class="photo-card"><img src="images-crea/route07.jpg" alt=""></div>
+      <div class="photo-card"><img src="images-crea/route08_mare.jpg" alt=""></div>
+      <div class="photo-card"><img src="images-crea/route09_pilastri.jpg" alt=""></div>
+      <div class="photo-card"><img src="images-crea/route10_.jpg" alt=""></div>
+      <div class="photo-card"><img src="images-crea/route11.jpg" alt=""></div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Parcheggio</div>
+      All'arrivo trovate il cancello automatico: vi consegneremo il telecomando al check-in. All'interno della proprietà c'è un parcheggio privato riservato agli ospiti. Nessuna prenotazione necessaria.
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">09</span>
+    </div>
+  </div>
+
+  <!-- ============ P10 · GUIDARE IN PUGLIA ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">02 · Come Arrivare</div>
+    </div>
+    <h3 class="section-title">Guidare in Puglia</h3>
+    <div class="section-rule"></div>
+    <p class="lead">Il primo impatto può sembrare un po' caotico, ma ci si abitua in fretta. Il segreto è adattarsi: non cambierete il modo di guidare dei pugliesi in una settimana, ma vi accorgerete che, dopo lo shock iniziale, il sistema funziona.</p>
+
+    <div class="twocol">
+      <div>
+        <h4>In autostrada</h4>
+        <p>Il limite è <b>130 km/h</b> se non diversamente indicato. <b>I fari restano accesi</b> per tutto il tragitto, è obbligatorio per legge. Quasi tutte le autostrade sono a pagamento: ai caselli, in alta stagione si formano code lunghe. Se avete una carta Visa o Mastercard, usate le casse automatiche segnalate dalla parola <b>"card"</b>: si paga in pochi secondi.</p>
+
+        <h4>Stazioni di servizio</h4>
+        <p>La maggior parte ha due pompe affiancate: <b>fai da te</b> (self) e <b>servito</b>. Il prezzo del servito è leggermente più alto. A voi scegliere se vale la differenza per non sentire l'odore di gasolio sulle mani.</p>
+
+        <h4>In paese</h4>
+        <p>Pensate alle strade del centro come a un'area pedonale: scooter, auto e persone escono da ogni angolo, apparentemente senza guardare, dando per scontato che voi farete loro spazio. Funziona — basta usare gli specchietti retrovisori molto più del solito.</p>
+      </div>
+      <div>
+        <h4>Parcheggi e strisce</h4>
+        <p><b>Strisce blu</b> · Parcheggio a pagamento. Vicino c'è sempre un parcometro con orari e tariffe. Inserite le monete necessarie e mettete il biglietto sul cruscotto, ben visibile. Se non trovate il parcometro, il biglietto si compra in tabaccheria.</p>
+        <p><b>Strisce bianche</b> · Parcheggio gratuito, ma in alcuni casi solo in determinate ore. Leggete sempre i cartelli vicini.</p>
+        <p><b>Strisce gialle</b> · Vietato parcheggiare. Riservate a residenti, uffici pubblici, disabili.</p>
+
+        <h4>Parcheggiatori improvvisati</h4>
+        <p>In molti centri storici vi avvicineranno persone non ufficiali che vi indicano un posto libero e vi aiutano a manovrare. Si aspettano una mancia di 50 cent – 1 €. Comunque, controllate sempre i cartelli stradali: il parcheggiatore non vi salva da una multa.</p>
+
+        <h4>Multe</h4>
+        <p>Se prendete una multa, troverete sull'avviso le indicazioni per il pagamento. Il testo è solitamente solo in italiano: in caso di dubbi, scriveteci.</p>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">10</span>
+    </div>
+  </div>
+
+  <!-- ============ P11 · APERTURA SEZIONE 03 ============ -->
+  <div class="page opener" id="sez-03">
+    <div class="opener-num">03</div>
+    <div>
+      <div class="eyebrow">Sezione Tre</div>
+      <h2>La Casa</h2>
+      <div class="opener-intro">Una conversazione discreta con la villa — cosa aspettarsi da ogni stanza, come funzionano gli apparecchi, i piccoli dettagli che fanno sentire a casa fin dalla prima sera.</div>
+    </div>
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">11</span>
+    </div>
+  </div>
+
+  <!-- ============ P12 · VIVERE LA VILLA ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">03 · La Casa</div>
+    </div>
+    <h3 class="section-title">Vivere la villa</h3>
+    <div class="section-rule"></div>
+    <p class="lead">Villa Crea è una casa che si apre sul mare e chiede in cambio una piccola attenzione. Le note che seguono coprono gli essenziali — elettrodomestici, acqua, elettricità — perché nulla si frapponga fra voi e un lungo pomeriggio in piscina con vista sull'Adriatico.</p>
+
+    <div class="twocol">
+      <div>
+        <h4>Camere da letto</h4>
+        <p>Quattro camere: due matrimoniali e due doppie flessibili (possono essere preparate come matrimoniali o come singole, fateci sapere in anticipo). All'arrivo trovate i letti già rifatti e gli asciugamani bagno e piscina per tutto il soggiorno.</p>
+
+        <h4>Bagni</h4>
+        <p>Tre bagni con doccia: <b>due en-suite</b> serviti dalle camere matrimoniali e <b>uno esterno</b>, comodo per chi torna dalla piscina. <b>Vi chiediamo di gettare nel WC solo carta igienica</b> in piccole quantità: tutto il resto va nel cestino.</p>
+
+        <h4>Aria condizionata</h4>
+        <p>Le notti in Salento sono fresche, e la casa mantiene bene la sua temperatura: l'aria condizionata serve solo nelle settimane più calde. Impostatela fra <b>23 e 26 °C</b> per dormire e spegnetela quando uscite. Evitate di passare di continuo da ambienti molto freschi all'aperto caldo.</p>
+      </div>
+      <div>
+        <h4>Mobili e arredi</h4>
+        <p>I tessuti d'arredo sono delicati. Vi chiediamo di non sedervi sui divani e sulle poltrone con il costume bagnato o vestiti umidi di mare e piscina, e di non usare creme abbronzanti sui tessuti — alcune (in particolare <b>Riemann P20</b>) lasciano macchie indelebili.</p>
+
+        <h4>Mobili esterni e ombrelloni</h4>
+        <p>La sera, o quando uscite per un'intera giornata, vi chiediamo di portare dentro i cuscini delle sedute esterne in caso di pioggia. Gli ombrelloni vanno sempre chiusi quando uscite o quando si alza il vento: una raffica improvvisa può rovinarli.</p>
+
+        <h4>Porte e finestre</h4>
+        <p>Quando uscite, chiudete e bloccate porte, finestre e persiane: oltre alla sicurezza, è una protezione contro pioggia e vento improvvisi e contro le visite di piccoli animali. Le finestre hanno tre posizioni: <b>chiusa</b>, <b>aperta</b>, <b>vasistas</b> (leggermente inclinata in alto per arieggiare).</p>
+      </div>
+    </div>
+
+    <div class="pullquote">Trattate la casa come fosse vostra — è il modo più semplice per starci bene.</div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">12</span>
+    </div>
+  </div>
+
+  <!-- ============ P13 · IMPIANTI ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">03 · La Casa</div>
+    </div>
+    <h3 class="section-title">Impianti — acqua, caldaia, elettricità</h3>
+    <div class="section-rule"></div>
+    <p class="lead">Tutti gli impianti sono già attivi al vostro arrivo. Villa Crea dispone anche di un <b>impianto fotovoltaico</b> che riduce significativamente i consumi. Queste pagine vi servono solo nel caso, raro, in cui qualcosa smetta di funzionare.</p>
+
+    <div class="impianti-grid">
+      <div class="impianto-card">
+        <img src="images-crea/impianto_pompa.jpg" alt="Pompa idrica orange">
+        <div class="it">
+          <h5>Impianto idrico</h5>
+          Se manca acqua ai rubinetti, premete il <b>pulsante START</b> sulla pompa arancione nella <i>nicchia in pietra vicino al parcheggio</i>. La pompa rimette in pressione l'impianto in pochi secondi.
+        </div>
+      </div>
+      <div class="impianto-card">
+        <img src="images-crea/impianto_caldaia.jpg" alt="Caldaia con manopole">
+        <div class="it">
+          <h5>Caldaia · acqua calda</h5>
+          La caldaia è già accesa al vostro arrivo. È alimentata a <b>gas in bombole</b>: se l'acqua calda dovesse mancare, è possibile che una bombola si sia esaurita. Avvisateci subito su WhatsApp, ce ne occupiamo noi.
+        </div>
+      </div>
+      <div class="impianto-card">
+        <img src="images-crea/impianto_quadro.jpg" alt="Quadro elettrico">
+        <div class="it">
+          <h5>Quadro elettrico</h5>
+          In caso di blackout, spegnete prima gli apparecchi più potenti. Il <b>quadro elettrico</b> è in lavanderia, dietro la porta: controllate che tutti gli interruttori siano alzati.
+        </div>
+      </div>
+      <div class="impianto-card">
+        <img src="images-crea/impianto_enel.jpg" alt="Contatore ENEL esterno">
+        <div class="it">
+          <h5>Contatore ENEL</h5>
+          Se ancora niente, il contatore principale è nel muretto sulla strada principale, ≈ 100 m a destra del cancello pedonale. Con la chiavetta più piccola del mazzo, aprite la cassetta e verificate che l'interruttore sia alzato.
+        </div>
+      </div>
+    </div>
+
+    <h4 style="margin-top: 18px;">Acqua dai rubinetti</h4>
+    <p>Villa Crea non è collegata all'acquedotto: l'acqua arriva con autobotte e viene conservata in cisterna. È sicura per cucinare, lavarsi e fare la doccia, ma <b>non è potabile</b>. Per bere, trovate al vostro arrivo dell'acqua minerale; altre bottiglie si comprano facilmente al supermercato del paese.</p>
+
+    <div class="callout">
+      <div class="callout-label">In dotazione</div>
+      Una piccola torcia vive in <b>lavanderia</b>, pronta in caso di blackout serale. <b>Bombole del gas</b>: si trovano dietro il muretto in pietra del parcheggio. Se sentite odore di gas, chiudete il rubinetto e chiamateci.
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">13</span>
+    </div>
+  </div>
+
+  <!-- ============ P14 · PISCINA E GIARDINO ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">03 · La Casa</div>
+    </div>
+    <h3 class="section-title">Piscina e giardino</h3>
+    <div class="section-rule"></div>
+    <p class="lead">La piscina è uno dei cuori della casa: <b>15 metri per 3, vista mare</b>, viene controllata e pulita tre volte la settimana. Qualche semplice attenzione per godersela senza pensieri.</p>
+
+    <div class="twocol">
+      <div>
+        <h4>Prima di entrare in acqua</h4>
+        <p>Una passata veloce alla <b>doccia esterna</b>: tiene la piscina pulita e dura più a lungo l'effetto del trattamento dell'acqua.</p>
+
+        <h4>Non si tuffa</h4>
+        <p>Niente tuffi, né dal bordo né dalle scale, e niente corse lungo il perimetro: il bordo può essere scivoloso.</p>
+
+        <h4>Niente vetro</h4>
+        <p>Bicchieri e bottiglie di vetro sono vietati nell'area piscina. Per gli aperitivi sul lettino vi mettiamo a disposizione bicchieri in plastica resistente.</p>
+
+        <h4>Creme solari</h4>
+        <p>Evitate di sdraiarvi su lettini e sedute con autoabbronzante appena applicato: macchia in modo indelebile.</p>
+
+        <h4>Bambini</h4>
+        <p>I bambini in piscina sono sempre accompagnati da un adulto, anche quando indossano braccioli o ciambelle: nessun aiuto al galleggiamento sostituisce la sorveglianza.</p>
+
+        <h4>Nuoto la sera</h4>
+        <p>Nuotare di notte non è consigliato. Se proprio decidete di farlo, accendete le luci della piscina e non fatelo mai da soli.</p>
+      </div>
+      <div>
+        <h4>Il giardino</h4>
+        <p>L'impianto di irrigazione si attiva automaticamente — di solito al primo mattino o alla sera, per non sprecare acqua — ed è controllato dal nostro custode. Non c'è nulla che dobbiate fare.</p>
+
+        <h4>Insetti e altri animali</h4>
+        <p>La Puglia è una terra calda e in campagna gli insetti sono molti. Non ci sono animali pericolosi, ma qualche piccola accortezza migliora la quiete:</p>
+        <ul class="inv-list" style="margin-bottom: 10px;">
+          <li>Non lasciate porte e finestre aperte la sera con le luci accese</li>
+          <li>Usate i diffusori antizanzare elettrici che trovate in casa</li>
+          <li>Se cenate fuori in tarda serata, coprite braccia e gambe o usate un repellente</li>
+        </ul>
+
+        <div class="callout">
+          <div class="callout-label">Buono a sapersi</div>
+          Il <b>tramonto da Villa Crea</b> è un momento. La piscina si affaccia a ovest sul mare, e in estate la palla di sole cala dritta sull'acqua. Vale la pena programmare almeno una sera con aperitivo a bordo vasca.
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">14</span>
+    </div>
+  </div>
+
+  <!-- ============ P15 · ELETTRODOMESTICI E TV ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">03 · La Casa</div>
+    </div>
+    <h3 class="section-title">Elettrodomestici e TV</h3>
+    <div class="section-rule"></div>
+    <p class="lead">Tutti gli elettrodomestici sono di classe energetica A+ e di uso intuitivo. Una sintesi qui sotto.</p>
+
+    <div class="twocol">
+      <div>
+        <h4>Lavastoviglie</h4>
+        <p>Avviatela quando è piena. Mettete dentro stoviglie già sciacquate, senza residui di cibo. Per usarla: selezionate il programma, inserite la pastiglia nell'alloggiamento, premete <b>"START"</b>, chiudete lo sportello.</p>
+
+        <h4>Lavatrice</h4>
+        <p>Detersivo e ammorbidente sono già caricati. Caricate i capi, selezionate il programma, premete <b>"START"</b>.</p>
+
+        <h4>Forno combinato</h4>
+        <p>Doppia funzione: <b>tradizionale</b> e <b>microonde</b>. I comandi tradizionali sono a sinistra della ghiera centrale, quelli microonde a destra. <b>Non inserite oggetti metallici</b> nel forno a microonde.</p>
+
+        <h4>Macchina del caffè</h4>
+        <p>Nespresso con capsule. All'arrivo vi lasciamo una piccola scorta di cortesia; capsule extra si trovano facilmente al supermercato in paese.</p>
+      </div>
+      <div>
+        <h4>Smart TV</h4>
+        <p>In salotto trovate una <b>Smart TV</b> con le principali app di streaming integrate — Netflix, Prime Video, Disney+, YouTube, RaiPlay e così via. Vi basta accedere con il vostro account personale per guardare i vostri contenuti. Al check-out vi chiediamo di disconnettere i vostri account dalle app.</p>
+
+        <h4>Cucina esterna</h4>
+        <p>Una cucina vera e propria, attrezzata per cucinare e cenare all'aperto: <b>piano cottura, lavello, frigorifero esterno e barbecue</b>. È pensata per le grigliate lunghe in compagnia e per le cene di pesce, con il tavolo in pietra a portata di mano.</p>
+
+        <h4>Aria condizionata</h4>
+        <p>Le unità hanno display con i comandi essenziali: <b>Mode</b> seleziona la modalità (raffreddamento, riscaldamento, deumidificazione), <b>Fan</b> la velocità della ventola, le frecce regolano la temperatura.</p>
+
+        <div class="callout">
+          <div class="callout-label">Tutto rotto, tutto risolto</div>
+          Se qualcosa smette di funzionare, scriveteci subito su WhatsApp: ci muoviamo entro la giornata.
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">15</span>
+    </div>
+  </div>
+
+  <!-- ============ P16 · DIFFERENZIATA ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">03 · La Casa</div>
+    </div>
+    <h3 class="section-title">Raccolta differenziata</h3>
+    <div class="section-rule"></div>
+    <p class="lead">A Castrignano del Capo la raccolta è puntuale e separata in cinque flussi. Una raccolta differenziata fatta correttamente è una delle attenzioni più semplici e più utili.</p>
+
+    <h4>I cinque flussi</h4>
+    <div class="threecol">
+      <div>
+        <h4 style="margin-top: 0; color: var(--gold-deep);">Vetro</h4>
+        <p>Bottiglie e vasetti di vetro, sciacquati e senza tappo. Tappi metallici nella plastica/metallo.</p>
+      </div>
+      <div>
+        <h4 style="margin-top: 0; color: var(--gold-deep);">Carta</h4>
+        <p>Carta, cartone, riviste, scatole. Niente carta sporca di cibo o oleata.</p>
+      </div>
+      <div>
+        <h4 style="margin-top: 0; color: var(--gold-deep);">Plastica e metallo</h4>
+        <p>Bottiglie, contenitori, lattine, tappi. Vanno schiacciati per ridurne il volume.</p>
+      </div>
+    </div>
+    <div class="threecol" style="margin-top: 14px;">
+      <div>
+        <h4 style="margin-top: 0; color: var(--gold-deep);">Organico</h4>
+        <p>Scarti di cibo, gusci d'uovo, fondi di caffè. Nel sacchetto compostabile dedicato.</p>
+      </div>
+      <div>
+        <h4 style="margin-top: 0; color: var(--gold-deep);">Indifferenziato</h4>
+        <p>Tutto ciò che non rientra negli altri quattro. Dovrebbe restare poco.</p>
+      </div>
+      <div>
+        <h4 style="margin-top: 0; color: var(--gold-deep);">Dove</h4>
+        <p>I bidoni sono fuori dalla proprietà, <b>accanto al cancello pedonale</b>.</p>
+      </div>
+    </div>
+
+    <h4 style="margin-top: 28px;">Calendario di raccolta</h4>
+    <p>Il calendario completo è affisso in cucina. Lo aggiorniamo a ogni inizio stagione perché può cambiare. In genere: organico tre volte a settimana, indifferenziato e differenziata in giorni alterni. Si esce con i bidoni la sera prima, non oltre le 22:00.</p>
+
+    <div class="callout">
+      <div class="callout-label">Importante</div>
+      Se la raccolta non è fatta correttamente, gli operatori non ritirano i bidoni e il Comune applica una <b>multa di 50 €</b> al locatario per ogni episodio. È la regola che ci viene chiesto di rispettare con più attenzione.
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">16</span>
+    </div>
+  </div>
+
+  <!-- ============ P17 · APERTURA SEZIONE 04 ============ -->
+  <div class="page opener" id="sez-04">
+    <div class="opener-num">04</div>
+    <div>
+      <div class="eyebrow">Sezione Quattro</div>
+      <h2>Servizi</h2>
+      <div class="opener-intro">Le piccole attenzioni che rendono il soggiorno comodo — pulizie e cambi biancheria già inclusi, qualche servizio extra che potete richiedere, e poche righe per chiarire come gestiamo eventuali danni.</div>
+    </div>
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">17</span>
+    </div>
+  </div>
+
+  <!-- ============ P18 · PULIZIE E BIANCHERIA ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">04 · Servizi</div>
+    </div>
+    <h3 class="section-title">Pulizie e biancheria</h3>
+    <div class="section-rule"></div>
+    <p class="lead">A Villa Crea le pulizie settimanali e il cambio biancheria sono inclusi. Vi chiediamo solo di trovare la casa in ordine al cambio, e di aiutarci con qualche piccolo gesto al check-out.</p>
+
+    <div class="twocol">
+      <div>
+        <h4>Cosa è incluso</h4>
+        <p><b>Pulizia settimanale</b> con cambio biancheria, sia in soggiorni di una settimana sia per i ricambi all'interno di soggiorni più lunghi.</p>
+        <p><b>Pulizia degli spazi esterni</b> a giorni alterni (zona piscina, terrazze, cucina esterna).</p>
+        <p><b>Pulizia finale</b> dopo il vostro check-out, già compresa nella tariffa.</p>
+
+        <h4>Cambio della biancheria</h4>
+        <p>All'arrivo trovate i letti rifatti e gli asciugamani da bagno e da piscina per tutto il soggiorno. Per chi resta due settimane o più, la biancheria viene cambiata <b>all'inizio di ogni settimana</b>, di norma nello stesso giorno del check-in.</p>
+        <p>Se le camere sono occupate al momento del cambio, gli operatori lasciano la biancheria pulita davanti a ciascuna stanza.</p>
+      </div>
+      <div>
+        <h4>Servizi extra a richiesta</h4>
+        <p><b>Pulizia giornaliera</b> · su richiesta, da concordare prima dell'arrivo.</p>
+        <p><b>Pulizia extra durante il soggiorno</b> · 15 €/ora.</p>
+        <p><b>Cambio biancheria letto fuori programma</b> · 15 € a set.</p>
+        <p><b>Cambio asciugamani bagno e piscina fuori programma</b> · 15 € a set.</p>
+        <p><b>Cuoco privato</b> · su richiesta, per cene private in villa o esperienze gastronomiche. Quotazione personalizzata.</p>
+
+        <div class="callout">
+          <div class="callout-label">Un piccolo favore</div>
+          Al check-out vi chiediamo gentilmente di avviare un ciclo di lavastoviglie con piatti, posate e pentole sporche, e di lasciare la casa in ordine. Sono attenzioni minime che fanno una grande differenza per chi prepara la villa per gli ospiti successivi.
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">18</span>
+    </div>
+  </div>
+
+  <!-- ============ P19 · LAVANDERIA E DANNI ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">04 · Servizi</div>
+    </div>
+    <h3 class="section-title">Lavanderia, danni, check-out</h3>
+    <div class="section-rule"></div>
+
+    <div class="twocol">
+      <div>
+        <h4>Lavanderia</h4>
+        <p>In villa trovate una lavatrice: se preferite viaggiare leggeri, potete fare i bucati di cui avete bisogno comodamente in casa. In lavanderia c'è anche un piccolo stendino; in alternativa, le sedie del giardino in pieno sole sono ottime alleate.</p>
+
+        <h4>Prodotti da bagno</h4>
+        <p>In ciascun bagno trovate prodotti di cortesia e un asciugacapelli. Se usate prodotti di una marca specifica ma preferite viaggiare leggeri, i principali brand si trovano facilmente nei supermercati e nelle farmacie locali.</p>
+
+        <h4>Creme solari</h4>
+        <p>Una piccola raccomandazione: alcuni filtri solari a base chimica (di solito i "long-lasting") possono macchiare in modo definitivo tessuti di lenzuola e arredi. In particolare vi chiediamo di non usare la <b>Riemann P20</b> durante il soggiorno.</p>
+      </div>
+      <div>
+        <h4>Danni</h4>
+        <p>I piccoli incidenti capitano: un piatto rotto, un calice scheggiato. Per favore avvisateci appena succede. Se l'entità del danno è contenuta, vi chiediamo di rimborsarlo prima della partenza; per cifre maggiori useremo la cauzione lasciata all'arrivo.</p>
+        <p>Per noi è importante che le cose si risolvano con trasparenza e senza tensioni: vale di gran lunga di più sapere subito di un problema che scoprirlo dopo.</p>
+
+        <h4>Check-out</h4>
+        <p>L'orario di check-out è solitamente entro le <b>10:00</b> del giorno di partenza, ma può essere personalizzato. Di norma il proprietario o il custode è presente per ritirare le chiavi e il telecomando del cancello, e darvi le ultime informazioni. Se dovete partire molto presto, possiamo organizzare la consegna delle chiavi la sera prima.</p>
+
+        <div class="callout">
+          <div class="callout-label">Bagaglio smarrito</div>
+          Se il vostro bagaglio non arriva con voi all'aeroporto, recatevi subito al banco "Lost &amp; Found": vi faranno compilare un modulo con i dati del volo e una preferenza fra ritiro autonomo o consegna in villa. Il ritiro autonomo è spesso più rapido. Se serve aiuto a coordinare la consegna a Villa Crea, scriveteci.
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">19</span>
+    </div>
+  </div>
+
+  <!-- ============ P20 · APERTURA SEZIONE 05 ============ -->
+  <div class="page opener" id="sez-05">
+    <div class="opener-num">05</div>
+    <div>
+      <div class="eyebrow">Sezione Cinque</div>
+      <h2>Esplorare<br>il Salento</h2>
+      <div class="opener-intro">La penisola salentina è un mosaico di borghi barocchi, spiagge dorate, mercati di paese e silenzi antichi. Qui trovate i luoghi che amiamo di più, e tre itinerari di un giorno per gli ospiti pigri.</div>
+    </div>
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">20</span>
+    </div>
+  </div>
+
+  <!-- ============ P21 · BORGHI E CITTÀ ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">05 · Esplorare il Salento</div>
+    </div>
+    <h3 class="section-title">Borghi e città</h3>
+    <div class="section-rule"></div>
+    <p class="lead">Da Villa Crea tutto è a portata d'auto: nel raggio di un'ora si attraversano i borghi più belli della penisola. Qui i nostri preferiti, in ordine di distanza.</p>
+
+    <div class="places">
+      <div class="place">
+        <div class="place-head"><div class="name">Santa Maria di Leuca</div><div class="meta">10 min · costa</div></div>
+        <div class="desc">La punta estrema d'Italia, dove Adriatico e Ionio si incontrano. Belle ville liberty sul lungomare e gite in barca dalle grotte. Imperdibile al tramonto.</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Specchia</div><div class="meta">25 min · borgo</div></div>
+        <div class="desc">Uno dei "Borghi più belli d'Italia": centro storico in pietra bianca, atmosfera lenta. Imperdibili i <b>Frantoi Ipogei</b>: quattro frantoi sotterranei scavati nella roccia (Scupola, Cicca, Perrone, Francescani Neri) lungo la "Via dei Frantoi Ipogei". Una delle visite più suggestive del Sud Salento.</div>
+        <div class="addr">Informazioni · IAT Specchia, Piazza del Popolo 8 · tel. 0833 536293</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Tricase</div><div class="meta">25 min · entroterra</div></div>
+        <div class="desc">Centro raffinato e poco turistico. Da non perdere la <i>Quercia Vallonea</i>, l'albero "dei cento cavalieri" — uno dei più antichi d'Italia, sulla strada per Tricase Porto.</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Gallipoli</div><div class="meta">35 min · costa</div></div>
+        <div class="desc">Città vecchia su un isolotto cinto da mura quattrocentesche, collegata alla terraferma da un ponte. Vicoli stretti, mercato del pesce all'alba, lungomare al tramonto.</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Otranto</div><div class="meta">50 min · costa</div></div>
+        <div class="desc">Castello aragonese, centro storico bianco, cattedrale con il pavimento musivo dell'albero della vita (1163) e le ossa dei Martiri uccisi dai turchi nel 1480.</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Galatina</div><div class="meta">50 min · entroterra</div></div>
+        <div class="desc">Barocco minore di grande grazia, ottime cantine nei dintorni. Patria del <i>pasticciotto</i>: a Galatina è stato inventato.</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Lecce</div><div class="meta">1 h · entroterra</div></div>
+        <div class="desc">Il capolavoro barocco del Salento, in pietra leccese color crema. Centro storico pedonale, rovine romane, aperitivi all'aperto. Una giornata intera, almeno.</div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">21</span>
+    </div>
+  </div>
+
+  <!-- ============ P22 · ALTRI BORGHI ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">05 · Esplorare il Salento</div>
+    </div>
+    <h3 class="section-title">Altri luoghi che vale la pena</h3>
+    <div class="section-rule"></div>
+
+    <div class="places">
+      <div class="place">
+        <div class="place-head"><div class="name">Maglie</div><div class="meta">50 min · borgo</div></div>
+        <div class="desc">Cuore commerciale e gastronomico del Salento: belle architetture, boutique italiane, gastronomie specializzate. Tappa fissa di chi cerca scarpe e cibo.</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Corigliano d'Otranto</div><div class="meta">55 min · borgo</div></div>
+        <div class="desc">Nel cuore della Grecia Salentina, dove si parla ancora il <i>griko</i>. Il "Giardino di Sophia" organizza visite filosofiche nel castello (anche in inglese su richiesta).</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Melpignano</div><div class="meta">55 min · borgo</div></div>
+        <div class="desc">Anche questo è uno dei nove paesi della Grecia Salentina. Ogni agosto vi si tiene <i>La Notte della Taranta</i>, il più grande festival di pizzica e musica popolare del Mediterraneo.</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Grotta Zinzulusa</div><div class="meta">40 min · grotta marina</div></div>
+        <div class="desc">Spettacolare grotta carsica di 150 m sul mare cobalto, vicino Castro. Stalattiti, stalagmiti, leggende. Visite guidate brevi (tel. 0836 943812).</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Manduria</div><div class="meta">1 h 30 · borgo</div></div>
+        <div class="desc">Capitale del Primitivo: città gradevole e patria di una delle più importanti DOC pugliesi. Le cantine si visitano su appuntamento.</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Matera</div><div class="meta">2 h 30 · UNESCO</div></div>
+        <div class="desc">In Basilicata, ma a due ore e mezza. I <i>Sassi</i> patrimonio UNESCO, e nei dintorni la <i>Cripta del Peccato Originale</i> (su prenotazione, tel. 320 5350910). Una giornata intera, meglio due.</div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">22</span>
+    </div>
+  </div>
+
+  <!-- ============ P23 · LIDI · TOP ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">05 · Esplorare il Salento</div>
+    </div>
+    <h3 class="section-title">Spiagge e lidi consigliati</h3>
+    <div class="section-rule"></div>
+    <p class="lead">Villa Crea è a pochi minuti dalle spiagge più belle del Sud Salento. Da <b>Pescoluse</b> a <b>Riva di Ugento</b>, sulla costa ionica, c'è un nastro quasi ininterrotto di sabbia dorata. Sull'Adriatico, a est, il paesaggio è più vario: scogliere, calette, grotte.</p>
+
+    <div class="legend">
+      <span class="star">★</span>
+      <span>I lidi contrassegnati sono i nostri preferiti, quelli che consigliamo per primi.</span>
+    </div>
+
+    <h4>I nostri preferiti</h4>
+    <div class="places">
+      <div class="place top">
+        <div class="place-head"><div class="name">Lido Marinelli · San Gregorio di Patù</div><div class="meta">5 min · Ionica</div></div>
+        <div class="desc">Lido di stile su un tratto roccioso vicinissimo a Santa Maria di Leuca. Bar e ristorante, ideale per il primo giorno mentre si aspetta il check-in.</div>
+        <div class="addr">Via Magna Grecia, San Gregorio Marina di Patù · tel. 366 5051358 · <a href="https://www.marinellivacanze.it" target="_blank">marinellivacanze.it</a></div>
+      </div>
+      <div class="place top">
+        <div class="place-head"><div class="name">Balelido · Torre Mozza, Ugento</div><div class="meta">30 min · Ionica</div></div>
+        <div class="desc">Uno degli stabilimenti più esclusivi del litorale, sabbia bianca e servizi completi.</div>
+        <div class="addr">Via Isole Egadi 6, Torre Mozza · tel. 0833 932405 · <a href="https://www.balelido.it" target="_blank">balelido.it</a></div>
+      </div>
+      <div class="place top">
+        <div class="place-head"><div class="name">Lido Pineta · Fontanelle, Ugento</div><div class="meta">35 min · Ionica</div></div>
+        <div class="desc">Lido raffinato con un'ampia offerta di servizi, ristorante, pineta retrostante.</div>
+        <div class="addr">Località Fontanelle, SP91, Ugento · tel. 334 3130040 · <a href="https://www.lidopineta.it" target="_blank">lidopineta.it</a></div>
+      </div>
+      <div class="place top">
+        <div class="place-head"><div class="name">Lido Venere · Pescoluse</div><div class="meta">20 min · Ionica</div></div>
+        <div class="desc">Sabbia bianca e acque trasparenti delle "Maldive del Salento". Bar, gelateria e ristorante self-service con piatti salentini e pesce fresco.</div>
+        <div class="addr">Corso Italia 3, Pescoluse-Posto Vecchio, Salve · tel. 320 6563779 · <a href="https://www.lidovenere.com" target="_blank">lidovenere.com</a></div>
+      </div>
+      <div class="place top">
+        <div class="place-head"><div class="name">Lido Ficò · Marina di Marittima</div><div class="meta">40 min · Adriatica</div></div>
+        <div class="desc">Sul versante adriatico, in una caletta di scogliera bassa con passerelle e solarium in legno. Ristorante mediterraneo a pranzo e area wellness.</div>
+        <div class="addr">Via Litoranea 115, Marina di Marittima (Diso) · tel. 0833 1976078 · <a href="https://www.lidofico.it" target="_blank">lidofico.it</a></div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">23</span>
+    </div>
+  </div>
+
+  <!-- ============ P24 · LIDI · ALTRI ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">05 · Esplorare il Salento</div>
+    </div>
+    <h3 class="section-title">Altri lidi e spiagge</h3>
+    <div class="section-rule"></div>
+
+    <div class="places">
+      <div class="place">
+        <div class="place-head"><div class="name">Lido Gold · Salve</div><div class="meta">20 min · Ionica</div></div>
+        <div class="desc">Sabbia bianca, ristorante intimo con cucina di mare contemporanea.</div>
+        <div class="addr">Località Colleoni-Torre Pali, Salve · tel. 338 4299617 · <a href="https://www.lidogold.it" target="_blank">lidogold.it</a></div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Lido Relax Leuca</div><div class="meta">10 min · Ionica</div></div>
+        <div class="desc">Lido esclusivo su una scogliera, con servizi completi.</div>
+        <div class="addr">SP214 46, Santa Maria di Leuca · tel. 392 4869105 · <a href="https://www.relaxleuca.it" target="_blank">relaxleuca.it</a></div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Lido Pizzo · Taviano</div><div class="meta">40 min · Ionica</div></div>
+        <div class="desc">A 5 km a sud di Gallipoli, costa litoranea. Servizi completi, bella spiaggia di sabbia.</div>
+        <div class="addr">SS Litoranea Gallipoli-Leuca · tel. 0833 276978</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Lido Sant'Anna · Marina di Ugento</div><div class="meta">40 min · Ionica</div></div>
+        <div class="desc">Lido familiare con kids club, piscina e ristorante. Ottimo per chi viaggia con bambini.</div>
+        <div class="addr">Marina di Ugento · tel. 0833 202551</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Lido Cocoloco · Torre San Giovanni, Ugento</div><div class="meta">45 min · Ionica</div></div>
+        <div class="desc">Spiaggia lunga di sabbia, acque belle, musica e DJ.</div>
+        <div class="addr">Torre San Giovanni-Ugento · tel. 347 6274425 · <a href="https://www.lidococoloco.it" target="_blank">lidococoloco.it</a></div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Punta della Suina · Gallipoli</div><div class="meta">45 min · Ionica</div></div>
+        <div class="desc">Due baie di sabbia, acque cobalto, DJ set: il lido degli aperitivi al tramonto. Anche per pranzo.</div>
+        <div class="addr">SS Gallipoli-Leuca · <a href="https://www.puntadellasuina.it" target="_blank">puntadellasuina.it</a></div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Lido Hotel La Roccia · Marina di Castro</div><div class="meta">40 min · Adriatica</div></div>
+        <div class="desc">Tratto roccioso bellissimo, acque trasparenti, ristorante.</div>
+        <div class="addr">Via Litoranea per Tricase, Marina di Castro · tel. 0836 979013</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">La Castellana · Otranto</div><div class="meta">1 h · Adriatica</div></div>
+        <div class="desc">In Via Porto Craulo, di fronte all'Hotel La Plancia. Cala protetta, perfetta con i bambini.</div>
+        <div class="addr">Via Porto Craulo, Otranto · tel. 328 9558929</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Buono a sapersi</div>
+      Nei lidi più richiesti, ad agosto, è caldamente consigliata la prenotazione (lettini e ombrellone). Prezzi indicativi: 15–45 € al giorno per due lettini e un ombrellone.
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">24</span>
+    </div>
+  </div>
+
+  <!-- ============ P25 · MERCATI ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">05 · Esplorare il Salento</div>
+    </div>
+    <h3 class="section-title">Mercati di paese e botteghe</h3>
+    <div class="section-rule"></div>
+    <p class="lead">Andare al mercato è uno dei riti più piacevoli di una vacanza qui: frutta e verdura del territorio, formaggi appena tagliati, pesce ancora vivo. Ecco il calendario settimanale e qualche bottega che vale la deviazione.</p>
+
+    <div class="twocol">
+      <div>
+        <h4>Mercati settimanali</h4>
+        <p><b>Lunedì</b> · Lecce (stadio di Via del Mare), Alessano</p>
+        <p><b>Martedì</b> · Tricase, Piazza del Mercato</p>
+        <p><b>Mercoledì</b> · Gallipoli (Via Alfieri), Otranto (Via Calamuri)</p>
+        <p><b>Giovedì</b> · Galatina (Via Genova), Castrignano del Capo (Piazza San Michele)</p>
+        <p><b>Venerdì</b> · Specchia, Via XXV Aprile</p>
+        <p><b>Sabato</b> · Maglie (Piazza M. Immacolata), Ugento (Piazza Italia)</p>
+        <p><b>Domenica</b> · Marina di Leuca, Corso Cristoforo Colombo (luglio–settembre)</p>
+
+        <h4>Mercatini dell'antiquariato</h4>
+        <p>Sempre di domenica, di solito dalle 10 alle 20: Vernole (1ª domenica del mese), Tricase (1ª domenica), Gallipoli (2ª domenica), Lecce (ultima domenica del mese tutto l'anno, in Via XX Settembre).</p>
+
+        <h4>Mercati del pesce</h4>
+        <p>I porti di <b>Gallipoli</b> e <b>Otranto</b> hanno mercati del pesce dal mattino presto fino a mezzogiorno. A <b>Marina di Leuca</b>, alzandosi all'alba, si compra direttamente dai pescatori. Nei giorni di mare grosso, il pescato è scarso o assente.</p>
+      </div>
+      <div>
+        <h4>Botteghe e specialità</h4>
+        <p><b>Pasticceria Ascalone</b> · Galatina, Via Vittorio Emanuele 17. Dove è stato inventato il pasticciotto. Da provare almeno una volta.</p>
+        <p><b>Pasticceria Natale</b> · Lecce, Via Trinchese 7. Gelato e cotognata leccese.</p>
+        <p><b>Caseificio del Capo</b> · Santa Maria di Leuca, Via Doppia Croce. Formaggi locali, mozzarella del giorno.</p>
+        <p><b>Vineria Renna</b> · Santa Maria di Leuca, Via Tommaso Fuortes 21. Vini del territorio.</p>
+        <p><b>Il Pasticciotto</b> · Morciano di Leuca, Via San Martino 82. Uno dei migliori pasticciotti dei dintorni.</p>
+        <p><b>L'Orecchietta</b> · Morciano di Leuca, Corso Italia 169. Pasta fresca fatta a mano.</p>
+
+        <h4>Cartapesta a Lecce</h4>
+        <p>Il Salento è celebre per l'arte della cartapesta. A Lecce decine di botteghe nel centro storico, una su tutte: <b>Bottega della Cartapesta</b>, Via degli Acaja, a un passo da Piazza Sant'Oronzo. Vale la visita anche il piccolo <b>Museo della Cartapesta</b>, dentro il Castello di Carlo V.</p>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">25</span>
+    </div>
+  </div>
+
+  <!-- ============ P26 · ITINERARI ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">05 · Esplorare il Salento</div>
+    </div>
+    <h3 class="section-title">Tre giornate, già pronte</h3>
+    <div class="section-rule"></div>
+    <p class="lead">Quando non avete voglia di pianificare, prendete una di queste. Sono tre giornate provate da noi: una di mare, una di barocco, una lenta.</p>
+
+    <div class="itin">
+      <h4>Itinerario uno</h4>
+      <h3>Una giornata di mare</h3>
+      <ul class="stops">
+        <li><span class="t">09:30</span><span><b>Partenza</b> verso Pescoluse, "le Maldive del Salento". Sabbia bianca, acqua bassa.</span></li>
+        <li><span class="t">13:00</span><span><b>Pranzo</b> al <i>Lido Venere</i>: piatti salentini e pesce direttamente sulla spiaggia.</span></li>
+        <li><span class="t">15:30</span><span><b>Riposo</b> in spiaggia, lunga passeggiata sul bagnasciuga.</span></li>
+        <li><span class="t">18:00</span><span><b>Aperitivo</b> al <i>Lido Marinelli</i>, dove finisce l'Italia.</span></li>
+        <li><span class="t">20:30</span><span><b>Cena</b> da <i>Farnari</i> a Gemini: cucina locale fatta bene.</span></li>
+      </ul>
+    </div>
+
+    <div class="itin">
+      <h4>Itinerario due</h4>
+      <h3>Una giornata di barocco</h3>
+      <ul class="stops">
+        <li><span class="t">09:00</span><span><b>Partenza</b> per Lecce. Parcheggio fuori dalle mura, si entra a piedi.</span></li>
+        <li><span class="t">10:00</span><span><b>Centro storico</b>: Piazza Sant'Oronzo, Anfiteatro romano, Basilica di Santa Croce.</span></li>
+        <li><span class="t">13:00</span><span><b>Pranzo</b> da <i>Pescheria con Cottura</i>: scegliete il pesce, vi dicono come cuocerlo.</span></li>
+        <li><span class="t">15:00</span><span><b>Museo della Cartapesta</b> dentro il Castello di Carlo V.</span></li>
+        <li><span class="t">17:00</span><span><b>Gelato</b> da <i>Pasticceria Natale</i> in Via Trinchese.</span></li>
+        <li><span class="t">19:30</span><span><b>Aperitivo</b> al <i>300mila Lounge Bar</i> a Piazza Mazzini.</span></li>
+        <li><span class="t">21:00</span><span><b>Cena</b> da <i>Trattoria Le Zie</i>: cucina pugliese vera, in piena Lecce.</span></li>
+      </ul>
+    </div>
+
+    <div class="itin">
+      <h4>Itinerario tre</h4>
+      <h3>Una giornata lenta nell'entroterra</h3>
+      <ul class="stops">
+        <li><span class="t">10:00</span><span><b>Specchia</b>: passeggiata e visita ai <i>Frantoi Ipogei</i> (info Pro Loco, 0833 536293).</span></li>
+        <li><span class="t">12:00</span><span><b>Tricase</b>: la Quercia Vallonea, l'albero "dei cento cavalieri".</span></li>
+        <li><span class="t">13:30</span><span><b>Pranzo</b> a <i>Sante le Muse</i> a Salve: cucineria agrituristica, prodotti dell'orto.</span></li>
+        <li><span class="t">16:00</span><span><b>Corigliano d'Otranto</b>: visita al castello e dintorni.</span></li>
+        <li><span class="t">18:00</span><span><b>Galatina</b>: aperitivo e pasticciotto da <i>Ascalone</i>, dove è nato.</span></li>
+        <li><span class="t">21:00</span><span><b>Cena</b> alla <i>Farmacia dei Sani</i> a Ruffano: cucina pugliese ai suoi livelli migliori.</span></li>
+      </ul>
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">26</span>
+    </div>
+  </div>
+
+  <!-- ============ P27 · ATTIVITÀ ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">05 · Esplorare il Salento</div>
+    </div>
+    <h3 class="section-title">Attività e sport</h3>
+    <div class="section-rule"></div>
+    <p class="lead">Per gli ospiti che amano muoversi: dalla barca al kitesurf, dalla bici alle terme. Le opzioni nel raggio di un'ora dalla villa sono molte.</p>
+
+    <div class="twocol">
+      <div>
+        <h4>Barca</h4>
+        <p><b>Colaci Nautica</b> · Santa Maria di Leuca. Gite ed escursioni lungo la costa, noleggio con o senza skipper. Tel. 0833 758936.</p>
+        <p><b>Salento in Barca</b> · Gallipoli. Partenze dal lungomare Marconi. Tel. 347 5710572.</p>
+        <p><b>Armatori Salentini</b> · Marina di Leuca. Charter e gite. Tel. 0833 750208.</p>
+
+        <h4>Kitesurf e vela</h4>
+        <p><b>Smaré Sailing School</b> · Santa Maria di Leuca. Tel. 0833 758110.</p>
+        <p><b>Local Salento Kitesurf</b> · Torre San Giovanni. Tel. 328 4260226.</p>
+
+        <h4>Bici</h4>
+        <p><b>Salento Bici Tour</b> · Itinerari per coppie, famiglie, piccoli gruppi. Tel. 346 0862717.</p>
+
+        <h4>Equitazione</h4>
+        <p><b>Complesso delle Rose</b> · Torre Vado. Tel. 0833 1826288.</p>
+        <p><b>Gli Amici del Murgese</b> · Alessano. Tel. 0833 781791.</p>
+        <p><b>Centro Ippico Itri</b> · Gallipoli. Passeggiate a cavallo di due ore sulla spiaggia fra Punta della Suina e Lido Pizzo (≈45 € a persona). Tel. 340 4081000.</p>
+      </div>
+      <div>
+        <h4>Tennis e golf</h4>
+        <p><b>Circolo Tennis degli Ulivi</b> · Tuglie. Tel. 347 6110339.</p>
+        <p><b>Circolo Tennis Maglie</b> · Tel. 0836 427474.</p>
+        <p><b>Acaya Golf Club</b> (18 buche) · Vernole. Tel. 0832 861385.</p>
+
+        <h4>Karting</h4>
+        <p><b>La Pista Salentina</b> · Ugento. Secondo circuito d'Italia per dimensioni: si possono guardare le gare o noleggiare un kart. Tel. 0833 93131.</p>
+
+        <h4>Pesca turistica</h4>
+        <p><b>Pesca Turismo Attila II</b> · porto di Torre Vado. Tel. 339 4102230.</p>
+
+        <h4>Terme e beauty</h4>
+        <p><b>Basiliani Resort &amp; Spa</b> · Otranto. Spa molto bella con massaggi e trattamenti. Tel. 0836 802920.</p>
+        <p><b>Terme di Santa Cesarea</b> · per percorsi termali e wellness. Tel. 0836 944070.</p>
+
+        <h4>Per i più piccoli</h4>
+        <p><b>Splash Aquapark</b> · Litoranea S.M. al Bagno, vicino Gallipoli. Acquapark con area picnic. Tel. 0833 273400.</p>
+        <p><b>Torre Guaceto</b> · Riserva naturale e marina a nord di Brindisi, con trenino, sentieri, bici a noleggio. Tel. 0831 990882.</p>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">27</span>
+    </div>
+  </div>
+
+  <!-- ============ P28 · APERTURA SEZIONE 06 ============ -->
+  <div class="page opener" id="sez-06">
+    <div class="opener-num">06</div>
+    <div>
+      <div class="eyebrow">Sezione Sei</div>
+      <h2>I Sapori<br>di Puglia</h2>
+      <div class="opener-intro">Una selezione curata di ristoranti, organizzati per zona. I posti contrassegnati con la stella sono i nostri preferiti — quelli per cui vale la pena prenotare con anticipo.</div>
+    </div>
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">28</span>
+    </div>
+  </div>
+
+  <!-- ============ P29 · RISTORANTI TOP ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">06 · I Sapori di Puglia</div>
+    </div>
+    <h3 class="section-title">I nostri preferiti</h3>
+    <div class="section-rule"></div>
+    <p class="lead">Otto indirizzi che amiamo davvero, dal più vicino al più lontano. Per tutti, soprattutto in alta stagione, prenotate con anticipo.</p>
+
+    <div class="legend">
+      <span class="star">★</span>
+      <span>Fascia di prezzo: € sotto 20 · €€ tra 20 e 40 · €€€ sopra 40 (per persona, vino escluso).</span>
+    </div>
+
+    <div class="places">
+      <div class="place top">
+        <div class="place-head"><div class="name">Farmacia dei Sani · Ruffano</div><div class="meta">€€</div></div>
+        <div class="desc">Cucina pugliese di livello firmata Valentina Rizzo, segnalata da Michelin e Identità Golose. Pasta fatta in casa, materia prima di qualità.</div>
+        <div class="addr">Piazza del Popolo 14, Ruffano · tel. 339 8332514 · <a href="https://www.farmaciadeisani.eu" target="_blank">farmaciadeisani.eu</a></div>
+      </div>
+      <div class="place top">
+        <div class="place-head"><div class="name">Lo Scalo · Marina di Novaglie</div><div class="meta">€€€</div></div>
+        <div class="desc">Sulle scogliere a picco sull'Adriatico, vista impagabile. Pesce fresco, cucina di mare di livello.</div>
+        <div class="addr">Via A. Vespucci, Marina di Novaglie · tel. 0833 533488 · <a href="https://www.loscalo.net" target="_blank">loscalo.net</a></div>
+      </div>
+      <div class="place top">
+        <div class="place-head"><div class="name">Farnari · Gemini (Ugento)</div><div class="meta">€€</div></div>
+        <div class="desc">Locanda contemporanea con cucina d'autore di Eugenio Pindinello. Materie prime di alta qualità, esecuzione raffinata. Una delle scoperte del territorio.</div>
+        <div class="addr">Via Chiesa 10, Gemini · tel. 376 0826793 · <a href="https://farnari.it" target="_blank">farnari.it</a></div>
+      </div>
+      <div class="place top">
+        <div class="place-head"><div class="name">Sante le Muse · Salve</div><div class="meta">€€</div></div>
+        <div class="desc">Cucineria agrituristica con prodotti dell'orto e materie prime locali. Atmosfera familiare, cucina sincera. Da prenotare.</div>
+        <div class="addr">Strada Comunale Salve-Morciano 3, Salve · tel. 342 7911059 · <a href="http://www.santelemuse.it" target="_blank">santelemuse.it</a></div>
+      </div>
+      <div class="place top">
+        <div class="place-head"><div class="name">Sikalindi · San Dana (Gagliano del Capo)</div><div class="meta">€€</div></div>
+        <div class="desc">Agriturismo con cucina basata sui prodotti della propria terra. Anche menù vegetariani. A 10 minuti dai due mari.</div>
+        <div class="addr">San Dana, Gagliano del Capo · <a href="https://www.agriturismosikalindi.it" target="_blank">agriturismosikalindi.it</a></div>
+      </div>
+      <div class="place top">
+        <div class="place-head"><div class="name">Rua de li Travaj · Patù</div><div class="meta">€€</div></div>
+        <div class="desc">Trattoria caratteristica nel centro storico di Patù. Cucina povera salentina, autentica e ben fatta.</div>
+        <div class="addr">Via Felice Cavallotti 44, Patù · tel. 0833 1823077 · 349 0584531</div>
+      </div>
+      <div class="place top">
+        <div class="place-head"><div class="name">Lemì · Cozze &amp; Gin · Tricase</div><div class="meta">€€€</div></div>
+        <div class="desc">Bistrot di pesce di Ippazio Turco. Cucina creativa che parte dalle ricette salentine, oltre 70 etichette di gin (anche di produzione propria).</div>
+        <div class="addr">Via Tempio 20, Tricase · tel. 347 5419108</div>
+      </div>
+      <div class="place top">
+        <div class="place-head"><div class="name">Taverna del Porto · Tricase Porto</div><div class="meta">€€</div></div>
+        <div class="desc">Cucina marinara dei fratelli Coppola, sul lungomare del porto. Anche pescheria e pizzeria.</div>
+        <div class="addr">Lungomare C. Colombo 121, Tricase Porto · tel. 0833 775336 · <a href="https://www.tavernadelporto.com" target="_blank">tavernadelporto.com</a></div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">29</span>
+    </div>
+  </div>
+
+  <!-- ============ P30 · RISTORANTI SUD SALENTO ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">06 · I Sapori di Puglia</div>
+    </div>
+    <h3 class="section-title">Altri ristoranti — Sud Salento</h3>
+    <div class="section-rule"></div>
+
+    <h4>Morciano di Leuca · Salve · Patù</h4>
+    <div class="places">
+      <div class="place">
+        <div class="place-head"><div class="name">Al Capitano Cortese · Morciano</div><div class="meta">€€</div></div>
+        <div class="desc">Piccolo ristorante in centro storico, cucina tradizionale e buona selezione di vini.</div>
+        <div class="addr">Via Ippoliti 15, Morciano di Leuca · tel. 0833 743439</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Trattoria Il Borghetto · Salve</div><div class="meta">€€</div></div>
+        <div class="desc">Cortile del centro storico, gestione familiare, pesce molto buono. D'estate si cena fuori.</div>
+        <div class="addr">Via Persico 14, Salve · tel. 339 4699399</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Trattoria Jameson · Salve</div><div class="meta">€</div></div>
+        <div class="desc">Atmosfera giusta, cucina regionale eccellente, conto leggero.</div>
+        <div class="addr">Via Don Minzoni 7, Salve · tel. 347 7178512</div>
+      </div>
+    </div>
+
+    <h4>San Gregorio · Castrignano del Capo</h4>
+    <div class="places">
+      <div class="place">
+        <div class="place-head"><div class="name">Ristorante da Mimì · San Gregorio</div><div class="meta">€€</div></div>
+        <div class="desc">Pesce servito su una terrazza sospesa sul mare (estate). Una delle cene più atmosferiche del Sud Salento.</div>
+        <div class="addr">Via del Mare 4, San Gregorio · tel. 0833 767861</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Zio Tom · Santa Maria di Leuca</div><div class="meta">€€</div></div>
+        <div class="desc">A picco sulla baia di Felloniche. Pesce semplice e ben fatto.</div>
+        <div class="addr">Litoranea Leuca-Gallipoli, loc. Ciardo · tel. 0833 767870</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">La Fulana · Castrignano del Capo</div><div class="meta">€€</div></div>
+        <div class="desc">Cucina locale eccellente, materie prime di qualità.</div>
+        <div class="addr">Piazza San Giuliano 1, Castrignano · tel. 340 5909239</div>
+      </div>
+    </div>
+
+    <h4>Santa Maria di Leuca</h4>
+    <div class="places">
+      <div class="place">
+        <div class="place-head"><div class="name">Ristorante Fedele</div><div class="meta">€€€</div></div>
+        <div class="desc">Il pesce è la specialità: il titolare è anche pescatore.</div>
+        <div class="addr">Via Doppia Croce 55 · tel. 0833 758732</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Osteria del Pardo</div><div class="meta">€€</div></div>
+        <div class="desc">Ottima cucina locale, soprattutto di mare.</div>
+        <div class="addr">Via Doppia Croce 19 · tel. 349 2862788</div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">30</span>
+    </div>
+  </div>
+
+  <!-- ============ P31 · RISTORANTI ADRIATICO ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">06 · I Sapori di Puglia</div>
+    </div>
+    <h3 class="section-title">Altri ristoranti — Adriatico</h3>
+    <div class="section-rule"></div>
+
+    <h4>Tricase · Specchia · Supersano</h4>
+    <div class="places">
+      <div class="place">
+        <div class="place-head"><div class="name">Masseria Nonno Tore · Tricase</div><div class="meta">€€</div></div>
+        <div class="desc">Masseria con orto biologico, cucina regionale di stagione. D'estate si mangia fuori.</div>
+        <div class="addr">C.da Madonna di Loreto, Tricase · tel. 328 1021541</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Anime Sante · Tricase Porto</div><div class="meta">€€</div></div>
+        <div class="desc">Piccola trattoria di porto, pesce eccellente.</div>
+        <div class="addr">Lungomare Colombo 147, Tricase Porto · tel. 0833 775213</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">La Bettola · Specchia</div><div class="meta">€€</div></div>
+        <div class="desc">Trattoria autentica in piazza San Giovanni.</div>
+        <div class="addr">Piazza San Giovanni, Specchia · tel. 329 5668108</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Agriturismo Le Stanzie · Supersano</div><div class="meta">€€</div></div>
+        <div class="desc">Masseria restaurata con cucina di campagna giornaliera dall'orto. Da prenotare.</div>
+        <div class="addr">SP 362 km 32.9, Supersano · tel. 0833 632438</div>
+      </div>
+    </div>
+
+    <h4>Castro · Minervino · Otranto</h4>
+    <div class="places">
+      <div class="place">
+        <div class="place-head"><div class="name">Tuna Lounge · Castro</div><div class="meta">€€</div></div>
+        <div class="desc">Elegante, piatti di pesce creativi, buona selezione di vini.</div>
+        <div class="addr">Via Fratelli Bandiera 48, Castro · tel. 0836 947277</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Cantine Menhir · Minervino di Lecce</div><div class="meta">€€</div></div>
+        <div class="desc">Wine bar e ristorante con cucina mediterranea e ottima carta dei vini.</div>
+        <div class="addr">Via Scarciglia 18, Minervino · tel. 0836 818199</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">L'Altro Baffo · Otranto</div><div class="meta">€€</div></div>
+        <div class="desc">Piccolo ristorante vicino al castello, cucina creativa di livello.</div>
+        <div class="addr">Via Cenobio Basiliano 23, Otranto · tel. 0836 801636</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Primo · Otranto</div><div class="meta">€€</div></div>
+        <div class="desc">Ingredienti biologici a km zero, opzioni vegane e senza glutine.</div>
+        <div class="addr">Via delle Torri 5, Otranto · tel. 350 5021356</div>
+      </div>
+    </div>
+
+    <h4>Gallipoli · Galatina · Lecce</h4>
+    <div class="places">
+      <div class="place">
+        <div class="place-head"><div class="name">Osteria del Vico · Gallipoli</div><div class="meta">€€</div></div>
+        <div class="desc">Nel centro storico, piatti di pesce creativi, tavoli all'aperto d'estate.</div>
+        <div class="addr">Vicolo Mercato 1, Gallipoli · tel. 0833 266186</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Anima e Cuore · Galatina</div><div class="meta">€€</div></div>
+        <div class="desc">Specialità di carne, una delle migliori cene di Galatina.</div>
+        <div class="addr">Corso G. Garibaldi 7, Galatina · tel. 0836 564301</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Bros' · Lecce</div><div class="meta">€€€</div></div>
+        <div class="desc">Chef di livello internazionale, esecuzione raffinata. Da provare almeno una volta.</div>
+        <div class="addr">Via Acaja 2, Lecce · tel. 0832 092601</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Pescheria con Cottura · Lecce</div><div class="meta">€€</div></div>
+        <div class="desc">Pescheria-ristorante: scegliete il pesce, vi dicono come cuocerlo.</div>
+        <div class="addr">Via dei Mocenigo 23, Lecce · tel. 0832 098366</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Trattoria Le Zie · Lecce</div><div class="meta">€</div></div>
+        <div class="desc">Trattoria salentina vera, cucina di nonna.</div>
+        <div class="addr">Viale Costadura 19, Lecce · tel. 0832 245178</div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">31</span>
+    </div>
+  </div>
+
+  <!-- ============ P32 · CANTINE ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">06 · I Sapori di Puglia</div>
+    </div>
+    <h3 class="section-title">Cantine</h3>
+    <div class="section-rule"></div>
+    <p class="lead">Visitare una cantina è un modo molto piacevole per passare un pomeriggio e tornare a casa con qualche bottiglia per la settimana. Telefonate sempre prima per prenotare la visita.</p>
+
+    <div class="places">
+      <div class="place">
+        <div class="place-head"><div class="name">Rosa del Golfo · Alezio</div><div class="meta">bianchi</div></div>
+        <div class="desc">Una delle cantine storiche del Sud Salento, eccellenti bianchi e rosati.</div>
+        <div class="addr">Via G. Garibaldi 56, Alezio · tel. 0833 281045</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">L'Astore Masseria · Cutrofiano</div><div class="meta">biodinamica</div></div>
+        <div class="desc">Cantina biodinamica con masseria storica e ottime degustazioni.</div>
+        <div class="addr">Via G. di Vittorio 1, Cutrofiano · tel. 0836 542020</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Castel di Salve · Tricase</div><div class="meta">storica</div></div>
+        <div class="desc">Storica cantina di famiglia, vini eleganti.</div>
+        <div class="addr">Via Salvemini, Depressa di Tricase · tel. 0833 771041</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Produttori Vini Manduria</div><div class="meta">primitivo</div></div>
+        <div class="desc">La cooperativa di riferimento per il Primitivo di Manduria DOC.</div>
+        <div class="addr">Via Fabio Massimo 19, Manduria · tel. 099 9735332</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Castello Monaci · Salice Salentino</div><div class="meta">negroamaro</div></div>
+        <div class="desc">Antico borgo trasformato in cantina. Negroamaro e Primitivo di qualità.</div>
+        <div class="addr">C.da Masseria Monaci, Salice Salentino · tel. 0831 666071</div>
+      </div>
+      <div class="place">
+        <div class="place-head"><div class="name">Tormaresca · San Pietro Vernotico</div><div class="meta">antinori</div></div>
+        <div class="desc">La cantina pugliese del gruppo Antinori. Visite guidate molto curate.</div>
+        <div class="addr">SP 86 Per Torre San Gennaro, San Pietro Vernotico · tel. 0831 671046</div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">32</span>
+    </div>
+  </div>
+
+  <!-- ============ P33 · APERTURA SEZIONE 07 ============ -->
+  <div class="page opener" id="sez-07">
+    <div class="opener-num">07</div>
+    <div>
+      <div class="eyebrow">Sezione Sette</div>
+      <h2>Sicurezza<br>ed Emergenze</h2>
+      <div class="opener-intro">Le informazioni che speriamo non vi servano mai. In Italia il numero unico per qualsiasi emergenza è il 112: gli operatori smistano al servizio giusto. Qui trovate tutto il resto.</div>
+    </div>
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">33</span>
+    </div>
+  </div>
+
+  <!-- ============ P34 · NUMERI UTILI ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">07 · Sicurezza ed Emergenze</div>
+    </div>
+    <h3 class="section-title">Numeri utili</h3>
+    <div class="section-rule"></div>
+
+    <div class="essentials-hero" style="grid-template-columns: 1fr 1fr 1fr; padding: 26px 30px;">
+      <div class="field">
+        <div class="label">Emergenza unica</div>
+        <div class="value">112<small>numero unico europeo · h24</small></div>
+      </div>
+      <div class="field">
+        <div class="label">Vigili del fuoco</div>
+        <div class="value">115<small>solo incendi</small></div>
+      </div>
+      <div class="field">
+        <div class="label">Host · 24 ore</div>
+        <div class="value">+39 335 6810 310<small>WhatsApp preferito</small></div>
+      </div>
+    </div>
+
+    <h3 class="section-title" style="margin-top: 30px;">Ospedale e guardia medica</h3>
+    <div class="section-rule"></div>
+
+    <div class="info-row">
+      <div class="k">Ospedale</div>
+      <div class="v"><b>Ospedale Cardinale Giovanni Panico</b> · Via San Pio X 4, Tricase · tel. 0833 773111. È l'ospedale di riferimento per il Sud Salento, con Pronto Soccorso.</div>
+    </div>
+    <div class="info-row">
+      <div class="k">Guardia medica · Salve</div>
+      <div class="v">Via Cairoli 1, Salve · tel. 0833 741103. Aperta da lunedì a sabato dalle 20:00 alle 08:00. Aperta tutto il giorno la domenica e i festivi.</div>
+    </div>
+    <div class="info-row">
+      <div class="k">Guardia medica · Torre Vado</div>
+      <div class="v">Corso Venezia, Torre Vado · tel. 0833 712149. Pronto soccorso turistico aperto dal 15 giugno al 1 settembre, dalle 10:00 alle 18:00.</div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Come funziona</div>
+      Per problemi gravi e in pericolo di vita chiamate sempre il <b>112</b>. Per piccoli problemi medici fuori orario, la guardia medica più vicina è quella di Salve. Per piccole urgenze quotidiane nei mesi estivi, il pronto soccorso turistico di Torre Vado.
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">34</span>
+    </div>
+  </div>
+
+  <!-- ============ P35 · FARMACIE ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">07 · Sicurezza ed Emergenze</div>
+    </div>
+    <h3 class="section-title">Farmacie</h3>
+    <div class="section-rule"></div>
+    <p class="lead">Oltre ai medicinali, le farmacie italiane vendono di solito anche prodotti per neonati (pannolini, omogeneizzati), prodotti senza glutine e una linea base di cosmetici. Cercate l'insegna verde con la croce.</p>
+
+    <div class="twocol">
+      <div>
+        <h4>Vicino alla villa</h4>
+        <div class="info-row"><div class="k">Castrignano</div><div class="v">Farmacia Mariuccia · Via Corsica 18</div></div>
+        <div class="info-row"><div class="k">S. M. di Leuca</div><div class="v">Farmacia Santa Maria di Leuca · Via C. Colombo angolo Via Gorizia</div></div>
+        <div class="info-row"><div class="k">Gagliano</div><div class="v">Farmacia San Rocco · Via Commendatore Daniele 37</div></div>
+        <div class="info-row"><div class="k">Patù</div><div class="v">Farmacia Resci · Via Papa Giovanni XXIII 211</div></div>
+        <div class="info-row"><div class="k">Morciano</div><div class="v">Farmacia Schiattino · Via De Gasperi 27</div></div>
+        <div class="info-row"><div class="k">Salve</div><div class="v">Farmacia D'Ettorre · Via De Gasperi 1</div></div>
+      </div>
+      <div>
+        <h4>Nei comuni vicini</h4>
+        <div class="info-row"><div class="k">Tricase</div><div class="v">Farmacia Olimpica · Via Olimpica 15</div></div>
+        <div class="info-row"><div class="k">Taurisano</div><div class="v">Farmacia Orlando · Viale Rimembranze 80</div></div>
+        <div class="info-row"><div class="k">Taurisano</div><div class="v">Farmacia Eroi d'Italia · Viale Eroi d'Italia 226</div></div>
+        <div class="info-row"><div class="k">Ruffano</div><div class="v">Farmacia Scarcia · Via Torino 97</div></div>
+        <div class="info-row"><div class="k">Specchia</div><div class="v">Farmacia Comunale · Piazza del Popolo</div></div>
+
+        <div class="callout">
+          <div class="callout-label">Turni di guardia</div>
+          Di notte e nei festivi le farmacie fanno turni di apertura. La farmacia di turno è sempre indicata sulla porta di ciascuna farmacia chiusa, oppure online sui siti dei Comuni.
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">35</span>
+    </div>
+  </div>
+
+  <!-- ============ P36 · FESTIVITÀ ============ -->
+  <div class="page interior">
+    <div class="header-bar">
+      <div class="brand"><span class="gold">D · S</span> &nbsp; Villa Crea</div>
+      <div class="section-label">07 · Sicurezza ed Emergenze</div>
+    </div>
+    <h3 class="section-title">Festività e sicurezza varia</h3>
+    <div class="section-rule"></div>
+
+    <div class="twocol">
+      <div>
+        <h4>Feste nazionali</h4>
+        <p>Nei giorni di festa nazionale supermercati e farmacie possono essere chiusi o avere orari ridotti.</p>
+        <div class="info-row"><div class="k">1 gennaio</div><div class="v">Capodanno</div></div>
+        <div class="info-row"><div class="k">6 gennaio</div><div class="v">Epifania</div></div>
+        <div class="info-row"><div class="k">marzo–aprile</div><div class="v">Pasqua e Pasquetta</div></div>
+        <div class="info-row"><div class="k">25 aprile</div><div class="v">Liberazione</div></div>
+        <div class="info-row"><div class="k">1 maggio</div><div class="v">Festa del Lavoro</div></div>
+        <div class="info-row"><div class="k">2 giugno</div><div class="v">Festa della Repubblica</div></div>
+        <div class="info-row"><div class="k">15 agosto</div><div class="v">Ferragosto</div></div>
+        <div class="info-row"><div class="k">1 novembre</div><div class="v">Tutti i Santi</div></div>
+        <div class="info-row"><div class="k">8 dicembre</div><div class="v">Immacolata</div></div>
+        <div class="info-row"><div class="k">25–26 dic.</div><div class="v">Natale e S. Stefano</div></div>
+
+        <h4>Feste patronali nei dintorni</h4>
+        <p><b>23–25 luglio</b> — Santa Cristina, patrona di Gallipoli.</p>
+        <p><b>4–8 luglio</b> — Santa Domenica a Scorrano: mercatini, musica, le celebri luminarie.</p>
+        <p><b>14–16 agosto</b> — Ferragosto. A Santa Maria di Leuca processione marina del 14.</p>
+        <p><b>24–26 agosto</b> — Sant'Oronzo a Lecce: processioni nel centro.</p>
+      </div>
+      <div>
+        <h4>Spiagge</h4>
+        <p>Anche le spiagge più sicure possono diventare pericolose in certe condizioni. Controllate la bandiera del lido (rossa = vietato fare il bagno), nuotate lungo costa, non in mare aperto, e mai da soli o di notte. Attenzione con materassini e gommoni gonfiabili.</p>
+
+        <h4>Sole</h4>
+        <p>Evitate il sole fra le 12:00 e le 16:00. Usate una protezione alta adatta al vostro tipo di pelle e riapplicatela spesso, soprattutto dopo il bagno. I bambini sempre con cappellino e spalle coperte. I neonati sotto i sei mesi mai esposti direttamente.</p>
+
+        <h4>Animali</h4>
+        <p>Non date da mangiare ad animali selvatici o randagi, non li accarezzate. Tenete i bambini a distanza. Buttate i rifiuti nei bidoni con coperchio per non attirare insetti e roditori.</p>
+
+        <h4>Incendi</h4>
+        <p>Vietato fumare in casa. Le sigarette all'esterno vanno spente con cura: in piena estate la vegetazione è secchissima. Non lasciate mai candele o camino accesi quando uscite o andate a dormire.</p>
+
+        <h4>In casa</h4>
+        <p>Familiarizzate con la villa nelle prime ore — muri bassi, gradini, dislivelli, soprattutto se siete con bambini. La cura dei genitori non si sostituisce con nulla.</p>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span class="credit">Designsuite · Villa Crea</span>
+      <span class="pagenum">36</span>
+    </div>
+  </div>
+
+  <!-- ============ P37 · STRAPPA-VIA ============ -->
+  <div class="page tearaway">
+    <div>
+      <div class="eyebrow">Per il vostro portafogli</div>
+      <h2>Tutto in<br>una pagina</h2>
+
+      <div class="e-grid">
+        <div class="e-card">
+          <div class="e-label">Emergenza unica</div>
+          <div class="e-val">112<small>numero unico europeo · h24</small></div>
+        </div>
+        <div class="e-card">
+          <div class="e-label">Host · 24 ore</div>
+          <div class="e-val">+39 335 6810 310<small>WhatsApp preferito</small></div>
+        </div>
+        <div class="e-card">
+          <div class="e-label">Ospedale Panico · Tricase</div>
+          <div class="e-val">0833 773111<small>Pronto Soccorso · h24</small></div>
+        </div>
+        <div class="e-card">
+          <div class="e-label">Guardia medica · Salve</div>
+          <div class="e-val">0833 741103<small>notte e festivi</small></div>
+        </div>
+        <div class="e-card">
+          <div class="e-label">Indirizzo villa</div>
+          <div class="e-val">SC Mattara, snc<small>Marina di Felloniche, 73040 Castrignano del Capo</small></div>
+        </div>
+        <div class="e-card">
+          <div class="e-label">Coordinate GPS</div>
+          <div class="e-val">39°48'44" N<br>18°19'34" E</div>
+        </div>
+        <div class="e-card">
+          <div class="e-label">Wi-Fi rete</div>
+          <div class="e-val">villacre@<small>attenzione alla chiocciola finale</small></div>
+        </div>
+        <div class="e-card">
+          <div class="e-label">Designsuite</div>
+          <div class="e-val">carlo@designsuite.it<small>designsuite.it</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="e-foot">
+      Strappate questa pagina e tenetela in macchina, nello zaino o nel telefono.<br>
+      Grazie per aver scelto Villa Crea · Designsuite
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
