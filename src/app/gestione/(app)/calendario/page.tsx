@@ -27,10 +27,12 @@ export default async function CalendarioPage({
   try {
     lastSyncMinutes = await minutesSinceLastSync();
     if (lastSyncMinutes === null || lastSyncMinutes > 10) {
-      after(() => runSync("page").catch(() => undefined));
+      after(() =>
+        runSync("page").catch((err) => console.error("[sync] errore in background:", err?.message ?? err)),
+      );
     }
-  } catch {
-    // Supabase non ancora configurato: la pagina mostra comunque la struttura.
+  } catch (err) {
+    console.error("[sync] impossibile leggere lo stato:", err instanceof Error ? err.message : err);
   }
 
   const [properties, bookings] = await Promise.all([getProperties(), getBookingsInRange(from, to)]);

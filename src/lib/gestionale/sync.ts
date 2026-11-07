@@ -51,11 +51,15 @@ async function fetchFeed(url: string): Promise<string> {
 export async function runSync(trigger: "cron" | "manual" | "page"): Promise<SyncResult> {
   const db = createAdminClient();
 
-  const { data: run } = await db
+  const { data: run, error: runErr } = await db
     .from("sync_runs")
     .insert({ trigger })
     .select("id")
     .single();
+  if (runErr) {
+    // Quasi sempre: chiave service_role mancante o errata su Vercel.
+    throw new Error(`Accesso al database fallito (${runErr.message})`);
+  }
   const runId = run?.id ?? null;
 
   const { data: feeds, error: feedsErr } = await db

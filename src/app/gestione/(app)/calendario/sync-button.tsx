@@ -14,6 +14,10 @@ export function SyncButton() {
     try {
       const res = await fetch("/api/gestionale/sync", { method: "POST" });
       const data = await res.json();
+      if (data.error) {
+        setMsg(`Errore: ${data.error}`);
+        return;
+      }
       const added = (data.feeds ?? []).reduce((n: number, f: { added: number }) => n + f.added, 0);
       const errors = (data.feeds ?? []).filter((f: { ok: boolean }) => !f.ok).length;
       setMsg(errors ? `${errors} calendario/i in errore` : added ? `${added} nuove voci` : "Tutto aggiornato");

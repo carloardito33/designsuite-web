@@ -28,8 +28,14 @@ async function handle(request: NextRequest) {
     return NextResponse.json({ error: "Non autorizzato" }, { status: 401 });
   }
 
-  const result = await runSync(trigger);
-  return NextResponse.json(result, { status: result.ok ? 200 : 207 });
+  try {
+    const result = await runSync(trigger);
+    return NextResponse.json(result, { status: result.ok ? 200 : 207 });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("[sync] errore:", message);
+    return NextResponse.json({ ok: false, error: message, feeds: [] }, { status: 500 });
+  }
 }
 
 export async function GET(request: NextRequest) {
