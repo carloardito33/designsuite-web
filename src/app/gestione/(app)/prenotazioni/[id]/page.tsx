@@ -5,6 +5,7 @@ import { diffDays, formatDateIT } from "@/lib/gestionale/dates";
 import { SOURCE_LABEL } from "@/lib/gestionale/types";
 import { BookingForm } from "../booking-form";
 import { cancelBooking, updateBooking } from "../actions";
+import { GuestPanel } from "./guest-panel";
 
 export const metadata = { title: "Prenotazione" };
 export const dynamic = "force-dynamic";
@@ -40,6 +41,8 @@ export default async function PrenotazionePage({ params }: { params: Promise<{ i
           {booking.description ? <div style={{ marginTop: 8, whiteSpace: "pre-wrap", fontSize: 13 }}>{booking.description}</div> : null}
         </div>
       ) : null}
+
+      <GuestPanel booking={booking as unknown as Parameters<typeof GuestPanel>[0]["booking"]} />
 
       <BookingForm properties={properties} action={update} initial={booking} locked={imported} submitLabel="Salva" />
 

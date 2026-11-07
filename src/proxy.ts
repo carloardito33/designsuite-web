@@ -10,7 +10,8 @@ import { updateSession } from "@/lib/supabase/proxy";
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  if (pathname.startsWith("/api/")) {
+  // API e pagine pubbliche degli ospiti (check in e guida, raggiunte da un link con token).
+  if (pathname.startsWith("/api/") || pathname.startsWith("/checkin/") || pathname.startsWith("/ospiti/")) {
     return NextResponse.next();
   }
 

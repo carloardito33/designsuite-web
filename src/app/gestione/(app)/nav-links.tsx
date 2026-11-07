@@ -6,7 +6,9 @@ import { usePathname } from "next/navigation";
 const links = [
   { href: "/gestione/calendario", label: "Calendario" },
   { href: "/gestione/prenotazioni", label: "Prenotazioni" },
+  { href: "/gestione/messaggi", label: "Messaggi" },
   { href: "/gestione/avvisi", label: "Avvisi" },
+  { href: "/gestione/case", label: "Case" },
   { href: "/gestione/impostazioni", label: "Impostazioni" },
 ];
 

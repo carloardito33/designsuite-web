@@ -204,7 +204,19 @@ export async function runSync(trigger: "cron" | "manual" | "page"): Promise<Sync
   }
 
   const ok = results.every((r) => r.ok);
-  await finishRun(db, runId, ok, { feeds: results });
+
+  // Messaggi automatici: pianificazione e invio di quelli scaduti.
+  let messages: unknown = null;
+  try {
+    const { scheduleMessages, dispatchMessages } = await import("./messages");
+    const s = await scheduleMessages();
+    const d = await dispatchMessages();
+    messages = { ...s, ...d };
+  } catch (err) {
+    messages = { error: err instanceof Error ? err.message : String(err) };
+  }
+
+  await finishRun(db, runId, ok, { feeds: results, messages });
 
   // Email di avviso: una sola per giro, solo per prenotazioni vere.
   const real = newBookings.filter((b) => !b.isBlock);
