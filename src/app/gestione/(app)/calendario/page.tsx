@@ -6,6 +6,7 @@ import { minutesSinceLastSync, runSync } from "@/lib/gestionale/sync";
 import { SOURCE_COLOR, SOURCE_LABEL, type BookingRow } from "@/lib/gestionale/types";
 import { Timeline } from "./timeline";
 import { SyncButton } from "./sync-button";
+import { MonthPicker } from "./month-picker";
 
 export const metadata = { title: "Calendario" };
 export const dynamic = "force-dynamic";
@@ -57,6 +58,7 @@ export default async function CalendarioPage({
           <Link className="g-btn" href={`/gestione/calendario?da=${addMonths(startOfMonth(from), -1)}`}>‹ Mese prima</Link>
           <Link className="g-btn" href="/gestione/calendario">Oggi</Link>
           <Link className="g-btn" href={`/gestione/calendario?da=${addMonths(startOfMonth(from), 1)}`}>Mese dopo ›</Link>
+          <MonthPicker current={from} today={today} />
           <SyncButton />
           <Link className="g-btn g-btn-primary" href="/gestione/prenotazioni/nuova">+ Prenotazione o blocco</Link>
         </div>
