@@ -3,7 +3,7 @@ import { after } from "next/server";
 import { addDays, addMonths, formatDateIT, startOfMonth, todayISO } from "@/lib/gestionale/dates";
 import { getBookingsInRange, getProperties } from "@/lib/gestionale/queries";
 import { minutesSinceLastSync, runSync } from "@/lib/gestionale/sync";
-import { SOURCE_LABEL, type BookingRow } from "@/lib/gestionale/types";
+import { SOURCE_COLOR, SOURCE_LABEL, type BookingRow } from "@/lib/gestionale/types";
 import { Timeline } from "./timeline";
 import { SyncButton } from "./sync-button";
 
@@ -71,9 +71,10 @@ export default async function CalendarioPage({
       <Timeline from={from} days={WINDOW_DAYS} today={today} properties={properties} bookings={bookings} newIds={new Set(recentNew.map((b) => b.id))} />
 
       <div className="cal-legend">
-        {properties.map((p) => (
-          <span key={p.id} style={{ ["--c" as string]: p.color }}>{p.name}</span>
-        ))}
+        <span style={{ ["--c" as string]: SOURCE_COLOR.airbnb }}>Airbnb</span>
+        <span style={{ ["--c" as string]: SOURCE_COLOR.booking }}>Booking.com</span>
+        <span style={{ ["--c" as string]: SOURCE_COLOR.direct }}>Diretta dal sito</span>
+        <span style={{ ["--c" as string]: SOURCE_COLOR.manual }}>Inserita a mano</span>
         <span style={{ ["--c" as string]: "#c4bdb0" }}>Date chiuse (blocco)</span>
         <span style={{ ["--c" as string]: "var(--gold)" }}>Bordo oro: arrivata nelle ultime 48 ore</span>
       </div>

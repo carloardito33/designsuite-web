@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { addDays, diffDays, parseISODate, weekdayShortIT } from "@/lib/gestionale/dates";
-import { SOURCE_LABEL, type BookingRow, type PropertyRow } from "@/lib/gestionale/types";
+import { SOURCE_COLOR, SOURCE_LABEL, type BookingRow, type PropertyRow } from "@/lib/gestionale/types";
 
 const DAY_W = 44; // px per giorno
 const HEAD_W = 170; // colonna delle case
@@ -132,7 +132,8 @@ function RowFragment({
         // La barra parte a metà del giorno di arrivo e finisce a metà del giorno di partenza.
         // Posizione relativa all'area di griglia della riga (colonne 2..N), non all'intera griglia.
         const left = startIdx * DAY_W + (clippedStart ? 0 : DAY_W / 2);
-        const width = len * DAY_W - (clippedStart ? 0 : DAY_W / 2) - (clippedEnd ? 0 : DAY_W / 2) - 2;
+        // Da metà del giorno di arrivo a metà del giorno di partenza: esattamente `len` giorni di larghezza.
+        const width = len * DAY_W + (clippedStart ? DAY_W / 2 : 0) - (clippedEnd ? DAY_W / 2 : 0) - 2;
         const label = isBlock
           ? b.source === "block"
             ? b.notes || "Chiuso"
@@ -150,7 +151,7 @@ function RowFragment({
               gridColumn: `2 / span ${dates.length}`,
               left,
               width: Math.max(width, 10),
-              background: isBlock ? undefined : property.color,
+              background: isBlock ? undefined : SOURCE_COLOR[b.source],
               borderRadius: `${clippedStart ? 0 : 999}px ${clippedEnd ? 0 : 999}px ${clippedEnd ? 0 : 999}px ${clippedStart ? 0 : 999}px`,
             }}
           >

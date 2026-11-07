@@ -76,6 +76,17 @@ export const SOURCE_LABEL: Record<BookingSource, string> = {
   block: "Blocco",
 };
 
+/** Colore delle barre nel calendario, per canale. */
+export const SOURCE_COLOR: Record<BookingSource, string> = {
+  airbnb: "#D7263D",
+  booking: "#1A4A8A",
+  vrbo: "#1F6F8B",
+  other: "#5B5B5B",
+  direct: "#B8860B",
+  manual: "#6B6B1A",
+  block: "#9b9484",
+};
+
 export const CHANNEL_LABEL: Record<Channel, string> = {
   airbnb: "Airbnb",
   booking: "Booking.com",
