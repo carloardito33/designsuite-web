@@ -89,7 +89,8 @@ export async function submitCheckin(token: string, _prev: CheckinState, fd: Form
       guest_name: booking.guest_name?.trim() ? booking.guest_name : `${leader.first_name} ${leader.last_name}`,
       guest_email: email,
       guest_phone: phone,
-      guest_lang: lang,
+      // La lingua scelta nel modulo aggiorna la prenotazione solo se è italiano o se finora non era specificata.
+      ...(lang === "it" || booking.guest_lang === "en" || booking.guest_lang === "it" ? { guest_lang: lang } : {}),
       guests: count,
       arrival_time: s(fd, "arrival_time"),
       checkin_status: "completed",

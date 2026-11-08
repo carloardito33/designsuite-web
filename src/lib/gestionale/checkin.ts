@@ -11,7 +11,7 @@ export type CheckinBooking = {
   guest_name: string | null;
   guest_email: string | null;
   guest_phone: string | null;
-  guest_lang: "it" | "en";
+  guest_lang: string;
   checkin_status: "pending" | "completed" | "not_required";
   arrival_time: string | null;
   access_code: string | null;

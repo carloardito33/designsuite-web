@@ -1,3 +1,4 @@
+import { messageLang } from "@/lib/gestionale/types";
 import { getBookingByToken } from "@/lib/gestionale/checkin";
 import { CheckinForm } from "./checkin-form";
 
@@ -13,7 +14,7 @@ export default async function CheckinPage({
   const { token } = await params;
   const { lang: langParam } = await searchParams;
   const booking = await getBookingByToken(token);
-  const lang = langParam === "it" || langParam === "en" ? langParam : booking?.guest_lang ?? "en";
+  const lang = langParam === "it" || langParam === "en" ? langParam : messageLang(booking?.guest_lang);
 
   if (!booking || booking.status === "cancelled") {
     return (

@@ -2,12 +2,12 @@
 
 import { useActionState, useState } from "react";
 import type { ActionState } from "./actions";
-import type { BookingRow, PropertyRow } from "@/lib/gestionale/types";
+import { GUEST_LANGS, type BookingRow, type PropertyRow } from "@/lib/gestionale/types";
 
 type Props = {
   properties: PropertyRow[];
   action: (prev: ActionState, fd: FormData) => Promise<ActionState>;
-  initial?: Partial<BookingRow> & { property_slug?: string; guest_lang?: "it" | "en" };
+  initial?: Partial<BookingRow> & { property_slug?: string; guest_lang?: string };
   locked?: boolean; // prenotazione importata: date e casa non modificabili
   submitLabel: string;
 };
@@ -45,10 +45,9 @@ export function BookingForm({ properties, action, initial, locked, submitLabel }
         <label className="g-field">
           <span className="g-label">Lingua dell&apos;ospite</span>
           <select className="g-select" name="guest_lang" defaultValue={initial?.guest_lang ?? "en"}>
-            <option value="it">Italiano</option>
-            <option value="en">Inglese (tutte le altre lingue)</option>
+            {GUEST_LANGS.map((l) => <option key={l.code} value={l.code}>{l.label}</option>)}
           </select>
-          <span className="g-muted">Guida e messaggi in italiano solo se scegli Italiano.</span>
+          <span className="g-muted">Guida e messaggi in italiano solo per Italiano; in inglese per tutte le altre lingue.</span>
         </label>
         <label className="g-field">
           <span className="g-label">Arrivo</span>

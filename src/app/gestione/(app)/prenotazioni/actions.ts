@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/server";
 import { findConflicts } from "@/lib/gestionale/queries";
 import { diffDays } from "@/lib/gestionale/dates";
 import { regenerateCode } from "@/lib/gestionale/locks";
+import { GUEST_LANG_LABEL } from "@/lib/gestionale/types";
 
 export type ActionState = { error?: string } | undefined;
 
@@ -34,7 +35,7 @@ function parseBooking(fd: FormData) {
       check_in,
       check_out,
       status: str(fd, "status") ?? "confirmed",
-      guest_lang: str(fd, "guest_lang") === "it" ? "it" : "en",
+      guest_lang: GUEST_LANG_LABEL[str(fd, "guest_lang") ?? ""] ? (str(fd, "guest_lang") as string) : "en",
       guest_name: isBlock ? null : str(fd, "guest_name"),
       guest_email: isBlock ? null : str(fd, "guest_email"),
       guest_phone: isBlock ? null : str(fd, "guest_phone"),

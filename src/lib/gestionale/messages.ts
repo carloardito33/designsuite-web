@@ -1,7 +1,7 @@
 import { createAdminClient } from "@/lib/supabase/admin";
 import { addDays, diffDays, formatDateIT, parseISODate, todayISO } from "./dates";
 import { sendEmail } from "./notify";
-import type { BookingRow, PropertyRow } from "./types";
+import { messageLang, type BookingRow, type PropertyRow } from "./types";
 
 export const SITE_URL = "https://www.designsuite.it";
 
@@ -54,7 +54,7 @@ type PropertyFull = PropertyRow & {
 };
 
 type BookingFull = BookingRow & {
-  guest_lang?: "it" | "en";
+  guest_lang?: string;
   checkin_token?: string | null;
   arrival_time?: string | null;
   access_code?: string | null;
@@ -105,7 +105,7 @@ export function renderTemplate(text: string, vars: Record<string, string>): stri
 }
 
 export function renderMessage(t: TemplateRow, b: BookingFull, p: PropertyFull) {
-  const lang = b.guest_lang === "it" ? "it" : "en";
+  const lang = messageLang(b.guest_lang);
   const vars = templateVariables(b, p, lang);
   return {
     subject: renderTemplate(lang === "it" ? t.subject_it : t.subject_en, vars),

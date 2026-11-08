@@ -2,7 +2,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { getBookingByToken } from "@/lib/gestionale/checkin";
 import { renderTemplate, templateVariables } from "@/lib/gestionale/messages";
 import { todayISO } from "@/lib/gestionale/dates";
-import type { BookingRow, PropertyRow } from "@/lib/gestionale/types";
+import { messageLang, type BookingRow, type PropertyRow } from "@/lib/gestionale/types";
 
 export const dynamic = "force-dynamic";
 
@@ -35,7 +35,7 @@ export default async function GuidaPage({
   const { token } = await params;
   const { lang: langParam } = await searchParams;
   const booking = await getBookingByToken(token);
-  const lang: "it" | "en" = langParam === "it" || langParam === "en" ? langParam : booking?.guest_lang ?? "en";
+  const lang: "it" | "en" = langParam === "it" || langParam === "en" ? langParam : messageLang(booking?.guest_lang);
 
   if (!booking || booking.status === "cancelled") {
     return (
@@ -59,7 +59,7 @@ export default async function GuidaPage({
 
   const p = booking.properties as unknown as PropertyRow;
   const vars = templateVariables(
-    { ...(booking as unknown as BookingRow), checkin_token: token, guest_lang: lang } as BookingRow & { checkin_token: string; guest_lang: "it" | "en" },
+    { ...(booking as unknown as BookingRow), checkin_token: token, guest_lang: lang } as BookingRow & { checkin_token: string; guest_lang: string },
     p,
     lang,
   );

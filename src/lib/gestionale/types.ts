@@ -48,7 +48,7 @@ export type BookingRow = {
   summary: string | null;
   description: string | null;
   notes: string | null;
-  guest_lang?: "it" | "en";
+  guest_lang?: string;
   checkin_token?: string | null;
   checkin_status?: "pending" | "completed" | "not_required";
   first_seen_at: string;
@@ -96,3 +96,34 @@ export const CHANNEL_LABEL: Record<Channel, string> = {
   vrbo: "Vrbo",
   other: "Altro portale",
 };
+
+/** Lingue selezionabili sulla prenotazione. Guida e messaggi: italiano solo per "it", inglese per tutte le altre. */
+export const GUEST_LANGS: { code: string; label: string }[] = [
+  { code: "it", label: "Italiano" },
+  { code: "en", label: "Inglese" },
+  { code: "de", label: "Tedesco" },
+  { code: "fr", label: "Francese" },
+  { code: "es", label: "Spagnolo" },
+  { code: "pt", label: "Portoghese" },
+  { code: "nl", label: "Olandese" },
+  { code: "ru", label: "Russo" },
+  { code: "ar", label: "Arabo" },
+  { code: "zh", label: "Cinese" },
+  { code: "ja", label: "Giapponese" },
+  { code: "ko", label: "Coreano" },
+  { code: "tr", label: "Turco" },
+  { code: "pl", label: "Polacco" },
+  { code: "sv", label: "Svedese" },
+  { code: "da", label: "Danese" },
+  { code: "no", label: "Norvegese" },
+  { code: "el", label: "Greco" },
+  { code: "he", label: "Ebraico" },
+  { code: "hi", label: "Hindi" },
+  { code: "other", label: "Altra lingua" },
+];
+export const GUEST_LANG_LABEL: Record<string, string> = Object.fromEntries(GUEST_LANGS.map((l) => [l.code, l.label]));
+
+/** Lingua in cui scrivere guida e messaggi: italiano solo se la lingua dell'ospite è l'italiano. */
+export function messageLang(code: string | null | undefined): "it" | "en" {
+  return code === "it" ? "it" : "en";
+}
