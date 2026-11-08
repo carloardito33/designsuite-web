@@ -87,27 +87,30 @@ export async function queryWebhook(): Promise<string[]> {
   return body?.urls ?? [];
 }
 
-/** Codice numerico casuale di 6 cifre (senza zero iniziale per evitare confusioni). */
 /**
- * Codice dal numero di telefono dell'ospite, senza prefisso internazionale.
- * "+39 333 123 4567" → "31234567" (al massimo 8 cifre, le ultime). Ritorna null se il numero
- * non è usabile (servono almeno 6 cifre).
+ * Codice dal numero di telefono dell'ospite, senza prefissi.
+ * Si tolgono il prefisso internazionale (+39, 0039…) e, per i cellulari italiani, il prefisso
+ * dell'operatore (le prime 3 cifre): "+39 335 125 0616" → "1250616".
+ * Per i numeri esteri si tolgono il prefisso del paese e le cifre in eccesso, tenendo le ultime 8.
+ * Ritorna null se restano meno di 6 cifre (minimo del tastierino).
  */
 export function passcodeFromPhone(phone: string | null | undefined): string | null {
   if (!phone) return null;
   let d = phone.replace(/\D/g, "");
   const intl = phone.trim().startsWith("+") || d.startsWith("00");
   if (d.startsWith("00")) d = d.slice(2);
-  if (intl) {
-    if (d.startsWith("39")) d = d.slice(2);
-    else if (d.length > 10) d = d.slice(-10);
+  if (intl && d.startsWith("39")) d = d.slice(2);
+  const italianMobile = !intl || phone.trim().startsWith("+39") || phone.replace(/\D/g, "").startsWith("0039");
+  if (italianMobile && d.startsWith("3") && d.length >= 9) {
+    d = d.slice(3); // via il prefisso dell'operatore: 335 125 0616 → 125 0616
   }
-  // Al massimo 8 cifre: si tengono le ultime (le prime sono il prefisso dell'operatore).
   if (d.length > 8) d = d.slice(-8);
   if (d.length < 6) return null;
   if (/^(\d)\1+$/.test(d)) return null;
   return d;
 }
+
+/** Codice numerico casuale di 6 cifre (senza zero iniziale per evitare confusioni). */
 
 export function randomPasscode(): string {
   const first = 1 + Math.floor(Math.random() * 9);
