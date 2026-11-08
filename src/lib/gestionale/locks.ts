@@ -12,13 +12,22 @@ import { createTimeLimitKey, deleteKey, listKeypads, randomPasscode, switchbotCo
 export type LockResult = { created: number; confirmed: number; deleted: number; failed: number; errors: string[] };
 
 const CREATE_DAYS_BEFORE = 2;
+/** Il codice vale dalle 11 del giorno di arrivo alle 16 del giorno di partenza (ora di Roma). */
+const CODE_START_HOUR = 11;
+const CODE_END_HOUR = 16;
+
+/** Nome del codice come appare nell'app SwitchBot: "Carlo 11-22" (nome ospite + data di arrivo). */
+function keyName(b: { id: string; check_in: string; guest_name?: string | null }, attempt: number): string {
+  const first = (b.guest_name ?? "")
+    .normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .replace(/[^A-Za-z0-9 ]/g, " ")
+    .trim()
+    .split(/\s+/)[0] ?? "";
+  const who = first ? first.slice(0, 12) : `DS${b.id.slice(0, 4)}`;
+  return `${who} ${b.check_in.slice(5)}${attempt > 1 ? ` r${attempt}` : ""}`;
+}
 const PENDING_RETRY_MINUTES = 30;
 const MAX_ATTEMPTS = 3;
-
-function hourOf(t: string | null | undefined, fallback: number): number {
-  const m = (t ?? "").match(/^(\d{1,2})/);
-  return m ? Number(m[1]) : fallback;
-}
 
 export async function processLocks(): Promise<LockResult> {
   const r: LockResult = { created: 0, confirmed: 0, deleted: 0, failed: 0, errors: [] };
@@ -27,7 +36,7 @@ export async function processLocks(): Promise<LockResult> {
   const db = createAdminClient();
   const today = todayISO();
 
-  const { data: props } = await db.from("properties").select("id, name, access_type, switchbot_device_id, checkin_time, checkout_time").eq("access_type", "switchbot").not("switchbot_device_id", "is", null);
+  const { data: props } = await db.from("properties").select("id, name, access_type, switchbot_device_id").eq("access_type", "switchbot").not("switchbot_device_id", "is", null);
   const byProp = new Map((props ?? []).map((p) => [p.id, p]));
   if (!byProp.size) return r;
 
@@ -105,16 +114,16 @@ export async function processLocks(): Promise<LockResult> {
   return r;
 }
 
-type CodeBooking = { id: string; check_in: string; check_out: string; access_code: string | null; access_code_attempts: number | null };
-type CodeProperty = { switchbot_device_id: string | null; checkin_time: string | null; checkout_time: string | null };
+type CodeBooking = { id: string; check_in: string; check_out: string; access_code: string | null; access_code_attempts: number | null; guest_name?: string | null };
+type CodeProperty = { switchbot_device_id: string | null };
 
 async function createCode(db: ReturnType<typeof createAdminClient>, b: CodeBooking, p: CodeProperty) {
   const deviceId = p.switchbot_device_id as string;
   const code = b.access_code ?? randomPasscode();
   const attempt = (b.access_code_attempts ?? 0) + 1;
-  const name = `DS ${b.check_in.slice(5)} ${b.id.slice(0, 4)}${attempt > 1 ? ` r${attempt}` : ""}`;
-  const start = romeDateTime(b.check_in, Math.max(0, hourOf(p.checkin_time, 16) - 2));
-  const end = romeDateTime(b.check_out, Math.min(23, hourOf(p.checkout_time, 10) + 2));
+  const name = keyName(b, attempt);
+  const start = romeDateTime(b.check_in, CODE_START_HOUR);
+  const end = romeDateTime(b.check_out, CODE_END_HOUR);
   const commandId = await createTimeLimitKey(deviceId, { name, password: code, start, end });
   await db
     .from("bookings")
@@ -141,7 +150,7 @@ export async function regenerateCode(bookingId: string): Promise<string | null> 
   const db = createAdminClient();
   const { data: b } = await db
     .from("bookings")
-    .select("id, property_id, check_in, check_out, status, is_block, source, access_code, access_code_status, access_code_attempts, switchbot_key_id")
+    .select("id, property_id, check_in, check_out, status, is_block, source, access_code, access_code_status, access_code_attempts, switchbot_key_id, guest_name")
     .eq("id", bookingId)
     .maybeSingle();
   if (!b) return "Prenotazione non trovata.";
@@ -149,7 +158,7 @@ export async function regenerateCode(bookingId: string): Promise<string | null> 
   if (b.status === "cancelled") return "La prenotazione è cancellata.";
   if (b.check_out < todayISO()) return "La prenotazione è già terminata.";
 
-  const { data: p } = await db.from("properties").select("name, access_type, switchbot_device_id, checkin_time, checkout_time").eq("id", b.property_id).maybeSingle();
+  const { data: p } = await db.from("properties").select("name, access_type, switchbot_device_id").eq("id", b.property_id).maybeSingle();
   if (!p) return "Casa non trovata.";
   if (p.access_type !== "switchbot") return `${p.name}: l'accesso non è impostato su "Serratura SwitchBot" nella pagina Case.`;
   if (!p.switchbot_device_id) return `${p.name}: nessun tastierino abbinato. Scegli il tastierino nella pagina Case e salva.`;
