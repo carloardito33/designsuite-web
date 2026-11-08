@@ -58,6 +58,7 @@ type BookingFull = BookingRow & {
   checkin_token?: string | null;
   arrival_time?: string | null;
   access_code?: string | null;
+  access_code_status?: string;
 };
 
 const MONTHS_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -73,7 +74,8 @@ export function templateVariables(b: BookingFull, p: PropertyFull, lang: "it" | 
   const token = b.checkin_token ?? "";
   const accessCode =
     p.access_type === "switchbot"
-      ? b.access_code ?? (lang === "it" ? "(ti arriverà il giorno prima dell'arrivo)" : "(you will receive it the day before arrival)")
+      ? (b.access_code && b.access_code_status !== "none" && b.access_code_status !== "failed" ? b.access_code : null) ??
+        (lang === "it" ? "(ti arriverà il giorno prima dell'arrivo)" : "(you will receive it the day before arrival)")
       : p.access_type === "lockbox"
         ? p.lockbox_code ?? ""
         : "";
@@ -242,16 +244,27 @@ export async function dispatchMessages(): Promise<{ sent: number; manual: number
   const now = new Date().toISOString();
   const { data: due } = await db
     .from("message_log")
-    .select("*, bookings!inner(id, guest_email, guest_name, status, property_id, guest_lang), message_templates(only_if_contact)")
+    .select("*, bookings!inner(*), message_templates(*)")
     .eq("status", "scheduled")
     .lte("due_at", now)
     .limit(50);
 
   let sent = 0, manual = 0, errors = 0;
-  for (const row of (due ?? []) as (MessageLogRow & { bookings: { guest_email: string | null; status: string; property_id: string }; message_templates: { only_if_contact: boolean } | null })[]) {
+  for (const row of (due ?? []) as (MessageLogRow & { bookings: BookingFull; message_templates: TemplateRow | null })[]) {
     if (row.bookings.status === "cancelled") {
       await db.from("message_log").update({ status: "skipped" }).eq("id", row.id);
       continue;
+    }
+    // Il testo viene composto al momento dell'invio, così contiene i dati più recenti
+    // (codice serratura, contatti raccolti dal check in, lingua scelta dall'ospite).
+    if (row.message_templates) {
+      const { data: p } = await db.from("properties").select("*").eq("id", row.bookings.property_id).maybeSingle();
+      if (p) {
+        const r = renderMessage(row.message_templates, row.bookings, p as PropertyFull);
+        row.subject = r.subject;
+        row.body = r.body;
+        await db.from("message_log").update({ subject: r.subject, body: r.body }).eq("id", row.id);
+      }
     }
     const email = row.bookings.guest_email?.trim();
     if (!email) {
@@ -263,8 +276,8 @@ export async function dispatchMessages(): Promise<{ sent: number; manual: number
       }
       continue;
     }
-    const { data: p } = await db.from("properties").select("host_email").eq("id", row.bookings.property_id).maybeSingle();
-    const r = await sendEmail({ to: email, subject: row.subject ?? "", text: row.body ?? "", replyTo: p?.host_email ?? "carlo@designsuite.it" });
+    const { data: hp } = await db.from("properties").select("host_email").eq("id", row.bookings.property_id).maybeSingle();
+    const r = await sendEmail({ to: email, subject: row.subject ?? "", text: row.body ?? "", replyTo: hp?.host_email ?? "carlo@designsuite.it" });
     if (r.ok) {
       await db.from("message_log").update({ status: "sent", channel: "email", to_email: email, sent_at: new Date().toISOString() }).eq("id", row.id);
       sent++;

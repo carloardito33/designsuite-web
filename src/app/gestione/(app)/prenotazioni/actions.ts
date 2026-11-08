@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { findConflicts } from "@/lib/gestionale/queries";
 import { diffDays } from "@/lib/gestionale/dates";
+import { regenerateCode } from "@/lib/gestionale/locks";
 
 export type ActionState = { error?: string } | undefined;
 
@@ -33,6 +34,7 @@ function parseBooking(fd: FormData) {
       check_in,
       check_out,
       status: str(fd, "status") ?? "confirmed",
+      guest_lang: str(fd, "guest_lang") === "it" ? "it" : "en",
       guest_name: isBlock ? null : str(fd, "guest_name"),
       guest_email: isBlock ? null : str(fd, "guest_email"),
       guest_phone: isBlock ? null : str(fd, "guest_phone"),
@@ -81,7 +83,7 @@ export async function updateBooking(id: string, _prev: ActionState, fd: FormData
   // le date le decide il portale.
   const { data: existing } = await supabase.from("bookings").select("feed_id").eq("id", id).maybeSingle();
   const patch = existing?.feed_id
-    ? { guest_name: v.guest_name, guest_email: v.guest_email, guest_phone: v.guest_phone, guests: v.guests, total_amount: v.total_amount, notes: v.notes }
+    ? { guest_name: v.guest_name, guest_email: v.guest_email, guest_phone: v.guest_phone, guests: v.guests, total_amount: v.total_amount, notes: v.notes, guest_lang: v.guest_lang }
     : v;
   const { error } = await supabase.from("bookings").update(patch).eq("id", id);
   if (error) return { error: error.message };
@@ -104,4 +106,9 @@ export async function markNotificationsRead() {
   const supabase = await createClient();
   await supabase.from("notifications").update({ read_at: new Date().toISOString() }).is("read_at", null);
   revalidatePath("/gestione/avvisi");
+}
+
+export async function regenerateAccessCode(bookingId: string) {
+  await regenerateCode(bookingId);
+  revalidatePath(`/gestione/prenotazioni/${bookingId}`);
 }

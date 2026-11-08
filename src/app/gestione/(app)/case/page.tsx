@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { listKeypads, switchbotConfigured, type SwitchBotDevice } from "@/lib/gestionale/switchbot";
 import { saveProperty } from "./actions";
 
 export const metadata = { title: "Case" };
@@ -17,6 +18,15 @@ export default async function CasePage({ searchParams }: { searchParams: Promise
   const supabase = await createClient();
   const { data } = await supabase.from("properties").select("*").order("sort_order");
   const props = (data ?? []) as P[];
+  let keypads: SwitchBotDevice[] = [];
+  let switchbotError: string | null = null;
+  if (switchbotConfigured()) {
+    try {
+      keypads = await listKeypads();
+    } catch (err) {
+      switchbotError = err instanceof Error ? err.message : String(err);
+    }
+  }
 
   return (
     <main style={{ display: "grid", gap: 20 }}>
@@ -49,7 +59,17 @@ export default async function CasePage({ searchParams }: { searchParams: Promise
               </select>
             </label>
             <label className="g-field"><span className="g-label">Combinazione cassetta</span><input className="g-input" name="lockbox_code" defaultValue={p.lockbox_code ?? ""} /></label>
-            <label className="g-field"><span className="g-label">ID dispositivo SwitchBot (Keypad)</span><input className="g-input" name="switchbot_device_id" defaultValue={p.switchbot_device_id ?? ""} /></label>
+            <label className="g-field"><span className="g-label">Tastierino SwitchBot</span>
+              {keypads.length ? (
+                <select className="g-select" name="switchbot_device_id" defaultValue={p.switchbot_device_id ?? ""}>
+                  <option value="">Nessuno</option>
+                  {keypads.map((k) => <option key={k.deviceId} value={k.deviceId}>{k.deviceName} ({k.deviceType})</option>)}
+                </select>
+              ) : (
+                <input className="g-input" name="switchbot_device_id" defaultValue={p.switchbot_device_id ?? ""} placeholder={switchbotConfigured() ? "nessun tastierino trovato" : "SwitchBot non configurato"} />
+              )}
+              {switchbotError ? <span className="g-muted" style={{ color: "#a4262c" }}>{switchbotError}</span> : null}
+            </label>
           </div>
           <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))" }}>
             <label className="g-field"><span className="g-label">Tassa di soggiorno (€ a persona a notte)</span><input className="g-input" type="number" step="0.01" name="tax_per_person_night" defaultValue={p.tax_per_person_night} /></label>

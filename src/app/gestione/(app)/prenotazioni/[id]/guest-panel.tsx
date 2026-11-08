@@ -4,6 +4,7 @@ import { SITE_URL, type MessageLogRow, type TemplateRow } from "@/lib/gestionale
 import { CopyButton } from "../../messaggi/coda/copy-button";
 import { sendTemplateNow } from "../../messaggi/actions";
 import { markMessageDone } from "../../messaggi/actions";
+import { regenerateAccessCode } from "../actions";
 
 type Guest = {
   id: string; is_leader: boolean; first_name: string; last_name: string; sex: string | null; birth_date: string | null;
@@ -19,7 +20,9 @@ const STATUS_LABEL: Record<MessageLogRow["status"], string> = {
   error: "errore",
 };
 
-export async function GuestPanel({ booking }: { booking: { id: string; checkin_token: string | null; checkin_status: string; checkin_completed_at: string | null; tax_amount: number | null; arrival_time: string | null; guest_lang: string; access_code: string | null; questura_status: string; source: string; is_block: boolean } }) {
+const CODE_LABEL: Record<string, string> = { none: "non ancora creato (2 giorni prima dell'arrivo)", pending: "in creazione sul tastierino", active: "attivo", failed: "errore: tastierino non raggiungibile", deleted: "cancellato dopo la partenza" };
+
+export async function GuestPanel({ booking }: { booking: { id: string; checkin_token: string | null; checkin_status: string; checkin_completed_at: string | null; tax_amount: number | null; arrival_time: string | null; guest_lang: string; access_code: string | null; access_code_status?: string; questura_status: string; source: string; is_block: boolean; property_id: string } }) {
   if (booking.is_block || booking.source === "block") return null;
   const supabase = await createClient();
   const [{ data: log }, { data: guests }, { data: templates }] = await Promise.all([
@@ -27,6 +30,8 @@ export async function GuestPanel({ booking }: { booking: { id: string; checkin_t
     supabase.from("booking_guests").select("*").eq("booking_id", booking.id).order("is_leader", { ascending: false }),
     supabase.from("message_templates").select("id, key, name, trigger").eq("active", true).order("sort_order"),
   ]);
+  const { data: prop } = await supabase.from("properties").select("access_type").eq("id", booking.property_id).maybeSingle();
+  const accessType = prop?.access_type ?? "none";
   const token = booking.checkin_token ?? "";
   const checkinLink = `${SITE_URL}/checkin/${token}`;
   const guideLink = `${SITE_URL}/ospiti/${token}`;
@@ -50,6 +55,14 @@ export async function GuestPanel({ booking }: { booking: { id: string; checkin_t
           <input className="g-input" readOnly value={guideLink} style={{ fontSize: 12 }} />
           <CopyButton text={guideLink} label="Copia link" />
         </div>
+        {accessType === "switchbot" ? (
+          <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap", fontSize: 14 }}>
+            <span className="g-label">Codice serratura</span>
+            <strong style={{ fontWeight: 500, letterSpacing: "0.08em" }}>{booking.access_code && booking.access_code_status !== "none" ? booking.access_code : "—"}</strong>
+            <span className="g-pill" style={booking.access_code_status === "active" ? { background: "#eef7ee" } : booking.access_code_status === "failed" ? { background: "#fdf0f0" } : undefined}>{CODE_LABEL[booking.access_code_status ?? "none"]}</span>
+            <form action={regenerateAccessCode.bind(null, booking.id)}><button className="g-btn" type="submit" style={{ padding: "4px 10px", fontSize: 13 }}>{booking.access_code_status === "none" ? "Crea codice ora" : "Rigenera codice"}</button></form>
+          </div>
+        ) : null}
         {(guests ?? []).length ? (
           <table className="g-table">
             <thead><tr><th>Ospite</th><th>Nascita</th><th>Cittadinanza</th><th>Documento</th></tr></thead>
