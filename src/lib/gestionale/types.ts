@@ -78,12 +78,12 @@ export const SOURCE_LABEL: Record<BookingSource, string> = {
 
 /** Colore delle barre nel calendario, per canale. */
 export const SOURCE_COLOR: Record<BookingSource, string> = {
-  airbnb: "#FF1F3D",
-  booking: "#1E6FE8",
+  airbnb: "#D7263D",
+  booking: "#1A4A8A",
   vrbo: "#1F6F8B",
   other: "#5B5B5B",
-  direct: "#F2A900",
-  manual: "#1DBF4E",
+  direct: "#B8860B",
+  manual: "#2E8B3A",
   block: "#9b9484",
 };
 
