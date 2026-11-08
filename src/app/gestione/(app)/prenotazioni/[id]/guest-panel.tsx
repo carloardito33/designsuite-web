@@ -20,7 +20,7 @@ const STATUS_LABEL: Record<MessageLogRow["status"], string> = {
   error: "errore",
 };
 
-const CODE_LABEL: Record<string, string> = { none: "non ancora creato (2 giorni prima dell'arrivo)", pending: "in creazione sul tastierino", active: "attivo", failed: "errore: tastierino non raggiungibile", deleted: "cancellato dopo la partenza" };
+const CODE_LABEL: Record<string, string> = { none: "non ancora creato: viene creato da solo 2 giorni prima dell'arrivo, oppure subito con il pulsante", pending: "inviato al tastierino, in attesa di conferma", active: "attivo", failed: "errore: tastierino non raggiungibile", deleted: "cancellato dopo la partenza" };
 
 export async function GuestPanel({ booking }: { booking: { id: string; checkin_token: string | null; checkin_status: string; checkin_completed_at: string | null; tax_amount: number | null; arrival_time: string | null; guest_lang: string; access_code: string | null; access_code_status?: string; questura_status: string; source: string; is_block: boolean; property_id: string } }) {
   if (booking.is_block || booking.source === "block") return null;

@@ -95,24 +95,7 @@ export async function processLocks(): Promise<LockResult> {
 
       // 3) Creazione (prima volta o nuovo tentativo)
       if (b.access_code_status === "none" || b.access_code_status === "pending") {
-        const code = b.access_code ?? randomPasscode();
-        const attempt = (b.access_code_attempts ?? 0) + 1;
-        const name = `DS ${b.check_in.slice(5)} ${b.id.slice(0, 4)}${attempt > 1 ? ` r${attempt}` : ""}`;
-        const start = romeDateTime(b.check_in, Math.max(0, hourOf(p.checkin_time, 16) - 2));
-        const end = romeDateTime(b.check_out, Math.min(23, hourOf(p.checkout_time, 10) + 2));
-        const commandId = await createTimeLimitKey(deviceId, { name, password: code, start, end });
-        await db
-          .from("bookings")
-          .update({
-            access_code: code,
-            access_code_status: "pending",
-            access_code_attempts: attempt,
-            access_code_requested_at: new Date().toISOString(),
-            switchbot_key_name: name,
-            switchbot_command_id: commandId,
-            switchbot_key_id: null,
-          })
-          .eq("id", b.id);
+        await createCode(db, b, p);
         r.created++;
       }
     } catch (err) {
@@ -122,18 +105,72 @@ export async function processLocks(): Promise<LockResult> {
   return r;
 }
 
-/** Forza la creazione di un nuovo codice per una prenotazione (dalla scheda). */
-export async function regenerateCode(bookingId: string) {
-  const db = createAdminClient();
-  const { data: b } = await db.from("bookings").select("id, switchbot_key_id, property_id, access_code_status").eq("id", bookingId).maybeSingle();
-  if (!b) return;
-  if (b.switchbot_key_id) {
-    const { data: p } = await db.from("properties").select("switchbot_device_id").eq("id", b.property_id).maybeSingle();
-    if (p?.switchbot_device_id) await deleteKey(p.switchbot_device_id, b.switchbot_key_id).catch(() => undefined);
-  }
+type CodeBooking = { id: string; check_in: string; check_out: string; access_code: string | null; access_code_attempts: number | null };
+type CodeProperty = { switchbot_device_id: string | null; checkin_time: string | null; checkout_time: string | null };
+
+async function createCode(db: ReturnType<typeof createAdminClient>, b: CodeBooking, p: CodeProperty) {
+  const deviceId = p.switchbot_device_id as string;
+  const code = b.access_code ?? randomPasscode();
+  const attempt = (b.access_code_attempts ?? 0) + 1;
+  const name = `DS ${b.check_in.slice(5)} ${b.id.slice(0, 4)}${attempt > 1 ? ` r${attempt}` : ""}`;
+  const start = romeDateTime(b.check_in, Math.max(0, hourOf(p.checkin_time, 16) - 2));
+  const end = romeDateTime(b.check_out, Math.min(23, hourOf(p.checkout_time, 10) + 2));
+  const commandId = await createTimeLimitKey(deviceId, { name, password: code, start, end });
   await db
     .from("bookings")
-    .update({ access_code: null, access_code_status: "none", access_code_attempts: 0, switchbot_key_id: null, switchbot_key_name: null, switchbot_command_id: null })
-    .eq("id", bookingId);
-  await processLocks();
+    .update({
+      access_code: code,
+      access_code_status: "pending",
+      access_code_attempts: attempt,
+      access_code_requested_at: new Date().toISOString(),
+      switchbot_key_name: name,
+      switchbot_command_id: commandId,
+      switchbot_key_id: null,
+    })
+    .eq("id", b.id);
+  return code;
+}
+
+/**
+ * Crea subito un codice per una prenotazione (dalla scheda), a qualsiasi distanza dall'arrivo.
+ * Se esiste già un codice sul tastierino lo cancella e ne crea uno nuovo.
+ * Ritorna un messaggio di errore leggibile, oppure null se è andata bene.
+ */
+export async function regenerateCode(bookingId: string): Promise<string | null> {
+  if (!switchbotConfigured()) return "SwitchBot non configurato su Vercel (SWITCHBOT_TOKEN e SWITCHBOT_SECRET).";
+  const db = createAdminClient();
+  const { data: b } = await db
+    .from("bookings")
+    .select("id, property_id, check_in, check_out, status, is_block, source, access_code, access_code_status, access_code_attempts, switchbot_key_id")
+    .eq("id", bookingId)
+    .maybeSingle();
+  if (!b) return "Prenotazione non trovata.";
+  if (b.is_block || b.source === "block") return "Le date chiuse non hanno codice serratura.";
+  if (b.status === "cancelled") return "La prenotazione è cancellata.";
+  if (b.check_out < todayISO()) return "La prenotazione è già terminata.";
+
+  const { data: p } = await db.from("properties").select("name, access_type, switchbot_device_id, checkin_time, checkout_time").eq("id", b.property_id).maybeSingle();
+  if (!p) return "Casa non trovata.";
+  if (p.access_type !== "switchbot") return `${p.name}: l'accesso non è impostato su "Serratura SwitchBot" nella pagina Case.`;
+  if (!p.switchbot_device_id) return `${p.name}: nessun tastierino abbinato. Scegli il tastierino nella pagina Case e salva.`;
+
+  if (b.switchbot_key_id) await deleteKey(p.switchbot_device_id, b.switchbot_key_id).catch(() => undefined);
+  try {
+    await createCode(db, { ...b, access_code: null, access_code_attempts: 0 }, p);
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    await db.from("bookings").update({ access_code_status: "failed", access_code_requested_at: new Date().toISOString() }).eq("id", bookingId);
+    return `Il tastierino non ha accettato il comando: ${msg}`;
+  }
+  // Prova a confermare subito leggendo la lista codici del tastierino.
+  try {
+    const keypads = await listKeypads();
+    const kp = keypads.find((k) => k.deviceId === p.switchbot_device_id);
+    const { data: fresh } = await db.from("bookings").select("switchbot_key_name").eq("id", bookingId).maybeSingle();
+    const key = kp?.keyList?.find((k) => k.name === fresh?.switchbot_key_name);
+    if (key) await db.from("bookings").update({ access_code_status: "active", switchbot_key_id: key.id }).eq("id", bookingId);
+  } catch {
+    // la conferma arriverà dal webhook o dalla prossima sincronizzazione
+  }
+  return null;
 }

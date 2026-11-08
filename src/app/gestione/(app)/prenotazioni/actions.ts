@@ -109,6 +109,12 @@ export async function markNotificationsRead() {
 }
 
 export async function regenerateAccessCode(bookingId: string) {
-  await regenerateCode(bookingId);
+  let error: string | null;
+  try {
+    error = await regenerateCode(bookingId);
+  } catch (err) {
+    error = err instanceof Error ? err.message : String(err);
+  }
   revalidatePath(`/gestione/prenotazioni/${bookingId}`);
+  redirect(`/gestione/prenotazioni/${bookingId}?${error ? `lock_error=${encodeURIComponent(error)}` : "lock=ok"}`);
 }

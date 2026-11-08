@@ -10,8 +10,9 @@ import { GuestPanel } from "./guest-panel";
 export const metadata = { title: "Prenotazione" };
 export const dynamic = "force-dynamic";
 
-export default async function PrenotazionePage({ params }: { params: Promise<{ id: string }> }) {
+export default async function PrenotazionePage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ lock?: string; lock_error?: string }> }) {
   const { id } = await params;
+  const { lock, lock_error } = await searchParams;
   const [booking, properties] = await Promise.all([getBooking(id), getProperties()]);
   if (!booking) notFound();
   const property = properties.find((p) => p.id === booking.property_id);
@@ -41,6 +42,9 @@ export default async function PrenotazionePage({ params }: { params: Promise<{ i
           {booking.description ? <div style={{ marginTop: 8, whiteSpace: "pre-wrap", fontSize: 13 }}>{booking.description}</div> : null}
         </div>
       ) : null}
+
+      {lock_error ? <div className="g-alert g-alert-error">Codice serratura: {lock_error}</div> : null}
+      {lock === "ok" ? <div className="g-alert g-alert-ok">Codice inviato al tastierino.</div> : null}
 
       <GuestPanel booking={booking as unknown as Parameters<typeof GuestPanel>[0]["booking"]} />
 
