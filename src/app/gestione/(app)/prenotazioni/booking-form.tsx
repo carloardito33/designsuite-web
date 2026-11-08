@@ -7,7 +7,7 @@ import type { BookingRow, PropertyRow } from "@/lib/gestionale/types";
 type Props = {
   properties: PropertyRow[];
   action: (prev: ActionState, fd: FormData) => Promise<ActionState>;
-  initial?: Partial<BookingRow> & { property_slug?: string };
+  initial?: Partial<BookingRow> & { property_slug?: string; guest_lang?: "it" | "en" };
   locked?: boolean; // prenotazione importata: date e casa non modificabili
   submitLabel: string;
 };
@@ -41,6 +41,14 @@ export function BookingForm({ properties, action, initial, locked, submitLabel }
             <option value="block">Blocco date (lavori, uso personale)</option>
           </select>
           {locked ? <input type="hidden" name="kind" value={initialKind} /> : null}
+        </label>
+        <label className="g-field">
+          <span className="g-label">Lingua dell&apos;ospite</span>
+          <select className="g-select" name="guest_lang" defaultValue={initial?.guest_lang ?? "en"}>
+            <option value="it">Italiano</option>
+            <option value="en">Inglese (tutte le altre lingue)</option>
+          </select>
+          <span className="g-muted">Guida e messaggi in italiano solo se scegli Italiano.</span>
         </label>
         <label className="g-field">
           <span className="g-label">Arrivo</span>

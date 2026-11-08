@@ -52,12 +52,12 @@ export default async function PrenotazioniPage({
             {rows.length === 0 ? (
               <tr><td colSpan={7} className="g-muted">Nessuna prenotazione.</td></tr>
             ) : rows.map((b) => (
-              <tr key={b.id}>
-                <td style={{ whiteSpace: "nowrap" }}>{formatDateIT(b.check_in, { weekday: true, year: true })}</td>
+              <tr key={b.id} style={{ cursor: "pointer" }}>
+                <td style={{ whiteSpace: "nowrap" }}><Link href={`/gestione/prenotazioni/${b.id}`} style={{ color: "inherit", textDecoration: "none", display: "block" }}>{formatDateIT(b.check_in, { weekday: true, year: true })}</Link></td>
                 <td style={{ whiteSpace: "nowrap" }}>{formatDateIT(b.check_out, { weekday: true })}</td>
                 <td>{diffDays(b.check_in, b.check_out)}</td>
                 <td>{properties.find((p) => p.id === b.property_id)?.name}</td>
-                <td><Link href={`/gestione/prenotazioni/${b.id}`} style={{ color: "inherit" }}>{b.guest_name ?? <span className="g-muted">senza nome</span>}</Link></td>
+                <td><Link href={`/gestione/prenotazioni/${b.id}`} style={{ color: "inherit", display: "block" }}>{b.guest_name ?? <span className="g-muted">senza nome</span>} <span className="g-muted">›</span></Link></td>
                 <td>{SOURCE_LABEL[b.source]}</td>
                 <td><span className="g-pill">{b.status === "confirmed" ? "confermata" : b.status === "pending" ? "in attesa" : "cancellata"}</span></td>
               </tr>
