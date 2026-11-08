@@ -43,19 +43,19 @@ export function BookingForm({ properties, action, initial, locked, submitLabel }
           {locked ? <input type="hidden" name="kind" value={initialKind} /> : null}
         </label>
         <label className="g-field">
-          <span className="g-label">Lingua dell&apos;ospite</span>
-          <select className="g-select" name="guest_lang" defaultValue={initial?.guest_lang ?? "en"}>
-            {GUEST_LANGS.map((l) => <option key={l.code} value={l.code}>{l.label}</option>)}
-          </select>
-          <span className="g-muted">Guida e messaggi in italiano solo per Italiano; in inglese per tutte le altre lingue.</span>
-        </label>
-        <label className="g-field">
           <span className="g-label">Arrivo</span>
           <input className="g-input" type="date" name="check_in" defaultValue={initial?.check_in} readOnly={locked} required />
         </label>
         <label className="g-field">
           <span className="g-label">Partenza</span>
           <input className="g-input" type="date" name="check_out" defaultValue={initial?.check_out} readOnly={locked} required />
+        </label>
+        <label className="g-field" style={{ gridColumn: "1 / -1" }}>
+          <span className="g-label">Lingua dell&apos;ospite</span>
+          <select className="g-select" name="guest_lang" defaultValue={initial?.guest_lang ?? "en"}>
+            {GUEST_LANGS.map((l) => <option key={l.code} value={l.code}>{l.label}</option>)}
+          </select>
+          <span className="g-muted">Guida e messaggi in italiano solo per Italiano; in inglese per tutte le altre lingue.</span>
         </label>
       </div>
 
