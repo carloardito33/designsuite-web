@@ -1,7 +1,7 @@
 import { createAdminClient } from "@/lib/supabase/admin";
 import { addDays, todayISO } from "./dates";
 import { romeDateTime } from "./messages";
-import { createTimeLimitKey, deleteKey, listKeypads, randomPasscode, switchbotConfigured } from "./switchbot";
+import { createTimeLimitKey, deleteKey, listKeypads, passcodeFromPhone, randomPasscode, switchbotConfigured } from "./switchbot";
 
 /**
  * Ciclo di vita dei codici SwitchBot:
@@ -42,7 +42,7 @@ export async function processLocks(): Promise<LockResult> {
 
   const { data: bookings } = await db
     .from("bookings")
-    .select("id, property_id, check_in, check_out, status, is_block, source, access_code, access_code_status, access_code_attempts, switchbot_key_name, switchbot_key_id, access_code_requested_at, guest_name")
+    .select("id, property_id, check_in, check_out, status, is_block, source, access_code, access_code_status, access_code_attempts, switchbot_key_name, switchbot_key_id, access_code_requested_at, guest_name, guest_phone")
     .in("property_id", [...byProp.keys()])
     .eq("is_block", false)
     .neq("source", "block")
@@ -114,12 +114,13 @@ export async function processLocks(): Promise<LockResult> {
   return r;
 }
 
-type CodeBooking = { id: string; check_in: string; check_out: string; access_code: string | null; access_code_attempts: number | null; guest_name?: string | null };
+type CodeBooking = { id: string; check_in: string; check_out: string; access_code: string | null; access_code_attempts: number | null; guest_name?: string | null; guest_phone?: string | null };
 type CodeProperty = { switchbot_device_id: string | null };
 
 async function createCode(db: ReturnType<typeof createAdminClient>, b: CodeBooking, p: CodeProperty) {
   const deviceId = p.switchbot_device_id as string;
-  const code = b.access_code ?? randomPasscode();
+  // Codice = telefono dell'ospite senza prefisso; se manca, un numero casuale.
+  const code = b.access_code ?? passcodeFromPhone(b.guest_phone) ?? randomPasscode();
   const attempt = (b.access_code_attempts ?? 0) + 1;
   const name = keyName(b, attempt);
   const start = romeDateTime(b.check_in, CODE_START_HOUR);
@@ -150,7 +151,7 @@ export async function regenerateCode(bookingId: string): Promise<string | null> 
   const db = createAdminClient();
   const { data: b } = await db
     .from("bookings")
-    .select("id, property_id, check_in, check_out, status, is_block, source, access_code, access_code_status, access_code_attempts, switchbot_key_id, guest_name")
+    .select("id, property_id, check_in, check_out, status, is_block, source, access_code, access_code_status, access_code_attempts, switchbot_key_id, guest_name, guest_phone")
     .eq("id", bookingId)
     .maybeSingle();
   if (!b) return "Prenotazione non trovata.";

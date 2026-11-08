@@ -88,6 +88,26 @@ export async function queryWebhook(): Promise<string[]> {
 }
 
 /** Codice numerico casuale di 6 cifre (senza zero iniziale per evitare confusioni). */
+/**
+ * Codice dal numero di telefono dell'ospite, senza prefisso internazionale.
+ * "+39 333 123 4567" → "3331234567". Ritorna null se il numero non è usabile
+ * (il tastierino accetta da 6 a 12 cifre).
+ */
+export function passcodeFromPhone(phone: string | null | undefined): string | null {
+  if (!phone) return null;
+  let d = phone.replace(/\D/g, "");
+  const intl = phone.trim().startsWith("+") || d.startsWith("00");
+  if (d.startsWith("00")) d = d.slice(2);
+  if (intl) {
+    if (d.startsWith("39")) d = d.slice(2);
+    else if (d.length > 10) d = d.slice(-10);
+  }
+  if (d.length > 12) d = d.slice(-12);
+  if (d.length < 6) return null;
+  if (/^(\d)\1+$/.test(d)) return null;
+  return d;
+}
+
 export function randomPasscode(): string {
   const first = 1 + Math.floor(Math.random() * 9);
   let rest = "";
