@@ -8,8 +8,10 @@ import { createTimeLimitKey, deleteKey, listKeypads, passcodeFromPhone, randomPa
  *  - creazione 2 giorni prima dell'arrivo (o subito, se l'arrivo è più vicino)
  *  - conferma leggendo la keyList del tastierino (o via webhook)
  *  - cancellazione alle 16 del giorno di partenza (o appena la prenotazione viene cancellata)
+ *  - a ogni passaggio, eliminazione di tutti i codici che il tastierino segna come scaduti,
+ *    anche quelli creati a mano dall'app SwitchBot
  */
-export type LockResult = { created: number; confirmed: number; deleted: number; failed: number; errors: string[] };
+export type LockResult = { created: number; confirmed: number; deleted: number; expired: number; failed: number; errors: string[] };
 
 const CREATE_DAYS_BEFORE = 2;
 /** Il codice vale dalle 11 del giorno di arrivo alle 16 del giorno di partenza (ora di Roma). */
@@ -35,7 +37,7 @@ function romeHour(): number {
 }
 
 export async function processLocks(): Promise<LockResult> {
-  const r: LockResult = { created: 0, confirmed: 0, deleted: 0, failed: 0, errors: [] };
+  const r: LockResult = { created: 0, confirmed: 0, deleted: 0, expired: 0, failed: 0, errors: [] };
   if (!switchbotConfigured()) return r;
 
   const db = createAdminClient();
@@ -67,13 +69,21 @@ export async function processLocks(): Promise<LockResult> {
 
   const rows = bookings ?? [];
   const toDelete = (expiring ?? []).filter((b) => b.status === "cancelled" || b.check_out < today || (b.check_out === today && romeHour() >= CODE_END_HOUR));
-  const needsDeviceList = toDelete.length > 0 || rows.some((b) => b.access_code_status === "pending" || (b.access_code_status === "active" && !b.switchbot_key_id));
   let keypads: Awaited<ReturnType<typeof listKeypads>> = [];
-  if (needsDeviceList) {
+  try {
+    keypads = await listKeypads();
+  } catch (err) {
+    r.errors.push(`Elenco dispositivi: ${err instanceof Error ? err.message : String(err)}`);
+  }
+
+  // 0) Pulizia dei codici scaduti sul tastierino, compresi quelli inseriti a mano dall'app SwitchBot.
+  for (const p of byProp.values()) {
+    const keypad = keypads.find((k) => k.deviceId === p.switchbot_device_id);
+    if (!keypad) continue;
     try {
-      keypads = await listKeypads();
+      r.expired += await deleteExpiredKeys(keypad);
     } catch (err) {
-      r.errors.push(`Elenco dispositivi: ${err instanceof Error ? err.message : String(err)}`);
+      r.errors.push(`${p.name}: pulizia codici scaduti: ${err instanceof Error ? err.message : String(err)}`);
     }
   }
 
@@ -220,4 +230,26 @@ export async function regenerateCode(bookingId: string): Promise<string | null> 
     // la conferma arriverà dal webhook o dalla prossima sincronizzazione
   }
   return null;
+}
+
+/** Elimina dal tastierino tutti i codici che risultano scaduti (anche quelli creati a mano). Ritorna quanti ne ha tolti. */
+export async function deleteExpiredKeys(keypad: { deviceId: string; keyList?: { id: number; name: string; type: string; status: string }[] }): Promise<number> {
+  const expired = (keypad.keyList ?? []).filter((k) => k.status === "expired" && k.type !== "permanent");
+  for (const k of expired) await deleteKey(keypad.deviceId, k.id);
+  return expired.length;
+}
+
+/** Pulizia manuale dalla pagina Impostazioni: tutti i tastierini abbinati alle case. */
+export async function cleanupExpiredKeys(): Promise<{ removed: number; errors: string[] }> {
+  const out = { removed: 0, errors: [] as string[] };
+  if (!switchbotConfigured()) return out;
+  const keypads = await listKeypads();
+  for (const k of keypads) {
+    try {
+      out.removed += await deleteExpiredKeys(k);
+    } catch (err) {
+      out.errors.push(`${k.deviceName}: ${err instanceof Error ? err.message : String(err)}`);
+    }
+  }
+  return out;
 }

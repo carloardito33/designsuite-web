@@ -2,20 +2,21 @@ import { getFeeds, getProperties } from "@/lib/gestionale/queries";
 import { CHANNEL_LABEL } from "@/lib/gestionale/types";
 import { CopyField } from "./copy-field";
 import { listKeypads, queryWebhook, switchbotConfigured } from "@/lib/gestionale/switchbot";
-import { registerSwitchbotWebhook } from "./actions";
+import { cleanupExpiredCodes, registerSwitchbotWebhook } from "./actions";
 
 export const metadata = { title: "Impostazioni" };
 export const dynamic = "force-dynamic";
 
 const SITE = "https://www.designsuite.it";
 
-export default async function ImpostazioniPage() {
+export default async function ImpostazioniPage({ searchParams }: { searchParams: Promise<{ msg?: string }> }) {
+  const { msg } = await searchParams;
   const [properties, feeds] = await Promise.all([getProperties(), getFeeds()]);
-  let sb: { keypads: { deviceId: string; deviceName: string; deviceType: string; keys: number }[]; webhooks: string[]; error?: string } | null = null;
+  let sb: { keypads: { deviceId: string; deviceName: string; deviceType: string; keys: number; expired: number }[]; webhooks: string[]; error?: string } | null = null;
   if (switchbotConfigured()) {
     try {
       const [k, w] = await Promise.all([listKeypads(), queryWebhook().catch(() => [] as string[])]);
-      sb = { keypads: k.map((d) => ({ deviceId: d.deviceId, deviceName: d.deviceName, deviceType: d.deviceType, keys: d.keyList?.length ?? 0 })), webhooks: w };
+      sb = { keypads: k.map((d) => ({ deviceId: d.deviceId, deviceName: d.deviceName, deviceType: d.deviceType, keys: d.keyList?.length ?? 0, expired: d.keyList?.filter((x) => x.status === "expired").length ?? 0 })), webhooks: w };
     } catch (err) {
       sb = { keypads: [], webhooks: [], error: err instanceof Error ? err.message : String(err) };
     }
@@ -87,13 +88,14 @@ export default async function ImpostazioniPage() {
         ) : (
           <>
             <table className="g-table">
-              <thead><tr><th>Tastierino</th><th>Tipo</th><th>Codici presenti</th><th>Casa</th></tr></thead>
+              <thead><tr><th>Tastierino</th><th>Tipo</th><th>Codici presenti</th><th>Scaduti</th><th>Casa</th></tr></thead>
               <tbody>
                 {sb.keypads.map((k) => (
                   <tr key={k.deviceId}>
                     <td>{k.deviceName}</td>
                     <td className="g-muted">{k.deviceType}</td>
                     <td>{k.keys}</td>
+                    <td>{k.expired}</td>
                     <td>{properties.find((p) => (p as unknown as { switchbot_device_id?: string }).switchbot_device_id === k.deviceId)?.name ?? <span className="g-muted">da abbinare nella pagina Case</span>}</td>
                   </tr>
                 ))}
@@ -106,6 +108,12 @@ export default async function ImpostazioniPage() {
               )}
               {sb.webhooks.length ? <span className="g-muted">{sb.webhooks.join(", ")}</span> : null}
             </div>
+            <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap", fontSize: 14 }}>
+              <span className="g-label">Codici scaduti</span>
+              <form action={cleanupExpiredCodes}><button className="g-btn" type="submit" style={{ padding: "4px 10px", fontSize: 13 }}>Elimina ora</button></form>
+              <span className="g-muted">Vengono comunque eliminati da soli a ogni sincronizzazione (ogni 10 minuti), anche quelli creati a mano nell&apos;app SwitchBot.</span>
+            </div>
+            {msg ? <div className={msg.startsWith("Errore") ? "g-alert g-alert-error" : "g-alert g-alert-ok"}>{msg}</div> : null}
           </>
         )}
       </section>
