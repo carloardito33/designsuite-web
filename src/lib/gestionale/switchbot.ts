@@ -13,7 +13,7 @@ export type SwitchBotDevice = {
   deviceType: string;
   hubDeviceId?: string;
   lockDeviceId?: string;
-  keyList?: { id: number; name: string; type: string; status: string; createTime: number }[];
+  keyList?: { id: number; name: string; type: string; status: string; createTime: number; startTime?: number; endTime?: number; [k: string]: unknown }[];
 };
 
 export function switchbotConfigured(): boolean {
@@ -73,7 +73,7 @@ export async function deleteKey(deviceId: string, keyId: number | string) {
   const body = await call<{ commandId: string }>("POST", `/devices/${deviceId}/commands`, {
     commandType: "command",
     command: "deleteKey",
-    parameter: { id: String(keyId) },
+    parameter: { id: Number(keyId) },
   });
   return body?.commandId ?? null;
 }

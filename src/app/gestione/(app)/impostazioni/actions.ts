@@ -21,3 +21,16 @@ export async function cleanupExpiredCodes() {
   revalidatePath("/gestione/impostazioni");
   redirect(`/gestione/impostazioni?msg=${encodeURIComponent(msg)}`);
 }
+
+export async function deleteSingleCode(deviceId: string, keyId: number, name: string) {
+  const { deleteKey } = await import("@/lib/gestionale/switchbot");
+  let msg: string;
+  try {
+    await deleteKey(deviceId, keyId);
+    msg = `Comando di eliminazione inviato per "${name}". Ricarica la pagina tra qualche secondo per verificare.`;
+  } catch (err) {
+    msg = `Errore: ${err instanceof Error ? err.message : String(err)}`;
+  }
+  revalidatePath("/gestione/impostazioni");
+  redirect(`/gestione/impostazioni?msg=${encodeURIComponent(msg)}`);
+}
