@@ -7,7 +7,7 @@ import { createTimeLimitKey, deleteKey, listKeypads, passcodeFromPhone, randomPa
  * Ciclo di vita dei codici SwitchBot:
  *  - creazione 2 giorni prima dell'arrivo (o subito, se l'arrivo è più vicino)
  *  - conferma leggendo la keyList del tastierino (o via webhook)
- *  - cancellazione il giorno dopo la partenza
+ *  - cancellazione alle 16 del giorno di partenza (o appena la prenotazione viene cancellata)
  */
 export type LockResult = { created: number; confirmed: number; deleted: number; failed: number; errors: string[] };
 
@@ -29,6 +29,11 @@ function keyName(b: { id: string; check_in: string; guest_name?: string | null }
 const PENDING_RETRY_MINUTES = 30;
 const MAX_ATTEMPTS = 3;
 
+/** Ora corrente a Roma (0-23). */
+function romeHour(): number {
+  return Number(new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Rome", hour: "2-digit", hour12: false }).format(new Date()));
+}
+
 export async function processLocks(): Promise<LockResult> {
   const r: LockResult = { created: 0, confirmed: 0, deleted: 0, failed: 0, errors: [] };
   if (!switchbotConfigured()) return r;
@@ -40,23 +45,62 @@ export async function processLocks(): Promise<LockResult> {
   const byProp = new Map((props ?? []).map((p) => [p.id, p]));
   if (!byProp.size) return r;
 
-  const { data: bookings } = await db
-    .from("bookings")
-    .select("id, property_id, check_in, check_out, status, is_block, source, access_code, access_code_status, access_code_attempts, switchbot_key_name, switchbot_key_id, access_code_requested_at, guest_name, guest_phone")
-    .in("property_id", [...byProp.keys()])
-    .eq("is_block", false)
-    .neq("source", "block")
-    .gte("check_out", addDays(today, -2))
-    .lte("check_in", addDays(today, CREATE_DAYS_BEFORE));
+  const SELECT = "id, property_id, check_in, check_out, status, is_block, source, access_code, access_code_status, access_code_attempts, switchbot_key_name, switchbot_key_id, access_code_requested_at, guest_name, guest_phone";
+  const [{ data: bookings }, { data: expiring }] = await Promise.all([
+    db
+      .from("bookings")
+      .select(SELECT)
+      .in("property_id", [...byProp.keys()])
+      .eq("is_block", false)
+      .neq("source", "block")
+      .gte("check_out", today)
+      .lte("check_in", addDays(today, CREATE_DAYS_BEFORE)),
+    // Codici da togliere dal tastierino: prenotazioni finite o cancellate con un codice ancora presente,
+    // senza limiti di data (così si recupera anche quello che fosse sfuggito nei giorni precedenti).
+    db
+      .from("bookings")
+      .select(SELECT)
+      .in("property_id", [...byProp.keys()])
+      .in("access_code_status", ["pending", "active", "failed"])
+      .or(`check_out.lte.${today},status.eq.cancelled`),
+  ]);
 
   const rows = bookings ?? [];
-  const needsDeviceList = rows.some((b) => b.access_code_status === "pending" || (b.access_code_status === "active" && !b.switchbot_key_id));
+  const toDelete = (expiring ?? []).filter((b) => b.status === "cancelled" || b.check_out < today || (b.check_out === today && romeHour() >= CODE_END_HOUR));
+  const needsDeviceList = toDelete.length > 0 || rows.some((b) => b.access_code_status === "pending" || (b.access_code_status === "active" && !b.switchbot_key_id));
   let keypads: Awaited<ReturnType<typeof listKeypads>> = [];
   if (needsDeviceList) {
     try {
       keypads = await listKeypads();
     } catch (err) {
       r.errors.push(`Elenco dispositivi: ${err instanceof Error ? err.message : String(err)}`);
+    }
+  }
+
+  // 1) Cancellazione dopo la scadenza (16:00 del giorno di partenza) o se la prenotazione è cancellata
+  for (const b of toDelete) {
+    const p = byProp.get(b.property_id)!;
+    const deviceId = p.switchbot_device_id as string;
+    const keypad = keypads.find((k) => k.deviceId === deviceId);
+    try {
+      // Si cercano sul tastierino tutte le chiavi di questa prenotazione: per id e per nome
+      // (compresi i tentativi precedenti, che hanno lo stesso nome con suffisso " rN").
+      const base = (b.switchbot_key_name ?? "").replace(/ r\d+$/, "");
+      const ids = new Set<number>();
+      if (b.switchbot_key_id) ids.add(b.switchbot_key_id);
+      for (const k of keypad?.keyList ?? []) {
+        if (base && (k.name === base || k.name.startsWith(`${base} r`))) ids.add(k.id);
+      }
+      if (ids.size === 0 && !keypad) {
+        // tastierino non raggiungibile: si riprova alla prossima sincronizzazione
+        r.errors.push(`${p.name} ${b.check_in}: tastierino non raggiungibile, codice non ancora cancellato`);
+        continue;
+      }
+      for (const id of ids) await deleteKey(deviceId, id);
+      await db.from("bookings").update({ access_code_status: "deleted" }).eq("id", b.id);
+      r.deleted++;
+    } catch (err) {
+      r.errors.push(`${p.name} ${b.check_in}: cancellazione codice: ${err instanceof Error ? err.message : String(err)}`);
     }
   }
 
@@ -67,13 +111,6 @@ export async function processLocks(): Promise<LockResult> {
     const now = Date.now();
 
     try {
-      // 1) Cancellazione dopo la partenza (o se cancellata)
-      if ((b.status === "cancelled" || b.check_out < today) && b.access_code_status === "active") {
-        if (b.switchbot_key_id) await deleteKey(deviceId, b.switchbot_key_id);
-        await db.from("bookings").update({ access_code_status: "deleted" }).eq("id", b.id);
-        r.deleted++;
-        continue;
-      }
       if (b.status !== "confirmed" || b.check_out < today) continue;
 
       // 2) Conferma di un codice in attesa
