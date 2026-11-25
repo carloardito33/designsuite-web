@@ -2,7 +2,8 @@ import { getFeeds, getProperties } from "@/lib/gestionale/queries";
 import { CHANNEL_LABEL } from "@/lib/gestionale/types";
 import { CopyField } from "./copy-field";
 import { listKeypads, queryWebhook, switchbotConfigured } from "@/lib/gestionale/switchbot";
-import { cleanupExpiredCodes, deleteSingleCode, registerSwitchbotWebhook } from "./actions";
+import { cleanupExpiredCodes, createManualCode, deleteSingleCode, registerSwitchbotWebhook } from "./actions";
+import { NewCodeForm } from "./new-code-form";
 import { createClient } from "@/lib/supabase/server";
 import type { SwitchBotDevice } from "@/lib/gestionale/switchbot";
 
@@ -148,6 +149,7 @@ export default async function ImpostazioniPage({ searchParams }: { searchParams:
                     ))}
                   </tbody>
                 </table>
+                <NewCodeForm action={createManualCode.bind(null, kp.deviceId)} />
                 <details className="g-muted" style={{ fontSize: 12 }}>
                   <summary>Dati grezzi SwitchBot (per controllo)</summary>
                   <pre style={{ whiteSpace: "pre-wrap" }}>{JSON.stringify((kp.keyList ?? []).map(({ password: _p, iv: _iv, ...rest }) => rest), null, 2)}</pre>

@@ -69,6 +69,16 @@ export async function createTimeLimitKey(deviceId: string, opts: { name: string;
   return body?.commandId ?? null;
 }
 
+/** Crea un codice permanente sul tastierino. */
+export async function createPermanentKey(deviceId: string, opts: { name: string; password: string }) {
+  const body = await call<{ commandId: string }>("POST", `/devices/${deviceId}/commands`, {
+    commandType: "command",
+    command: "createKey",
+    parameter: { name: opts.name, type: "permanent", password: opts.password },
+  });
+  return body?.commandId ?? null;
+}
+
 export async function deleteKey(deviceId: string, keyId: number | string) {
   const body = await call<{ commandId: string }>("POST", `/devices/${deviceId}/commands`, {
     commandType: "command",
