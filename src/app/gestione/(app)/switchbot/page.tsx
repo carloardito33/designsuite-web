@@ -14,7 +14,14 @@ export default async function SwitchBotPage({ searchParams }: { searchParams: Pr
   let sb: { keypads: { deviceId: string; deviceName: string; deviceType: string; keys: number; expired: number }[]; webhooks: string[]; error?: string } | null = null;
   if (switchbotConfigured()) {
     try {
-      const [k, w] = await Promise.all([listKeypads(), queryWebhook().catch(() => [] as string[])]);
+      const [k0, w] = await Promise.all([listKeypads(), queryWebhook().catch(() => [] as string[])]);
+      // Ordine: Muratori, Burlamacchi, Casa, poi eventuali altri tastierini.
+      const ORDER = ["muratori", "burlamacchi", "casa"];
+      const rank = (name: string) => {
+        const i = ORDER.findIndex((o) => name.toLowerCase().includes(o));
+        return i === -1 ? ORDER.length : i;
+      };
+      const k = [...k0].sort((a, b) => rank(a.deviceName) - rank(b.deviceName) || a.deviceName.localeCompare(b.deviceName));
       raw = k;
       sb = { keypads: k.map((d) => ({ deviceId: d.deviceId, deviceName: d.deviceName, deviceType: d.deviceType, keys: d.keyList?.length ?? 0, expired: d.keyList?.filter((x) => x.status === "expired").length ?? 0 })), webhooks: w };
     } catch (err) {
