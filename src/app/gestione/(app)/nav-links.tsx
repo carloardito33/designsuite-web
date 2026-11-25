@@ -9,6 +9,7 @@ const links = [
   { href: "/gestione/messaggi", label: "Messaggi" },
   { href: "/gestione/avvisi", label: "Avvisi" },
   { href: "/gestione/case", label: "Case" },
+  { href: "/gestione/switchbot", label: "SwitchBot" },
   { href: "/gestione/impostazioni", label: "Impostazioni" },
 ];
 

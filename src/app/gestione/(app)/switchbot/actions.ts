@@ -6,7 +6,7 @@ import { setupWebhook } from "@/lib/gestionale/switchbot";
 
 export async function registerSwitchbotWebhook() {
   await setupWebhook("https://www.designsuite.it/api/switchbot/webhook");
-  revalidatePath("/gestione/impostazioni");
+  revalidatePath("/gestione/switchbot");
 }
 
 export async function cleanupExpiredCodes() {
@@ -18,8 +18,8 @@ export async function cleanupExpiredCodes() {
   } catch (err) {
     msg = `Errore: ${err instanceof Error ? err.message : String(err)}`;
   }
-  revalidatePath("/gestione/impostazioni");
-  redirect(`/gestione/impostazioni?msg=${encodeURIComponent(msg)}`);
+  revalidatePath("/gestione/switchbot");
+  redirect(`/gestione/switchbot?msg=${encodeURIComponent(msg)}`);
 }
 
 export async function deleteSingleCode(deviceId: string, keyId: number, name: string) {
@@ -31,8 +31,8 @@ export async function deleteSingleCode(deviceId: string, keyId: number, name: st
   } catch (err) {
     msg = `Errore: ${err instanceof Error ? err.message : String(err)}`;
   }
-  revalidatePath("/gestione/impostazioni");
-  redirect(`/gestione/impostazioni?msg=${encodeURIComponent(msg)}`);
+  revalidatePath("/gestione/switchbot");
+  redirect(`/gestione/switchbot?msg=${encodeURIComponent(msg)}`);
 }
 
 /** Data e ora inserite nel modulo (ora di Roma) → Date. */
@@ -73,6 +73,6 @@ export async function createManualCode(deviceId: string, fd: FormData) {
   } catch (err) {
     msg = `Errore: ${err instanceof Error ? err.message : String(err)}`;
   }
-  revalidatePath("/gestione/impostazioni");
-  redirect(`/gestione/impostazioni?msg=${encodeURIComponent(msg)}`);
+  revalidatePath("/gestione/switchbot");
+  redirect(`/gestione/switchbot?msg=${encodeURIComponent(msg)}`);
 }
