@@ -101,10 +101,6 @@ export default async function SwitchBotPage({ searchParams }: { searchParams: Pr
                   </tbody>
                 </table>
                 <NewCodeForm action={createManualCode.bind(null, kp.deviceId)} />
-                <details className="g-muted" style={{ fontSize: 12 }}>
-                  <summary>Dati grezzi SwitchBot (per controllo)</summary>
-                  <pre style={{ whiteSpace: "pre-wrap" }}>{JSON.stringify((kp.keyList ?? []).map(({ password: _p, iv: _iv, ...rest }) => rest), null, 2)}</pre>
-                </details>
               </div>
             ))}
             {(events ?? []).length ? (
