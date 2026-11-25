@@ -82,7 +82,7 @@ export default async function SwitchBotPage({ searchParams }: { searchParams: Pr
               <div key={kp.deviceId} style={{ display: "grid", gap: 6 }}>
                 <strong style={{ fontWeight: 500, fontSize: 14 }}>Codici su {kp.deviceName}</strong>
                 <table className="g-table">
-                  <thead><tr><th>Nome</th><th>Tipo</th><th>Stato</th><th>Creato</th><th>Validità</th><th></th></tr></thead>
+                  <thead><tr><th>Nome</th><th>Tipo</th><th>Stato</th><th>Creato</th><th></th></tr></thead>
                   <tbody>
                     {(kp.keyList ?? []).map((c) => (
                       <tr key={c.id}>
@@ -90,7 +90,6 @@ export default async function SwitchBotPage({ searchParams }: { searchParams: Pr
                         <td className="g-muted">{c.type}</td>
                         <td>{c.status === "expired" ? <span className="g-pill" style={{ background: "#fdf0f0" }}>scaduto</span> : c.status === "normal" ? "valido" : c.status}</td>
                         <td className="g-muted" style={{ whiteSpace: "nowrap" }}>{fmtTs(c.createTime)}</td>
-                        <td className="g-muted" style={{ whiteSpace: "nowrap" }}>{c.startTime || c.endTime ? `${fmtTs(c.startTime)} → ${fmtTs(c.endTime)}` : "non indicata"}</td>
                         <td>
                           <form action={deleteSingleCode.bind(null, kp.deviceId, c.id, c.name)}>
                             <button className="g-btn g-btn-danger" type="submit" style={{ padding: "2px 8px", fontSize: 12 }}>Elimina</button>
