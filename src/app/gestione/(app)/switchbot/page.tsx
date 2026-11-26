@@ -1,5 +1,5 @@
 import { getProperties } from "@/lib/gestionale/queries";
-import { listKeypads, queryWebhook, switchbotConfigured, type SwitchBotDevice } from "@/lib/gestionale/switchbot";
+import { decryptPasscode, listKeypads, queryWebhook, switchbotConfigured, type SwitchBotDevice } from "@/lib/gestionale/switchbot";
 import { createClient } from "@/lib/supabase/server";
 import { cleanupExpiredCodes, createManualCode, deleteSingleCode, registerSwitchbotWebhook } from "./actions";
 import { NewCodeForm } from "./new-code-form";
@@ -30,6 +30,8 @@ export default async function SwitchBotPage({ searchParams }: { searchParams: Pr
   }
 
   const supabase = await createClient();
+  const { data: known } = await supabase.from("bookings").select("switchbot_key_name, access_code").not("switchbot_key_name", "is", null).not("access_code", "is", null);
+  const codeByKeyName = new Map<string, string>((known ?? []).map((b) => [b.switchbot_key_name as string, b.access_code as string]));
   const { data: events } = await supabase.from("switchbot_events").select("received_at, event_name, result, command_id").order("received_at", { ascending: false }).limit(10);
   const fmtTs = (n?: number) => {
     if (!n) return "";
@@ -79,15 +81,21 @@ export default async function SwitchBotPage({ searchParams }: { searchParams: Pr
             </div>
             {msg ? <div className={msg.startsWith("Errore") ? "g-alert g-alert-error" : "g-alert g-alert-ok"}>{msg}</div> : null}
             {raw.map((kp) => (
-              <div key={kp.deviceId} style={{ display: "grid", gap: 6 }}>
-                <strong style={{ fontWeight: 500, fontSize: 14 }}>Codici su {kp.deviceName}</strong>
+              <details key={kp.deviceId} className="sb-keypad">
+                <summary>
+                  <span className="sb-arrow" aria-hidden>▸</span>
+                  <strong style={{ fontWeight: 500, fontSize: 14 }}>{kp.deviceName}</strong>
+                  <span className="g-muted" style={{ fontSize: 13 }}>{(kp.keyList ?? []).length} codici</span>
+                </summary>
+                <div style={{ display: "grid", gap: 8, paddingTop: 6 }}>
                 <table className="g-table">
-                  <thead><tr><th>Nome</th><th>Tipo</th><th>Stato</th><th>Creato</th><th></th></tr></thead>
+                  <thead><tr><th>Nome</th><th>Codice</th><th>Tipo</th><th>Stato</th><th>Creato</th><th></th></tr></thead>
                   <tbody>
                     {(kp.keyList ?? []).map((c) => (
                       <tr key={c.id}>
                         <td>{c.name}</td>
-                        <td className="g-muted">{c.type}</td>
+                        <td style={{ letterSpacing: "0.06em", fontVariantNumeric: "tabular-nums" }}>{decryptPasscode(c.password as string | undefined, c.iv as string | undefined) ?? codeByKeyName.get(c.name) ?? <span className="g-muted">non disponibile</span>}</td>
+                        <td className="g-muted">{c.type === "permanent" ? "permanente" : c.type === "timeLimit" ? "a tempo" : c.type === "disposable" ? "monouso" : c.type}</td>
                         <td>{c.status === "expired" ? <span className="g-pill" style={{ background: "#fdf0f0" }}>scaduto</span> : c.status === "normal" ? "valido" : c.status}</td>
                         <td className="g-muted" style={{ whiteSpace: "nowrap" }}>{fmtTs(c.createTime)}</td>
                         <td>
@@ -100,7 +108,8 @@ export default async function SwitchBotPage({ searchParams }: { searchParams: Pr
                   </tbody>
                 </table>
                 <NewCodeForm action={createManualCode.bind(null, kp.deviceId)} />
-              </div>
+                </div>
+              </details>
             ))}
             {(events ?? []).length ? (
               <details className="g-muted" style={{ fontSize: 12 }}>

@@ -188,3 +188,10 @@
   .cal-rowhead { padding: 8px; font-size: 12px; max-width: 110px; }
   .cal-bar { font-size: 11px; padding: 0 8px; }
 }
+
+/* SwitchBot: elenco codici richiudibile per tastierino */
+.sb-keypad { border-top: 1px solid var(--border); padding-top: 10px; }
+.sb-keypad > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 4px 0; }
+.sb-keypad > summary::-webkit-details-marker { display: none; }
+.sb-arrow { display: inline-block; width: 14px; transition: transform 0.15s ease; color: var(--text-mid); }
+.sb-keypad[open] .sb-arrow { transform: rotate(90deg); }

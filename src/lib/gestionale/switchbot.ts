@@ -128,3 +128,37 @@ export function randomPasscode(): string {
   for (let i = 0; i < 5; i++) rest += Math.floor(Math.random() * 10);
   return `${first}${rest}`;
 }
+
+/**
+ * Decifra il codice di un tastierino come arriva nell'elenco dispositivi SwitchBot
+ * (AES-128-CBC con la chiave segreta dello sviluppatore). Il formato esatto di chiave e iv
+ * non è documentato, quindi si provano le varianti plausibili e si accetta solo un risultato
+ * fatto di 4-12 cifre. Ritorna null se non si riesce.
+ */
+export function decryptPasscode(password: string | undefined, iv: string | undefined): string | null {
+  const secret = process.env.SWITCHBOT_SECRET;
+  if (!password || !iv || !secret) return null;
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const crypto = require("node:crypto") as typeof import("node:crypto");
+  const keys: Buffer[] = [];
+  const s = Buffer.from(secret, "utf8");
+  if (s.length >= 16) keys.push(s.subarray(0, 16));
+  if (/^[0-9a-f]{32}$/i.test(secret)) keys.push(Buffer.from(secret, "hex"));
+  keys.push(crypto.createHash("md5").update(secret).digest());
+  const ivs: Buffer[] = [];
+  const pushIv = (b: Buffer) => { if (b.length === 16) ivs.push(b); };
+  pushIv(Buffer.from(iv, "utf8"));
+  if (/^[0-9a-f]+$/i.test(iv)) pushIv(Buffer.from(iv, "hex"));
+  try { pushIv(Buffer.from(iv, "base64")); } catch { /* ignora */ }
+  const datas: Buffer[] = [];
+  try { datas.push(Buffer.from(password, "base64")); } catch { /* ignora */ }
+  if (/^[0-9a-f]+$/i.test(password)) datas.push(Buffer.from(password, "hex"));
+  for (const key of keys) for (const v of ivs) for (const data of datas) {
+    try {
+      const d = crypto.createDecipheriv("aes-128-cbc", key, v);
+      const out = Buffer.concat([d.update(data), d.final()]).toString("utf8").replace(/\0+$/, "");
+      if (/^\d{4,12}$/.test(out)) return out;
+    } catch { /* variante sbagliata, si prova la successiva */ }
+  }
+  return null;
+}
