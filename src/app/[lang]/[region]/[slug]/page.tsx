@@ -69,9 +69,12 @@ export default async function PropertyPage({ params }: Props) {
 
   const siteUrl = "https://www.designsuite.it";
   const pageUrl = siteUrl + localizedPath(locale, `/${property.region}/${property.slug}`);
+  // Dati strutturati schema.org: "House" per le ville, "Apartment" per Milano.
+  // (Il tipo "VacationRental" e' riservato da Google ai partner Hotel Center:
+  // senza quel programma genera solo errori in Search Console.)
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "VacationRental",
+    "@type": property.region === "salento" ? "House" : "Apartment",
     name: property.name,
     description: property.metaDescription,
     url: pageUrl,
@@ -82,12 +85,9 @@ export default async function PropertyPage({ params }: Props) {
       addressRegion: property.region === "salento" ? "Puglia" : "Lombardia",
       addressCountry: "IT",
     },
-    containsPlace: {
-      "@type": "Accommodation",
-      occupancy: { "@type": "QuantitativeValue", maxValue: property.guests },
-      numberOfBedrooms: property.bedrooms,
-      numberOfBathroomsTotal: property.bathrooms,
-    },
+    occupancy: { "@type": "QuantitativeValue", maxValue: property.guests },
+    numberOfBedrooms: property.bedrooms,
+    numberOfBathroomsTotal: property.bathrooms,
     amenityFeature: property.amenities.map((a) => ({
       "@type": "LocationFeatureSpecification",
       name: a,
