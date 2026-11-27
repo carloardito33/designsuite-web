@@ -329,9 +329,9 @@ export const properties: Property[] = [
         ],
         services: ["Check-in flessibile", "Parcheggio privato (su richiesta)"],
         metaTitle:
-          "Suite Porta Romana — Appartamento di Design con Terrazzo a Milano",
+          "Suite Porta Romana — Appartamento con Terrazzo vicino Metro M3, Milano",
         metaDescription:
-          "Appartamento di design ristrutturato da architetto in Porta Romana, Milano. Terrazzo privato, portineria, metro M3 a 3 minuti. Fino a 4 ospiti.",
+          "Appartamento di design per soggiorni brevi in Porta Romana, Milano. Terrazzo privato, portineria, metro M3 a 3 minuti e Duomo a 3 fermate. Fino a 4 ospiti.",
       },
       en: {
         shortDescription: "Design apartment with a terrace in Porta Romana",
@@ -357,9 +357,9 @@ export const properties: Property[] = [
         ],
         services: ["Flexible check-in", "Private parking (on request)"],
         metaTitle:
-          "Suite Porta Romana — Design Apartment with Terrace in Milan",
+          "Suite Porta Romana — Apartment with Terrace near M3 Metro, Milan",
         metaDescription:
-          "Architect-renovated design apartment in Porta Romana, Milan. Private terrace, concierge, M3 metro 3 minutes away. Up to 4 guests.",
+          "Design apartment for short stays in Porta Romana, Milan. Private terrace, concierge, M3 metro 3 minutes away, Duomo 3 stops. Up to 4 guests.",
       },
     },
   },
@@ -413,9 +413,9 @@ export const properties: Property[] = [
           "Biancheria da letto e bagno inclusa",
         ],
         services: ["Check-in flessibile"],
-        metaTitle: "Suite Porta Romana 2 — Appartamento Moderno a Milano",
+        metaTitle: "Suite Porta Romana 2 — Appartamento di Design vicino Metro M3, Milano",
         metaDescription:
-          "Appartamento moderno ristrutturato da architetto nel quartiere Porta Romana, Milano. Tutti i comfort, metro M3 a pochi minuti. Fino a 4 ospiti.",
+          "Appartamento di design per soggiorni brevi nel quartiere Porta Romana, Milano. Lavatrice e asciugatrice, aria condizionata, metro M3 a pochi minuti. Fino a 4 ospiti.",
       },
       en: {
         shortDescription: "A second design apartment in the heart of Porta Romana",
@@ -438,9 +438,9 @@ export const properties: Property[] = [
           "Bed and bath linen included",
         ],
         services: ["Flexible check-in"],
-        metaTitle: "Suite Porta Romana 2 — Modern Apartment in Milan",
+        metaTitle: "Suite Porta Romana 2 — Design Apartment near M3 Metro, Milan",
         metaDescription:
-          "Modern architect-renovated apartment in the Porta Romana district, Milan. All comforts, M3 metro a few minutes away. Up to 4 guests.",
+          "Design apartment for short stays in the Porta Romana district, Milan. Washer and dryer, air conditioning, M3 metro a few minutes away. Up to 4 guests.",
       },
     },
   },
