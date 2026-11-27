@@ -23,6 +23,8 @@ export type Property = {
   cin: string;
   mapsUrl?: string;
   smoobuApartmentId?: string;
+  /** Video tour (16:9, web-optimised) shown on the property page. */
+  video?: { src: string; poster: string };
   guests: number;
   bedrooms: number;
   bathrooms: number;
@@ -46,6 +48,10 @@ export const properties: Property[] = [
     cin: "IT075050C200037136",
     mapsUrl: "https://maps.app.goo.gl/LTJLdXiiC21gnq8p7",
     smoobuApartmentId: "1894201",
+    video: {
+      src: "/videos/bosco-degli-ulivi.mp4",
+      poster: "/videos/bosco-degli-ulivi-poster.jpg",
+    },
     guests: 6,
     bedrooms: 3,
     bathrooms: 2,
@@ -107,7 +113,7 @@ export const properties: Property[] = [
           "Cuoco privato (su richiesta)",
         ],
         metaTitle:
-          "Bosco degli Ulivi — Villa con Piscina 12×4 a Morciano di Leuca, Salento",
+          "Bosco degli Ulivi — Villa con Piscina Privata tra gli Ulivi, Leuca (Salento)",
         metaDescription:
           "Villa di charme progettata da architetto, immersa tra ulivi secolari nel Sud Salento. Piscina 12×4 m, 3 camere, 2 bagni, fino a 6 ospiti. A pochi minuti dalle spiagge.",
       },
@@ -152,7 +158,7 @@ export const properties: Property[] = [
           "Private chef (on request)",
         ],
         metaTitle:
-          "Bosco degli Ulivi — Villa with 12×4 Pool in Morciano di Leuca, Salento",
+          "Bosco degli Ulivi — Villa with Private Pool among Olive Trees, Leuca, Salento",
         metaDescription:
           "Architect-designed charming villa set among centuries-old olive trees in southern Salento. 12×4 m pool, 3 bedrooms, 2 bathrooms, up to 6 guests. Minutes from the beaches.",
       },
@@ -168,6 +174,10 @@ export const properties: Property[] = [
     cin: "IT075019C200065154",
     mapsUrl: "https://maps.app.goo.gl/RRobRbgUPwahZ6jp6",
     smoobuApartmentId: "1894199",
+    video: {
+      src: "/videos/villa-crea.mp4",
+      poster: "/videos/villa-crea-poster.jpg",
+    },
     guests: 8,
     bedrooms: 4,
     bathrooms: 3,
@@ -216,9 +226,9 @@ export const properties: Property[] = [
           "Cuoco privato (su richiesta)",
         ],
         metaTitle:
-          "Villa Crea — Piscina 15×3 Vista Mare a Castrignano del Capo, Salento",
+          "Villa Crea — Villa con Piscina Vista Mare a Santa Maria di Leuca, Salento",
         metaDescription:
-          "Villa di charme progettata da Zanaroli con piscina 15×3 m affacciata sul mare del Salento. 4 camere, 4 bagni, fino a 8 ospiti. Impianto fotovoltaico. A pochi km da Santa Maria di Leuca.",
+          "Villa di charme progettata da Zanaroli con piscina 15×3 m affacciata sul mare del Salento. 4 camere, 3 bagni, fino a 8 ospiti. Impianto fotovoltaico. A pochi km da Santa Maria di Leuca.",
       },
       en: {
         shortDescription:
@@ -261,9 +271,9 @@ export const properties: Property[] = [
           "Private chef (on request)",
         ],
         metaTitle:
-          "Villa Crea — 15×3 Sea-View Pool in Castrignano del Capo, Salento",
+          "Villa Crea — Sea-View Villa with Private Pool near Santa Maria di Leuca, Salento",
         metaDescription:
-          "Charming villa designed by Zanaroli with a 15×3 m pool overlooking the Salento sea. 4 bedrooms, 4 bathrooms, up to 8 guests. Photovoltaic system. A few km from Santa Maria di Leuca.",
+          "Charming villa designed by Zanaroli with a 15×3 m pool overlooking the Salento sea. 4 bedrooms, 3 bathrooms, up to 8 guests. Photovoltaic system. A few km from Santa Maria di Leuca.",
       },
     },
   },

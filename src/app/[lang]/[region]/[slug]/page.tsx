@@ -67,8 +67,40 @@ export default async function PropertyPage({ params }: Props) {
     localizedPath(locale, "/") +
     (property.region === "salento" ? "#salento" : "#milano");
 
+  const siteUrl = "https://www.designsuite.it";
+  const pageUrl = siteUrl + localizedPath(locale, `/${property.region}/${property.slug}`);
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "VacationRental",
+    name: property.name,
+    description: property.metaDescription,
+    url: pageUrl,
+    image: [property.heroImage.startsWith("/") ? siteUrl + property.heroImage : property.heroImage],
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: property.address,
+      addressRegion: property.region === "salento" ? "Puglia" : "Lombardia",
+      addressCountry: "IT",
+    },
+    containsPlace: {
+      "@type": "Accommodation",
+      occupancy: { "@type": "QuantitativeValue", maxValue: property.guests },
+      numberOfBedrooms: property.bedrooms,
+      numberOfBathroomsTotal: property.bathrooms,
+    },
+    amenityFeature: property.amenities.map((a) => ({
+      "@type": "LocationFeatureSpecification",
+      name: a,
+      value: true,
+    })),
+  };
+
   return (
     <div className="pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+      />
       {/* Hero */}
       <section className="relative h-[70vh] min-h-[480px] bg-[var(--charcoal)]">
         <Image
@@ -212,6 +244,23 @@ export default async function PropertyPage({ params }: Props) {
             </div>
           </aside>
         </div>
+
+        {/* Video tour */}
+        {property.video && (
+          <div className="pb-16">
+            <h3 className="font-serif text-3xl font-light text-[var(--charcoal)] mb-8">
+              {d.property.video}
+            </h3>
+            <video
+              src={property.video.src}
+              poster={property.video.poster}
+              controls
+              playsInline
+              preload="none"
+              className="w-full aspect-video bg-[var(--charcoal)]"
+            />
+          </div>
+        )}
 
         {/* Gallery */}
         <div className="pb-16">

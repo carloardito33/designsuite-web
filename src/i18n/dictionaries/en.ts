@@ -104,6 +104,7 @@ export const en = {
     whatsapp: "WhatsApp",
     bookNote: "Direct booking available with no commission.",
     gallery: "Gallery",
+    video: "Video tour",
     backSalento: "All properties in Salento",
     backMilano: "All apartments in Milan",
   },

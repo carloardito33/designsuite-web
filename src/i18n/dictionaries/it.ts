@@ -104,6 +104,7 @@ export const it = {
     whatsapp: "WhatsApp",
     bookNote: "Prenotazione diretta disponibile senza commissioni.",
     gallery: "Galleria",
+    video: "Il video",
     backSalento: "Tutte le proprietà in Salento",
     backMilano: "Tutti gli appartamenti a Milano",
   },
