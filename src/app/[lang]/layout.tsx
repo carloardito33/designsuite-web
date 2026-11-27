@@ -33,6 +33,9 @@ export async function generateMetadata({
       template: dict.meta.siteTitleTemplate,
     },
     description: dict.meta.siteDescription,
+    verification: {
+      google: "XsBuaP9ogFvCEXTpwXm9Qh7xWJQR-_kir1FZm-XOJMo",
+    },
     alternates: {
       languages: {
         it: "/",
